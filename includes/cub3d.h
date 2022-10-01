@@ -34,6 +34,7 @@
 
 typedef struct s_data {
 	int		nbr_line_data;
+	int		len_max;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -42,7 +43,8 @@ typedef struct s_data {
 	char	*c;
 }				t_data;
 
-void	check_error(int argc, char **argv);
+void	init_struct(t_data *root);
+void	check_error(int argc, char **argv, t_data *root);
 char	*get_next_line(int fd);
 char	*ft_get_line(char *left_str);
 char	*ft_strchr_gnl(char *s, int c);

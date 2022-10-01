@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/01 21:08:18 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/01 22:17:48 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,15 @@ void	check_name(char *map)
 	exit(1);
 }
 
-void	check_data(char *map)
+// void	check_data_line(char *line, t_data *root)
+// {
+	
+// }
+
+void	check_data(char *map, t_data *root)
 {
-	int fd;
+	int		fd;
+	char	*line;
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
@@ -42,10 +48,19 @@ void	check_data(char *map)
 		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
 		exit(1);
 	}
-	
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		root->nbr_line_data++;
+		if (ft_strlen(line) > root->len_max)
+			root->len_max = ft_strlen(line);
+		// check_data_line(line, root);
+	}
 }
 
-void	check_error(int argc, char **argv)
+void	check_error(int argc, char **argv, t_data *root)
 {
 	if (argc == 1 || argc > 2)
 	{
@@ -56,5 +71,5 @@ void	check_error(int argc, char **argv)
 		exit(1);
 	}
 	check_name(argv[1]);
-	check_data(argv[1]);
+	check_data(argv[1], root);
 }
