@@ -57,7 +57,7 @@ $(NAME): $(LIBRARY) $(OBJS)
 clean:
 		@$(MAKE) clean $(PATH_LIBFT)
 		@$(MAKE) clean $(PATH_MLX)
-		@${RM} ${OBJS} ${OBJS_BONUS}
+		@${RM} ${OBJS} ${DEPS} ${OBJS_BONUS}
 		@echo "\033[93m [OK] | clean.\033[0m"
 
 fclean:		clean
