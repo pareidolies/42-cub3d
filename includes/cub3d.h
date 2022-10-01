@@ -28,10 +28,27 @@
 # define UP_KEY				65362
 # define DOWN_KEY			65364
 # define SPACE_KEY			32
-# define TAB_KEY			65289	
+# define TAB_KEY			65289
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
-//main.c
+typedef struct s_data {
+	int		nbr_line_data;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
+}				t_data;
+
+void	check_error(int argc, char **argv);
+char	*get_next_line(int fd);
+char	*ft_get_line(char *left_str);
+char	*ft_strchr_gnl(char *s, int c);
+char	*ft_new_left_str(char *left_str);
+char	*ft_strjoin_gnl(char *left_str, char *buff);
+
+
 
 #endif

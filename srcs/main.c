@@ -1,8 +1,7 @@
 #include "../includes/cub3d.h"
 
-int main()
+int main(int argc, char **argv)
 {
-
-	ft_putstr_fd("Let begin the game !", 1);
+	check_error(argc, argv);
 	return (0);
 }

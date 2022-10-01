@@ -1,4 +1,4 @@
-SRCS		= main.c
+SRCS		= main.c check_map.c get_next_line.c get_next_line_utils.c
 
 SRCS_DIR	= ./srcs/
 
