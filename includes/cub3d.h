@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
+/*   Updated: 2022/10/02 19:14:59 by jdubilla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 
 # define CUB3D_H
 
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
+# include <stdbool.h>
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <math.h>
@@ -41,16 +54,21 @@ typedef struct s_data {
 	char	*ea;
 	char	*f;
 	char	*c;
+	bool	err;
 }				t_data;
 
-void	init_struct(t_data *root);
-void	check_error(int argc, char **argv, t_data *root);
+int		is_data(char *data);
+int		len_double_array(char **arr);
+int		check_error(int argc, char **argv, t_data *root);
 char	*get_next_line(int fd);
 char	*ft_get_line(char *left_str);
 char	*ft_strchr_gnl(char *s, int c);
 char	*ft_new_left_str(char *left_str);
 char	*ft_strjoin_gnl(char *left_str, char *buff);
-
-
+void	init_struct(t_data *root);
+void	free_double_array(char **arr);
+void	free_struct_exit(t_data *root);
+bool	all_data_set(t_data *root);
+bool	whitespace_on_line(char **arr);
 
 #endif

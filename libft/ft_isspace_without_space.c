@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 21:58:51 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/01 22:01:19 by jdubilla         ###   ########.fr       */
+/*   Created: 2022/10/02 14:03:44 by jdubilla          #+#    #+#             */
+/*   Updated: 2022/10/02 18:43:36 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
-void	init_struct(t_data *root)
+int	ft_isspace_without_space(int c)
 {
-	root->nbr_line_data = 0;
-	root->len_max = 0;
-	root->no = NULL;
-	root->so = NULL;
-	root->we = NULL;
-	root->ea = NULL;
-	root->f = NULL;
-	root->c = NULL;
+	if (c == '\t' || c == '\r' || c == '\n'
+		|| c == '\v' || c == '\f')
+		return (1);
+	return (0);
 }
