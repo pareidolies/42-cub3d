@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/02 19:16:15 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:47:52 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,19 @@ void	check_name(char *map)
 	exit(1);
 }
 
-void	get_data(t_data *root, int data, char **arr, char *map)
+void	get_data(t_data *root, char *line, char **arr, char *map)
 {
-	if (data == 1 && !root->no)
+	if (is_data(arr[0]) == 1 && !root->no)
 		root->no = ft_strdup(arr[1]);
-	else if (data == 2 && !root->so)
+	else if (is_data(arr[0]) == 2 && !root->so)
 		root->so = ft_strdup(arr[1]);
-	else if (data == 3 && !root->we)
+	else if (is_data(arr[0]) == 3 && !root->we)
 		root->we = ft_strdup(arr[1]);
-	else if (data == 4 && !root->ea)
+	else if (is_data(arr[0]) == 4 && !root->ea)
 		root->ea = ft_strdup(arr[1]);
-	else if (data == 5 && !root->f)
-		root->f = ft_strdup(arr[1]);
-	else if (data == 6 && !root->c)
-		root->c = ft_strdup(arr[1]);
+	else if ((is_data(arr[0]) == 5 && root->f.empty)
+		|| (is_data(arr[0]) == 6 && root->c.empty))
+		cpy_rgb(root, is_data(arr[0]), arr, line);
 	else
 	{
 		if (!root->err)
@@ -64,12 +63,6 @@ void	check_data_line(char *line, t_data *root, char *map)
 	int		data;
 	char	**arr;
 
-	/*	Pour ici, a voir si on compte les whitespaces comme des espaces ou non, car si
-		on les considerent comme des espaces (pour les data), on doit aussi le faire a
-		l'interieur de la map pour rester coherent mais c'est chelou d'avoir des tabulations
-		ou autres a l'interieur de la map.... Sur discord c'est partage mais il est dit que
-		dans le sujet on nous parle uniquement d'espaces et pas de whitespace donc a
-		voir.. */
 	// arr = ft_split(line, "' '\t\r\n\v\f");
 	arr = ft_split(line, " ");
 	
@@ -80,7 +73,7 @@ void	check_data_line(char *line, t_data *root, char *map)
 	// 	printf("\n");
 	
 	data = is_data(arr[0]);
-	if ((arr[0] && !data) || (data && len_double_array(arr) != 2)
+	if ((arr[0] && !data) || (data && !check_format(arr))
 		|| whitespace_on_line(arr))
 	{
 		if (!root->err)
@@ -96,7 +89,7 @@ accepted)\n", map, root->nbr_line_data);
 				root->nbr_line_data);
 	}
 	else if (data)
-		get_data(root, data, arr, map);
+		get_data(root, line, arr, map);
 	free_double_array(arr);
 }
 
@@ -111,19 +104,26 @@ void	check_data(char *map, t_data *root)
 		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
 		exit(1);
 	}
-	// Pour la condition du while, peut etre ca plus des que je detecte que les
-	// caracteres corespondent au parsing de a map
 	while (!all_data_set(root))
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		root->nbr_line_data++;
-		if (ft_strlen(line) > root->len_max)
-			root->len_max = ft_strlen(line);
 		check_data_line(line, root, map);
 		free(line);
 	}
+	if (line)
+	{
+		while (1)
+		{
+			line = get_next_line(fd);
+			if (!line)
+				break ;
+			free(line);
+		}
+	}
+	printf("OK\n");
 	close(fd);
 }
 
@@ -141,6 +141,13 @@ int	check_error(int argc, char **argv, t_data *root)
 	}
 	check_name(argv[1]);
 	check_data(argv[1], root);
+
+	// TEST
+	// printf("\n");
+	// show_data(root);
+
+	if (!all_data_set(root))
+		error_missing_data(root);
 	// Ici, ajouter la fct check de la map.
 	if (root->err)
 		return (1);

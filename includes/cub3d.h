@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/02 19:14:59 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:46:24 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <math.h>
+# include <stdio.h>
 
 # define WIDTH				400
 # define HEIGHT				400
@@ -45,6 +46,13 @@
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
+typedef struct s_rgb {
+	bool	empty;
+	int		r;
+	int		g;
+	int		b;
+}				t_rgb;
+
 typedef struct s_data {
 	int		nbr_line_data;
 	int		len_max;
@@ -52,22 +60,29 @@ typedef struct s_data {
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*f;
-	char	*c;
+	t_rgb	f;
+	t_rgb	c;
+	// char	*f;
+	// char	*c;
+	// int		*f;
+	// int		*c;
 	bool	err;
 }				t_data;
 
 int		is_data(char *data);
-int		len_double_array(char **arr);
 int		check_error(int argc, char **argv, t_data *root);
 char	*get_next_line(int fd);
 char	*ft_get_line(char *left_str);
 char	*ft_strchr_gnl(char *s, int c);
 char	*ft_new_left_str(char *left_str);
 char	*ft_strjoin_gnl(char *left_str, char *buff);
+void	show_data(t_data *root);
 void	init_struct(t_data *root);
 void	free_double_array(char **arr);
 void	free_struct_exit(t_data *root);
+void	error_missing_data(t_data *root);
+void	cpy_rgb(t_data *root, int data, char **arr, char *line);
+bool	check_format(char **arr);
 bool	all_data_set(t_data *root);
 bool	whitespace_on_line(char **arr);
 

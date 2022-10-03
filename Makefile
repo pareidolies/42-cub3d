@@ -1,5 +1,6 @@
 SRCS		=	main.c check_map.c get_next_line.c get_next_line_utils.c \
-				struct_utils.c check_map_utils.c
+				struct_utils.c check_map_utils.c check_map_utils_bis.c \
+				check_rgb.c
 
 SRCS_DIR	= ./srcs/
 
