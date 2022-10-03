@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 01:38:27 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/01 20:57:20 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:32:22 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "../includes/cub3d.h"
 
-char	*ft_read_to_left_str(int fd, char *left_str)
+static char	*ft_read_to_left_str(int fd, char *left_str)
 {
 	char	*buff;
 	int		rd_bytes;

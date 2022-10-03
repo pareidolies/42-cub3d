@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:35:18 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 15:42:22 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:27:33 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	et on attribue a la struct chaque valeur avec un ft_atoi(). 
 */
 
-bool	check_rgb_format_bis(char *rgb, char data, t_data *root)
+static bool	check_rgb_format_bis(char *rgb, char data, t_data *root)
 {
 	int	i;
 	int	nbr;
@@ -48,7 +48,7 @@ bool	check_rgb_format_bis(char *rgb, char data, t_data *root)
 	return (false);
 }
 
-bool	check_rgb_format(char *rgb, char data, t_data *root)
+static bool	check_rgb_format(char *rgb, char data, t_data *root)
 {
 	int	i;
 	int	j;
@@ -70,7 +70,7 @@ bool	check_rgb_format(char *rgb, char data, t_data *root)
 	return (true);
 }
 
-bool	cpy_str_to_struct(t_data *root, int i, char *res, char *line)
+static bool	cpy_str_to_struct(t_data *root, int i, char *res, char *line)
 {
 	int	j;
 
@@ -92,13 +92,13 @@ bool	cpy_str_to_struct(t_data *root, int i, char *res, char *line)
 			ft_putstr_fd("Error\n", 2);
 		}
 		ft_printf("Wrong information at line %d, Format RGB is incorrect\n",
-		root->nbr_line_data);
+			root->nbr_line_data);
 		return (false);
 	}
 	return (true);
 }
 
-bool	str_rgb_to_int(char c, char *res, t_data *root)
+static bool	str_rgb_to_int(char c, char *res, t_data *root)
 {
 	char	**rgb;
 
@@ -117,20 +117,7 @@ comprises entre 0 et 255\n", root->nbr_line_data);
 		free_double_array(rgb);
 		return (false);
 	}
-	if (c == 'C')
-	{
-		root->c.empty = false;
-		root->c.r = ft_atoi(rgb[0]);
-		root->c.g = ft_atoi(rgb[1]);
-		root->c.b = ft_atoi(rgb[2]);
-	}
-	else
-	{
-		root->f.empty = false;
-		root->f.r = ft_atoi(rgb[0]);
-		root->f.g = ft_atoi(rgb[1]);
-		root->f.b = ft_atoi(rgb[2]);
-	}
+	str_rgb_to_struct(root, c, rgb);
 	free_double_array(rgb);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 15:47:52 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:54:20 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-void	check_name(char *map)
+static void	check_name(char *map)
 {
 	int	len;
 
@@ -33,7 +33,7 @@ void	check_name(char *map)
 	exit(1);
 }
 
-void	get_data(t_data *root, char *line, char **arr, char *map)
+static void	get_data(t_data *root, char *line, char **arr, char *map)
 {
 	if (is_data(arr[0]) == 1 && !root->no)
 		root->no = ft_strdup(arr[1]);
@@ -58,20 +58,13 @@ void	get_data(t_data *root, char *line, char **arr, char *map)
 	}
 }
 
-void	check_data_line(char *line, t_data *root, char *map)
+static void	check_data_line(char *line, t_data *root, char *map)
 {
 	int		data;
 	char	**arr;
 
 	// arr = ft_split(line, "' '\t\r\n\v\f");
 	arr = ft_split(line, " ");
-	
-	// TEST
-	// for (int i = 0; arr[i]; i++)
-	// 	printf("arr[%d] = %s\n", i, arr[i]);
-	// if (arr)
-	// 	printf("\n");
-	
 	data = is_data(arr[0]);
 	if ((arr[0] && !data) || (data && !check_format(arr))
 		|| whitespace_on_line(arr))
@@ -93,7 +86,7 @@ accepted)\n", map, root->nbr_line_data);
 	free_double_array(arr);
 }
 
-void	check_data(char *map, t_data *root)
+static void	check_data(char *map, t_data *root)
 {
 	int		fd;
 	char	*line;
@@ -114,16 +107,7 @@ void	check_data(char *map, t_data *root)
 		free(line);
 	}
 	if (line)
-	{
-		while (1)
-		{
-			line = get_next_line(fd);
-			if (!line)
-				break ;
-			free(line);
-		}
-	}
-	printf("OK\n");
+		go_end_file(fd);
 	close(fd);
 }
 

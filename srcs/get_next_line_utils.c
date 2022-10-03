@@ -6,13 +6,13 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 01:38:36 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/01 20:53:36 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:33:20 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	ft_strlen_bis(char *s)
+static int	ft_strlen_bis(char *s)
 {
 	int	i;
 

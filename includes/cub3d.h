@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 14:46:24 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:44:10 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_data {
 	char	*ea;
 	t_rgb	f;
 	t_rgb	c;
+	char	**map;
 	// char	*f;
 	// char	*c;
 	// int		*f;
@@ -76,11 +77,13 @@ char	*ft_get_line(char *left_str);
 char	*ft_strchr_gnl(char *s, int c);
 char	*ft_new_left_str(char *left_str);
 char	*ft_strjoin_gnl(char *left_str, char *buff);
+void	go_end_file(int fd);
 void	show_data(t_data *root);
 void	init_struct(t_data *root);
 void	free_double_array(char **arr);
 void	free_struct_exit(t_data *root);
 void	error_missing_data(t_data *root);
+void	str_rgb_to_struct(t_data *root, char c, char **rgb);
 void	cpy_rgb(t_data *root, int data, char **arr, char *line);
 bool	check_format(char **arr);
 bool	all_data_set(t_data *root);

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:20:31 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 14:47:30 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:19:57 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,21 @@ void	error_missing_data(t_data *root)
 		ft_printf("Data : WE is missing\n");
 	if (!root->ea)
 		ft_printf("Data : EA is missing\n");
-	if (root->f.empty)
+	if (root->f.b)
 		ft_printf("Data : F is missing\n");
 	if (root->c.empty)
 		ft_printf("Data : C is missing\n");
-	free_struct_exit(root);
+}
+
+void	go_end_file(int fd)
+{
+	char	*line;
+
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		free(line);
+	}
 }

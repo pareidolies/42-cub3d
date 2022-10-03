@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 15:43:14 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:41:39 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 
 /*	A voir avec Sacha :
 
-	- Lignes vides mais avec des whitespaces = erreur ?
+	- Lignes vides mais avec des espaces = erreur ?
 	
 	- Petit probleme de Makefile : n'affiche pas les warnings et
 	ne les transforment pas en erreur (genre une variable qu'on utilise pas).
@@ -35,4 +35,6 @@ int	main(int argc, char **argv)
 	l'interieur de la map pour rester coherent mais c'est chelou d'avoir des tabulations
 	ou autres a l'interieur de la map.... Sur discord c'est partage mais il est dit que
 	dans le sujet on nous parle uniquement d'espaces et pas de whitespace donc a
-	voir.. */
+	voir..
+	
+	- Est ce que "S    O   ./path_to_the_south_texture" est une erreur ? */
