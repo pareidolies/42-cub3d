@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 16:44:10 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:35:02 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WIDTH				400
 # define HEIGHT				400
-# define TITLE				"cub3d"
+# define TITLE				"cub3D"
 
 # define ANSI_COLOR_BLUE			"\x1b[94m"
 # define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
@@ -46,6 +46,12 @@
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
+typedef	struct s_map {
+	int	len_line_max;
+	int	start_line;
+	int	end_line;
+}				t_map;
+
 typedef struct s_rgb {
 	bool	empty;
 	int		r;
@@ -53,9 +59,10 @@ typedef struct s_rgb {
 	int		b;
 }				t_rgb;
 
+
 typedef struct s_data {
 	int		nbr_line_data;
-	int		len_max;
+	// int		len_max;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -63,10 +70,6 @@ typedef struct s_data {
 	t_rgb	f;
 	t_rgb	c;
 	char	**map;
-	// char	*f;
-	// char	*c;
-	// int		*f;
-	// int		*c;
 	bool	err;
 }				t_data;
 
@@ -82,11 +85,14 @@ void	show_data(t_data *root);
 void	init_struct(t_data *root);
 void	free_double_array(char **arr);
 void	free_struct_exit(t_data *root);
+void	check_first_error(t_data *root);
 void	error_missing_data(t_data *root);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);
 void	cpy_rgb(t_data *root, int data, char **arr, char *line);
 bool	check_format(char **arr);
+bool	line_only_char_map(char* line);
 bool	all_data_set(t_data *root);
 bool	whitespace_on_line(char **arr);
+bool	only_space(char *line, t_data *root, char *map);
 
 #endif

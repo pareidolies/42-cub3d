@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils_bis.c                              :+:      :+:    :+:   */
+/*   check_file_utils_bis.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:20:31 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 16:19:57 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:57:46 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,31 @@ void	go_end_file(int fd)
 			break ;
 		free(line);
 	}
+	close(fd);
+}
+
+void	check_first_error(t_data *root)
+{
+	if (!root->err)
+	{
+		root->err = true;
+		ft_putstr_fd("Error\n", 2);
+	}
+}
+
+bool	only_space(char *line, t_data *root, char *map)
+{
+	int	i;
+
+	i = 0;
+	if (line[i] != ' ')
+		return (false);
+	while (line[i] == ' ')
+		i++;
+	if (line[i])
+		return (false);
+	check_first_error(root);
+	ft_printf("Line contains only space on %s at line %d\n"
+		, map, root->nbr_line_data);
+	return (true);
 }

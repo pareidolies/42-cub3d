@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:58:51 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 16:46:58 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:33:39 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_struct(t_data *root)
 {
 	root->nbr_line_data = 0;
-	root->len_max = 0;
 	root->no = NULL;
 	root->so = NULL;
 	root->we = NULL;
@@ -53,7 +52,6 @@ bool	all_data_set(t_data *root)
 void	show_data(t_data *root)
 {
 	printf("nbr_line = %d\n", root->nbr_line_data);
-	printf("len_max = %d\n", root->len_max);
 	printf("no = %s\n", root->no);
 	printf("so = %s\n", root->so);
 	printf("we = %s\n", root->we);

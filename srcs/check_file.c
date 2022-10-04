@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 16:54:20 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:57:07 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,14 @@ static void	check_data_line(char *line, t_data *root, char *map)
 	char	**arr;
 
 	// arr = ft_split(line, "' '\t\r\n\v\f");
+	if (only_space(line, root, map))
+		return ;
 	arr = ft_split(line, " ");
 	data = is_data(arr[0]);
 	if ((arr[0] && !data) || (data && !check_format(arr))
 		|| whitespace_on_line(arr))
 	{
-		if (!root->err)
-		{
-			root->err = true;
-			ft_putstr_fd("Error\n", 2);
-		}
+		check_first_error(root);
 		if (whitespace_on_line(arr))
 			ft_printf("Whitespace detected on %s at line %d (only space is \
 accepted)\n", map, root->nbr_line_data);
@@ -94,6 +92,7 @@ static void	check_data(char *map, t_data *root)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
+		/* Ici voir pour renvoyer avec perror la bonne erreur */
 		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
 		exit(1);
 	}
@@ -108,9 +107,115 @@ static void	check_data(char *map, t_data *root)
 	}
 	if (line)
 		go_end_file(fd);
+}
+
+
+
+
+
+
+
+
+
+
+void	init_struct_map(t_map *data_map)
+{
+	data_map->len_line_max = 0;
+	data_map->start_line = 0;
+	data_map->end_line = 0;
+}
+
+void	go_end_data(t_map *data_map, t_data *root, int fd)
+{
+	char	*line;
+
+	while (data_map->start_line < root->nbr_line_data)
+	{
+		line = get_next_line(fd);
+		free(line);
+		data_map->start_line++;
+	}
+}
+
+void	check_line_befor_map(t_map *data_map, t_data *root, int fd, char *map)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	data_map->start_line++;
+	root->nbr_line_data++;
+	// while (line && (!line_only_char_map(line) || !ft_strlen(line)))
+	while (line && (!line_only_char_map(line) || !ft_strlen(line))
+		|| only_space(line, root, map))
+	{
+		if (!line_only_char_map(line))
+		{
+			check_first_error(root);
+			ft_printf("Wrong information at line %d\n", root->nbr_line_data);
+		}
+		free(line);
+		line = get_next_line(fd);
+		data_map->start_line++;
+		root->nbr_line_data++;
+	}
+	if (!line)
+	{
+		check_first_error(root);
+		ft_printf("Err parsing, pas de map dans le fichier\n", root->nbr_line_data);
+		close(fd);
+		free_struct_exit(root);
+	}
+	free(line);
+}
+
+/*	Tant que on a pas de ligne qui ne contient que des char de la map,
+	Si la ligne est vide, OK, sinon, on envoie une erreur */
+
+void	check_map(t_data *root, char *map)
+{
+	int		fd;
+	char	*line;
+	t_map	data_map;
+
+	init_struct_map(&data_map);
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		/* Ici voir pour renvoyer avec perror la bonne erreur */
+		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
+		exit(1);
+	}
+	go_end_data(&data_map, root, fd);
+	check_line_befor_map(&data_map, root, fd, map);
+	// Ici, si on a pas d'erreur, on doit commencer a parser la map
+	data_map.end_line = data_map.start_line;
+	line = get_next_line(fd);
+	data_map.end_line++;
+	root->nbr_line_data++;
+	while (line)
+	{
+		if (!line_only_char_map(line))
+		{
+			check_first_error(root);
+			ft_printf("Err parsing at line %d, la map doit contenir uniquement l'un de ces caracteres : 0, 1, N, S, E, W ou espace\n", data_map.end_line);
+		}
+		else if (line && !ft_strlen(line))
+		{
+			check_first_error(root);
+			ft_printf("Err parsing at line %d, la map est separee par une ligne vide ou finit par une (ou plusieurs) ligne vide\n", data_map.end_line);
+		}
+		only_space(line, root, map);
+		free(line);
+		line = get_next_line(fd);
+		data_map.end_line++;
+		root->nbr_line_data++;
+	}
 	close(fd);
 }
 
+
+/*	Peut etre voir pour muter le erreurs de maps si toutes le data ne
+	son pas entrees par l'utilisateur (pour ne pas avoir trop d'errurs)*/
 int	check_error(int argc, char **argv, t_data *root)
 {
 	if (argc == 1 || argc > 2)
@@ -132,6 +237,7 @@ int	check_error(int argc, char **argv, t_data *root)
 
 	if (!all_data_set(root))
 		error_missing_data(root);
+	check_map(root, argv[1]);
 	// Ici, ajouter la fct check de la map.
 	if (root->err)
 		return (1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils.c                                  :+:      :+:    :+:   */
+/*   check_file_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:01:40 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 16:20:57 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:37:24 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,18 @@ bool	whitespace_on_line(char **arr)
 	return (false);
 }
 
-bool	is_char_map(char c)
+bool	line_only_char_map(char *line)
 {
-	if (c == '0' || c == '1' || c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W' || c == ' ')
-		return (true);
-	return (false);
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
+			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
+			&& line[i] != ' ')
+			return (false);
+		i++;
+	}
+	return (true);
 }
