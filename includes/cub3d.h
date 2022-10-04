@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/04 14:35:02 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:37:26 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,11 @@ typedef struct s_rgb {
 	int		b;
 }				t_rgb;
 
-
+/*	Pour l'instant, je check pas les path des textures (no so) ...
+	car je crois que la fonction de la mlx renvoie une erreur si les fichiers
+	n'existe pas, sinon je pourrais toujours le faire dans mon parsing */
 typedef struct s_data {
 	int		nbr_line_data;
-	// int		len_max;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -84,11 +85,15 @@ void	go_end_file(int fd);
 void	show_data(t_data *root);
 void	init_struct(t_data *root);
 void	free_double_array(char **arr);
+void	show_data_map(t_map *data_map);
 void	free_struct_exit(t_data *root);
 void	check_first_error(t_data *root);
+void	init_struct_map(t_map *data_map);
 void	error_missing_data(t_data *root);
+void	check_map(t_map *data_map, t_data *root, char *map);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);
 void	cpy_rgb(t_data *root, int data, char **arr, char *line);
+void	map_file_to_array(t_map *data_map, char *map, t_data *root);
 bool	check_format(char **arr);
 bool	line_only_char_map(char* line);
 bool	all_data_set(t_data *root);
