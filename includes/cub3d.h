@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:12:43 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:18:09 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <math.h>
 # include <stdio.h>
 
-# define WIDTH				800
-# define HEIGHT				800
+# define WIDTH				640
+# define HEIGHT				480
 # define TITLE				"cub3D"
 
 # define ANSI_COLOR_BLUE			"\x1b[94m"
@@ -47,12 +47,12 @@
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
-typedef struct s_pos_player {
+typedef struct s_player {
 	bool	empty;
 	int		x;
 	int		y;
 	char	dir;
-}				t_pos_player;
+}				t_player;
 
 typedef	struct s_map {
 	int	len_line_max;
@@ -79,14 +79,13 @@ typedef struct s_data {
 	t_rgb			f;
 	t_rgb			c;
 	char			**map;
-	t_pos_player	pos_player;
+	t_player		player;
 	int				height;
 	int				len;
 	bool	err;
 }				t_data;
 
 typedef struct s_all {
-    t_mlx   *mlx;
     t_ray   *ray;
     t_data  *data;
 }               t_all;
@@ -123,5 +122,8 @@ bool	line_only_char_map(char* line);
 bool	whitespace_on_line(char **arr);
 bool	line_only_space(char *line, t_data *root);
 bool	only_space(char *line, t_data *root, char *map);
+
+
+int start_cub3d(t_data *root);
 
 #endif

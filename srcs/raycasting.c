@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int initialize_mlx(t_ray *ray)
+int initialize_mlx(t_mlx *mlx)
 {
     mlx->ptr = mlx_init();
 	if (!mlx->ptr)
@@ -10,138 +10,142 @@ int initialize_mlx(t_ray *ray)
     }
 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, TITLE);
 	if (!mlx->win)
+	{
+		free(mlx->ptr);
 		return (1);
+	}
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 		return (1);
-	mlx->addr = mlx_get_data_addr
-		(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
-	//mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
     return (0);
 }
 
-int init_dir(t_ray *ray)
+//Part 1
+
+void init_dir(t_ray *ray, t_data *data)
 {
-    //if (parsing jb == 'N')
+    if (data->player.dir == 'N')
 		ray->dir.x = -1;
-	//if (parsing jb == 'S')
+	if (data->player.dir == 'S')
 		ray->dir.x = 1;
-	//if (parsing jb == 'E')
+	if (data->player.dir == 'E')
 		ray->dir.y = 1;
-	//if (parsing jb == 'W')
+	if (data->player.dir == 'W')
 		ray->dir.y = -1;
 }
 
-int init_plan(t_ray *ray)
+void init_plan(t_ray *ray, t_data *data)
 {
-    //if (parsing jb == 'N')
+    if (data->player.dir == 'N')
 		ray->plan.y = 0.66;
-	//if (parsing jb == 'S')
+	if (data->player.dir == 'S')
 		ray->plan.y = -0.66;
-	//if (parsing jb == 'E')
+	if (data->player.dir == 'E')
 		ray->plan.x = 0.66;
-	//if (parsing jb == 'W')
+	if (data->player.dir == 'W')
 		ray->plan.x = -0.66;
 }
 
-int init_all_ray_before_launch(t_ray *ray)
+void init_all_ray_before_launch(t_ray *ray, t_data *data)
 {
     ray->i = 0;
-    ray->pos.x = //(double)value parsing + 0.5
-    ray->pos.y = //(double)value parsing + 0.5
-    ray->map.x = (int)ray->pos.x;
-    ray->map.y = (int)ray->pos.y;
-    init_dir(ray);
-    init_plan(ray);
-    //map
-    return (0);
+	ray->width = 640;
+	ray->height = 480;
+    ray->pos.x = (double)data->player.x + 0.5;
+    ray->pos.y = (double)data->player.y + 0.5;
+    //ray->map.x = (int)ray->pos.x; => c'est data->player.x
+    //ray->map.y = (int)ray->pos.y; => c'est data->player.y
+    init_dir(ray, data);
+    init_plan(ray, data);
+    //map => data->map
 }
 
-int init_deltadist(t_ray *ray)
+//Part 2
+
+void init_deltadist(t_ray *ray)
 {
     if (ray->raydir.y == 0)
 		ray->deltadist.x = 0;
 	else if (ray->raydir.x == 0)
 		ray->deltadist.x = 1;
 	else
-		ray->deltadist.x = abs(1 / ray->raydir.x);
+		ray->deltadist.x = fabs(1 / ray->raydir.x);
 	if (ray->raydir.x == 0)
 		ray->deltadist.y = 0;
 	else if (ray->raydir.y == 0)
 		ray->deltadist.y = 1;
 	else
-		ray->deltadist.y = abs(1 / ray->raydir.y);
-    return (0);
+		ray->deltadist.y = fabs(1 / ray->raydir.y);
 }
 
-int init_sidedist(t_ray *ray)
+void init_sidedist(t_ray *ray, t_data *data)
 {
     if (ray->raydir.x < 0)
 	{
 		ray->step.x = -1;
-		ray->sidedist.x = (ray->pos.x - ray->map.x) * ray->deltadist.x;
+		ray->sidedist.x = (ray->pos.x - data->player.x) * ray->deltadist.x;
 	}
 	else
 	{
 		ray->step.x = 1;
-		ray->sidedist.x = ray->map.x + 1.0 - ray->pos.x * ray->deltadist.x;
+		ray->sidedist.x = data->player.x + 1.0 - ray->pos.x * ray->deltadist.x;
 	}
 	if (ray->raydir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->sidedist.y = ray->pos.y - ray->map.y * ray->deltadist.y;
+		ray->sidedist.y = ray->pos.y - data->player.y * ray->deltadist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->sidedist.y = ray->mapy + 1.0 - ray->posy * ray->deltadist.y;
+		ray->sidedist.y = data->player.y + 1.0 - ray->pos.y * ray->deltadist.y;
 	}
 }
 
-int init_one_ray(t_ray *ray)
+void init_one_ray(t_ray *ray, t_data *data)
 {
+	double	width = (double)ray->width;
+
+	//printf("width : %f\n", width);
     ray->hit = EMPTY;
     ray->perpwalldist = 0;
-    ray->camera.x = 2 * ray.x / (double)ray->i//WIDTH - 1;
-    ray->raydir.x = ray->dir.x + ray->plan.x * ray->camera.x;
-    ray->raydir.y = ray->dir.y + ray->plan.y * ray->camera.x;
+    ray->camerax = 2 * ray->i / width - 1;
+    ray->raydir.x = ray->dir.x + ray->plan.x * ray->camerax;
+    ray->raydir.y = ray->dir.y + ray->plan.y * ray->camerax;
     init_deltadist(ray);
-    init_sidedist(ray);
-    return (0);
+    init_sidedist(ray, data);
 }
 
-void    compute_perpwalldist(t_ray *ray)
+//Part 3
+
+void    compute_perpwalldist(t_ray *ray, t_data *data)
 {
     while (ray->hit == EMPTY)
 	{
 		if (ray->sidedist.x < ray->sidedist.y)
 		{
 			ray->sidedist.x += ray->deltadist.x;
-			ray->map.x += ray->step.x;
+			data->player.x += ray->step.x;
 			ray->side = HORIZONTAL;
 		}
 		else
 		{
 			ray->sidedist.y += ray->deltadist.y;
-			ray->map.y += ray->step.y;
+			data->player.y += ray->step.y;
 			ray->side = VERTICAL;
 		}
-		if (//jb parsing map[ray->map.x][ray->map.y] == '1')
-			ray->hit = HIT;
+		if (data->map[data->player.x][data->player.y] == '1')
+			ray->hit = WALL;
 	}
     if (ray->side == HORIZONTAL)
-		ray->perpwalldist = ((double)ray->map.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
+		ray->perpwalldist = ((double)data->player.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
 	else
-		ray->perpwalldist = ((double)ray->map.y - ray->pos.y + (1 - (double)ray->step.y) / 2) / ray->raydir.y;
+		ray->perpwalldist = ((double)data->player.y - ray->pos.y + (1 - (double)ray->step.y) / 2) / ray->raydir.y;
 }
 
-void    transpose_to_color(t_ray *ray, t_mlx *mlx)
-{
-    mlx.addr[j * mlx->line_length / 4 + ray->x] = //COLOR;
-
-}
-
-void    compute_line_attributes(t_ray *ray)
+/*void    compute_line_attributes(t_ray *ray)
 {
     ray->lineheight = (int)(ray->ry / ray->perpwalldist);
 	ray->drawstart = -ray->lineheight / 2 + ray->ry / 2;
@@ -152,32 +156,47 @@ void    compute_line_attributes(t_ray *ray)
 		ray->drawend = ray->ry - 1;
 }
 
-void    launch_raycasting(t_ray *ray)
+void    transpose_to_color(t_ray *ray, t_mlx *mlx)
 {
-    while (ray->x < WIDTH)
+    mlx.addr[j * mlx->line_length / 4 + ray->x] = //COLOR;
+
+}*/
+
+void    launch_raycasting(t_ray *ray, t_data *data)
+{
+    while (ray->i < WIDTH / 3)
     {
-        init_one_ray(ray);
-        compute_perpwalldist(ray);
-        compute_line_attributes(ray);
-        transpose_to_color(ray);
-        ray->x++;
+        init_one_ray(ray, data);
+		//printf("sidedistx : %f\n", ray->sidedist.x);
+		//printf("sidedisty : %f\n", ray->sidedist.y);
+		//printf("deltadistx : %f\n", ray->deltadist.x);
+		//printf("deltadisty : %f\n", ray->deltadist.x);
+        //compute_perpwalldist(ray, data);
+		//printf("perpwalldist : %f\n", ray->perpwalldist);
+        //compute_line_attributes(ray);
+        //transpose_to_color(ray);
+        ray->i++;
     }
 }
 
-int start_cub3d(void)
+int start_cub3d(t_data *data)
 {
     t_ray   ray;
+	t_mlx	mlx;
+    initialize_mlx(&mlx);
+    init_all_ray_before_launch(&ray, data);
+    launch_raycasting(&ray, data);
 
-    initialize_mlx(&ray);
-
-    init_all_ray_before_launch(&ray);
-    launch_raycasting(&ray);
-
-    mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
-	mlx_loop_hook(mlx.ptr, &rayloop, &ray);
-	mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
-	mlx_hook(mlx.win, KeyPress, KeyRelease, &key_handle, &ray);
-	mlx_loop(mlx.win);
+    //mlx_put_image_to_window(all.mlx->ptr, all.mlx->win, all.mlx->img, 0, 0);
+	//mlx_loop_hook(mlx.ptr, &rayloop, &ray);
+	//mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
+	//mlx_hook(mlx.win, KeyPress, KeyRelease, &key_handle, &ray);
+	//mlx_loop(mlx.win);
+	while(1)
+		;
+	mlx_destroy_window(mlx.ptr, mlx.win);
+	mlx_destroy_display(mlx.ptr);
+	free(mlx.ptr);
 	//free_data
 	//free_mlx
     return (0);

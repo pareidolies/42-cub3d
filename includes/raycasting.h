@@ -2,6 +2,8 @@
 
 # define RAYCASTING_H
 
+# include "cub3d.h"
+
 # define FOV 60
 # define PI 3.1415926535
 # define MOVE_SPEED 0.1
@@ -20,19 +22,24 @@ typedef enum    e_side
 }               t_side;
 
 typedef struct s_point {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_point;
 
+typedef struct s_vector {
+	double	x;
+	double	y;
+}				t_vector;
+
 typedef struct s_ray {
-	t_point	pos;
-	t_point	dir;
-	t_point	plan;
-	t_point	raydir;
-	t_point	camerax;
-	t_point	map; //int
-	t_point	sidedist;
-	t_point	deltadist;
+	t_vector	pos;
+	t_vector	dir;
+	t_vector	plan;
+	t_vector	raydir;
+	double  	camerax;
+	//t_point	map; //int
+	t_vector	sidedist;
+	t_vector	deltadist;
 	t_point	step; //int
 	t_hit	hit;
     t_side  side;
@@ -42,6 +49,8 @@ typedef struct s_ray {
     int     drawend;
     int     i;
     double  *buffer;
+    int     width;
+    int     height;
 }				t_ray;
 
 typedef struct s_mlx {
@@ -53,5 +62,6 @@ typedef struct s_mlx {
     int     line_length;
     int     endian;
 }               t_mlx;
+
 
 #endif

@@ -23,7 +23,7 @@ void	init_struct(t_data *root)
 	root->c.empty = true;
 	root->map = NULL;
 	root->err = false;
-	root->pos_player.empty = true;
+	root->player.empty = true;
 }
 
 void	free_struct_exit(t_data *root)

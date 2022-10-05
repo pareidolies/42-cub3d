@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	init_struct(&root);
 	if (check_error(argc, argv, &root))
 		free_struct_exit(&root);
+	start_cub3d(&root);
 	free_struct_exit(&root);
 	return (0);
 }

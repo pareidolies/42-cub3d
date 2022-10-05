@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:14:38 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:18:28 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ static void	check_around(int i, int j, t_data *root, t_map *data_map)
 	}
 	else if (is_player(root->map[i][j]))
 	{
-		if (!root->pos_player.empty)
+		if (!root->player.empty)
 		{
 			check_first_error(root);
 			ft_printf("At line %d, pos %d, there is many players on ths map\n", data_map->start_line + i, j + 1);
 		}
 		else
 		{
-			root->pos_player.empty = false;
-			root->pos_player.x = j;
-			root->pos_player.y = i;
-			root->pos_player.dir = root->map[i][j];
+			root->player.empty = false;
+			root->player.x = j;
+			root->player.y = i;
+			root->player.dir = root->map[i][j];
 			// TEST
-			// printf("x = %d\ny = %d\nchar = %c\n", root->pos_player.x, root->pos_player.y, root->pos_player.dir);
+			// printf("x = %d\ny = %d\nchar = %c\n", root->player.x, root->player.y, root->player.dir);
 		}
 	}
 }
