@@ -23,8 +23,8 @@
 # include <math.h>
 # include <stdio.h>
 
-# define WIDTH				800
-# define HEIGHT				800
+# define WIDTH				640
+# define HEIGHT				480
 # define TITLE				"cub3D"
 
 # define ANSI_COLOR_BLUE			"\x1b[94m"
