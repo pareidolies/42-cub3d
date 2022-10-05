@@ -125,16 +125,16 @@ void	print_map(t_data *data)
 	int	i = 0;
 	int	j = 0;
 
-	while (i < data->height)
+	while (j < data->height)
 	{
-		j = 0;
-		while (j < data->len)
+		i = 0;
+		while (i < data->len)
 		{
 			printf("%c", data->map[i][j]);
-			j++;
+			i++;
 		}
 		printf("\n");
-		i++;
+		j++;
 	}
 }
 
@@ -142,7 +142,7 @@ void    compute_perpwalldist(t_ray *ray, t_data *data)
 {
 	print_map(data);
 	printf("TEST\n");
-	while (ray->hit == EMPTY)
+	/*while (ray->hit == EMPTY)
 	{
 		if (ray->sidedist.x < ray->sidedist.y)
 		{
@@ -166,7 +166,7 @@ void    compute_perpwalldist(t_ray *ray, t_data *data)
     if (ray->side == HORIZONTAL)
 		ray->perpwalldist = ((double)data->player.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
 	else
-		ray->perpwalldist = ((double)data->player.y - ray->pos.y + (1 - (double)ray->step.y) / 2) / ray->raydir.y;
+		ray->perpwalldist = ((double)data->player.y - ray->pos.y + (1 - (double)ray->step.y) / 2) / ray->raydir.y;*/
 }
 
 /*void    compute_line_attributes(t_ray *ray)
