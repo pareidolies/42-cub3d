@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 16:02:57 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:19:19 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ static void	check_around(int i, int j, t_data *root, t_map *data_map)
 		else
 		{
 			root->player.empty = false;
-			root->player.x = i;
-			root->player.y = j;
+			root->player.x = j;
+			root->player.y = i;
 			root->player.dir = root->map[i][j];
 		}
-		printf("x = %d\ny = %d\n", root->player.x, root->player.y);
 	}
 }
 
