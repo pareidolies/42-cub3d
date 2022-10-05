@@ -121,5 +121,6 @@ bool	line_only_space(char *line, t_data *root);
 bool	only_space(char *line, t_data *root, char *map);
 
 int		start_cub3d(t_data *root);
+int	create_trgb(int t, int r, int g, int b);
 
 #endif
