@@ -47,12 +47,12 @@
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
 
-typedef struct s_pos_player {
+typedef struct s_player {
 	bool	empty;
 	int		x;
 	int		y;
 	char	dir;
-}				t_pos_player;
+}				t_player;
 
 typedef	struct s_map {
 	int	len_line_max;
@@ -79,12 +79,11 @@ typedef struct s_data {
 	t_rgb			f;
 	t_rgb			c;
 	char			**map;
-	t_pos_player	pos_player;
+	t_player	player;
 	bool	err;
 }				t_data;
 
 typedef struct s_all {
-    t_mlx   *mlx;
     t_ray   *ray;
     t_data  *data;
 }               t_all;
@@ -117,5 +116,8 @@ bool	line_only_char_map(char* line);
 bool	all_data_set(t_data *root);
 bool	whitespace_on_line(char **arr);
 bool	only_space(char *line, t_data *root, char *map);
+
+
+int start_cub3d(t_data *root);
 
 #endif

@@ -2,6 +2,8 @@
 
 # define RAYCASTING_H
 
+# include "cub3d.h"
+
 # define FOV 60
 # define PI 3.1415926535
 # define MOVE_SPEED 0.1
@@ -53,5 +55,6 @@ typedef struct s_mlx {
     int     line_length;
     int     endian;
 }               t_mlx;
+
 
 #endif

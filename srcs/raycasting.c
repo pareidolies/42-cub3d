@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-int initialize_mlx(t_ray *ray)
+int initialize_mlx(t_mlx *mlx)
 {
     mlx->ptr = mlx_init();
 	if (!mlx->ptr)
@@ -10,13 +10,15 @@ int initialize_mlx(t_ray *ray)
     }
 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, TITLE);
 	if (!mlx->win)
+	{
+		free(mlx->ptr);
 		return (1);
+	}
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 		return (1);
-	mlx->addr = mlx_get_data_addr
-		(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
-	//mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
     return (0);
 }
 
@@ -167,18 +169,22 @@ void    launch_raycasting(t_ray *ray)
 int start_cub3d(t_data *root)
 {
     t_all   all;
-
+	t_mlx	mlx;
 	all.data = root;
-    initialize_mlx(&all.mlx);
-
+    initialize_mlx(&mlx);
     //init_all_ray_before_launch(&ray);
     //launch_raycasting(&ray);
 
-    mlx_put_image_to_window(all.mlx.ptr, all.mlx.win, all.mlx.img, 0, 0);
+    //mlx_put_image_to_window(all.mlx->ptr, all.mlx->win, all.mlx->img, 0, 0);
 	//mlx_loop_hook(mlx.ptr, &rayloop, &ray);
 	//mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
 	//mlx_hook(mlx.win, KeyPress, KeyRelease, &key_handle, &ray);
-	mlx_loop(all.mlx.win);
+	//mlx_loop(mlx.win);
+	while(1)
+		;
+	mlx_destroy_window(mlx.ptr, mlx.win);
+	mlx_destroy_display(mlx.ptr);
+	free(mlx.ptr);
 	//free_data
 	//free_mlx
     return (0);
