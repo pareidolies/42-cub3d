@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:36:35 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 13:43:06 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:29:55 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,16 @@ void	map_file_to_array(t_map *data_map, char *map, t_data *root)
 	int		fd;
 	char	*line;
 
-	// Pas sur dans le sizeof sion doit mettre char ou char* ici
-	root->map = malloc(sizeof(char *) * ((data_map->end_line - data_map->start_line) + 1));
+	root->map = malloc(sizeof(char *)
+			* ((data_map->end_line - data_map->start_line) + 1));
 	if (!root->map)
 		free_struct_exit(root);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		/* Ici voir pour renvoyer avec perror la bonne erreur */
 		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
 		exit(1);
 	}
-	// On passe le infos inutiles pour aller jusqu'au debut de la map
 	go_to_beginning_of_map(fd, data_map);
 	file_to_array(fd, root, data_map);
-	
-	// TEST
-	// int i = 0;
-	// while (root->map[i])
-	// 	printf("%s\n", root->map[i++]);
 }

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 12:30:26 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:37:14 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,7 @@ int	main(int argc, char **argv)
 	init_struct(&root);
 	if (check_error(argc, argv, &root))
 		free_struct_exit(&root);
-	start_cub3d(&root);
+	// start_cub3d(&root);
 	free_struct_exit(&root);
 	return (0);
 }
-
-/*	A voir avec Sacha :
-
-	
-	
-	- Voir si on compte les whitespaces comme des espaces ou non, car si
-	on les considerent comme des espaces (pour les data), on doit aussi le faire a
-	l'interieur de la map pour rester coherent mais c'est chelou d'avoir des tabulations
-	ou autres a l'interieur de la map.... Sur discord c'est partage mais il est dit que
-	dans le sujet on nous parle uniquement d'espaces et pas de whitespace donc a
-	voir..
-	
-	- Est ce que "S    O   ./path_to_the_south_texture" est une erreur ? */

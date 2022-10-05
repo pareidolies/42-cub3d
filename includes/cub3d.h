@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:18:09 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:26:45 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_player {
 	char	dir;
 }				t_player;
 
-typedef	struct s_map {
+typedef struct s_map {
 	int	len_line_max;
 	int	start_line;
 	int	end_line;
@@ -67,9 +67,6 @@ typedef struct s_rgb {
 	int		b;
 }				t_rgb;
 
-/*	Pour l'instant, je check pas les path des textures (no so) ...
-	car je crois que la fonction de la mlx renvoie une erreur si les fichiers
-	n'existe pas, sinon je pourrais toujours le faire dans mon parsing */
 typedef struct s_data {
 	int				nbr_line_data;
 	char			*no;
@@ -82,13 +79,13 @@ typedef struct s_data {
 	t_player		player;
 	int				height;
 	int				len;
-	bool	err;
+	bool			err;
 }				t_data;
 
 typedef struct s_all {
-    t_ray   *ray;
-    t_data  *data;
-}               t_all;
+	t_ray	*ray;
+	t_data	*data;
+}			t_all;
 
 int		is_data(char *data);
 int		check_error(int argc, char **argv, t_data *root);
@@ -118,12 +115,11 @@ bool	is_player(char c);
 bool	check_format(char **arr);
 bool	is_space_or_player(char c);
 bool	all_data_set(t_data *root);
-bool	line_only_char_map(char* line);
+bool	line_only_char_map(char *line);
 bool	whitespace_on_line(char **arr);
 bool	line_only_space(char *line, t_data *root);
 bool	only_space(char *line, t_data *root, char *map);
 
-
-int start_cub3d(t_data *root);
+int		start_cub3d(t_data *root);
 
 #endif
