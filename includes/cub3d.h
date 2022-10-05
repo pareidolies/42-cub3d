@@ -16,14 +16,15 @@
 
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
+# include "raycasting.h"
 # include <stdbool.h>
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
 
-# define WIDTH				400
-# define HEIGHT				400
+# define WIDTH				800
+# define HEIGHT				800
 # define TITLE				"cub3D"
 
 # define ANSI_COLOR_BLUE			"\x1b[94m"
@@ -81,6 +82,12 @@ typedef struct s_data {
 	t_pos_player	pos_player;
 	bool	err;
 }				t_data;
+
+typedef struct s_all {
+    t_mlx   *mlx;
+    t_ray   *ray;
+    t_data  *data;
+}               t_all;
 
 int		is_data(char *data);
 int		check_error(int argc, char **argv, t_data *root);
