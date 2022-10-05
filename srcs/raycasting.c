@@ -20,7 +20,7 @@ int initialize_mlx(t_ray *ray)
     return (0);
 }
 
-int init_dir(t_ray *ray)
+/*int init_dir(t_ray *ray)
 {
     //if (parsing jb == 'N')
 		ray->dir.x = -1;
@@ -162,22 +162,23 @@ void    launch_raycasting(t_ray *ray)
         transpose_to_color(ray);
         ray->x++;
     }
-}
+}*/
 
-int start_cub3d(void)
+int start_cub3d(t_data *root)
 {
-    t_ray   ray;
+    t_all   all;
 
-    initialize_mlx(&ray);
+	all.data = root;
+    initialize_mlx(&all.mlx);
 
-    init_all_ray_before_launch(&ray);
-    launch_raycasting(&ray);
+    //init_all_ray_before_launch(&ray);
+    //launch_raycasting(&ray);
 
-    mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
-	mlx_loop_hook(mlx.ptr, &rayloop, &ray);
-	mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
-	mlx_hook(mlx.win, KeyPress, KeyRelease, &key_handle, &ray);
-	mlx_loop(mlx.win);
+    mlx_put_image_to_window(all.mlx.ptr, all.mlx.win, all.mlx.img, 0, 0);
+	//mlx_loop_hook(mlx.ptr, &rayloop, &ray);
+	//mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
+	//mlx_hook(mlx.win, KeyPress, KeyRelease, &key_handle, &ray);
+	mlx_loop(all.mlx.win);
 	//free_data
 	//free_mlx
     return (0);
