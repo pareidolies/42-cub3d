@@ -44,28 +44,28 @@ all:		$(NAME)
 
 ./libft/libft.a :
 	@echo " [..] | compiling libft..."
-	@make -s -C ./libft
+	make -C ./libft
 	@echo "\033[93m [OK] | libft\033[0m"
 
 ./mlx_linux/libmlx.a :
 	@echo " [..] | compiling mlx..."
-	@make -s -C ./mlx_linux 
+	make -C ./mlx_linux 
 	@echo "\033[93m [OK] | mlx\033[0m"
 
 $(NAME): $(LIBRARY) $(OBJS)
 		@echo " [..] | created object files."
-		@${CC} ${CFLAGS} ${OBJS} ${LIBRARY} -o ${NAME} ${LIBFLAGS}
+		${CC} ${CFLAGS} ${OBJS} ${LIBRARY} -o ${NAME} ${LIBFLAGS}
 		@echo "\033[92m cub3D is ready\033[0m"
 
 clean:
-		@$(MAKE) clean $(PATH_LIBFT)
-		@$(MAKE) clean $(PATH_MLX)
-		@${RM} ${OBJS} ${DEPS} ${OBJS_BONUS}
+		$(MAKE) clean $(PATH_LIBFT)
+		$(MAKE) clean $(PATH_MLX)
+		${RM} ${OBJS} ${DEPS} ${OBJS_BONUS}
 		@echo "\033[93m [OK] | clean.\033[0m"
 
 fclean:		clean
-		@$(MAKE) fclean $(PATH_LIBFT)
-		@${RM} ${NAME} ${NAME_BONUS}
+		$(MAKE) fclean $(PATH_LIBFT)
+		${RM} ${NAME} ${NAME_BONUS}
 		@echo "\033[93m [OK] | fclean.\033[0m"
 
 re:		fclean ${NAME}
