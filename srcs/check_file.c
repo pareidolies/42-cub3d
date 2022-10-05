@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:16:47 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:36:41 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	check_data_line(char *line, t_data *root, char *map)
 			ft_printf("Whitespace detected on %s at line %d (only space is \
 accepted)\n", map, root->nbr_line_data);
 		else if (!line_only_char_map(line) && !line_only_space(line, root))
-			ft_printf("AAAWrong information on %s at line %d\n", map,
+			ft_printf("Wrong information on %s at line %d\n", map,
 				root->nbr_line_data);
 	}
 	else if (data && !whitespace_on_line(arr))

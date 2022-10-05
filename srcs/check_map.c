@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:18:28 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:57:02 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ static int	len_double_array(char **arr)
 	return (i);
 }
 
-static bool	check_around_bis(int i,int j, t_data *root, t_map *data_map)
+static bool	check_around_bis(int i, int j, t_data *root, t_map *data_map)
 {
-	if (root->map[i - 1][j - 1] == 'x' || root->map[i - 1][j] == 'x' || root->map[i - 1][j + 1] == 'x')
+	if (root->map[i - 1][j - 1] == 'x' || root->map[i - 1][j] == 'x'
+		|| root->map[i - 1][j + 1] == 'x')
 		return (false);
-	else if (root->map[i + 1][j - 1] == 'x' || root->map[i + 1][j] == 'x' || root->map[i + 1][j + 1] == 'x')
+	else if (root->map[i + 1][j - 1] == 'x' || root->map[i + 1][j] == 'x'
+		|| root->map[i + 1][j + 1] == 'x')
 		return (false);
 	else if (root->map[i][j - 1] == 'x' || root->map[i][j + 1] == 'x')
 		return (false);
@@ -36,31 +38,32 @@ static bool	check_around_bis(int i,int j, t_data *root, t_map *data_map)
 static void	check_around(int i, int j, t_data *root, t_map *data_map)
 {
 	if ((i - 1 == -1 || i + 2 > len_double_array(root->map))
-		|| (j - 1 == -1 || j + 1 > data_map->len_line_max) || !check_around_bis(i, j, root, data_map))
+		|| (j - 1 == -1 || j + 1 > data_map->len_line_max)
+		|| !check_around_bis(i, j, root, data_map))
 	{
 		check_first_error(root);
-		ft_printf("At line %d, pos %d, map must be enclosed by walls\n", data_map->start_line + i, j + 1);
+		ft_printf("At line %d, pos %d, map must be enclosed by walls\n",
+			data_map->start_line + i, j + 1);
 	}
 	else if (is_player(root->map[i][j]))
 	{
 		if (!root->player.empty)
 		{
 			check_first_error(root);
-			ft_printf("At line %d, pos %d, there is many players on ths map\n", data_map->start_line + i, j + 1);
+			ft_printf("At line %d, pos %d, there is many players on ths map\n",
+				data_map->start_line + i, j + 1);
 		}
 		else
 		{
 			root->player.empty = false;
-			root->player.x = j;
-			root->player.y = i;
+			root->player.x = i;
+			root->player.y = j;
 			root->player.dir = root->map[i][j];
-			// TEST
-			// printf("x = %d\ny = %d\nchar = %c\n", root->player.x, root->player.y, root->player.dir);
 		}
 	}
 }
 
-static void	get_final_arr(t_data* root)
+static void	get_final_arr(t_data *root)
 {
 	int	i;
 	int	j;
@@ -78,16 +81,7 @@ static void	get_final_arr(t_data* root)
 		i++;
 	}
 	root->len = ft_strlen(root->map[0]);
-	i = 0;
-	while (root->map[i])
-		i++;
-	root->height = i;
-	// TEST
-	// printf("len = %d\nheight = %d\n", root->len, root->height);
-	// printf("\n");
-	// i = 0;
-	// while (root->map[i])
-	// 	printf("%s\n", root->map[i++]);
+	root->height = len_double_array(root->map);
 }
 
 void	check_array(t_data *root, t_map *data_map)

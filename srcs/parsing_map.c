@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:59:53 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 14:31:55 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:28:03 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	check_line_befor_map(t_map *data, t_data *root, int fd, char *map)
 	data->start_line++;
 	root->nbr_line_data++;
 	while (line && ((!line_only_char_map(line) || !ft_strlen(line))
-		|| line_only_space(line, root)))
+			|| line_only_space(line, root)))
 	{
 		if (!line_only_char_map(line) || line_only_space(line, root))
 		{
@@ -51,8 +51,8 @@ static void	check_line_befor_map(t_map *data, t_data *root, int fd, char *map)
 			if (!line_only_char_map(line))
 				ft_printf("Wrong information at line %d\n", root->nbr_line_data);
 			else
-				ft_printf("Line contains only space on %s at line %d\n"
-					, map, root->nbr_line_data);
+				ft_printf("Line contains only space on %s at line %d\n",
+					map, root->nbr_line_data);
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -95,9 +95,6 @@ igne vide ou finit par plusieurs lignes vide\n", data_map->end_line);
 	close(fd);
 }
 
-/*	Tant que on a pas de ligne qui ne contient que des char de la map,
-	Si la ligne est vide, OK, sinon, on envoie une erreur */
-
 void	check_map(t_map *data_map, t_data *root, char *map)
 {
 	int		fd;
@@ -106,7 +103,6 @@ void	check_map(t_map *data_map, t_data *root, char *map)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		/* Ici voir pour renvoyer avec perror la bonne erreur */
 		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
 		exit(1);
 	}
