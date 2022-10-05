@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:36:35 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/04 18:08:56 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:16:06 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	cpy_line(char *dest, char *line, t_map *data_map)
 	while (line[i])
 	{
 		if (line[i] == ' ')
-			dest[i] = '1';
+			dest[i] = 'x';
 		else
 			dest[i] = line[i];
 		i++;
 	}
 	while (i < data_map->len_line_max)
-		dest[i++] = '1';
+		dest[i++] = 'x';
 	dest[i] = '\0';
 }
 

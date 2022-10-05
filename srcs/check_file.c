@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/04 18:18:14 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:18:07 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	check_data_line(char *line, t_data *root, char *map)
 	int		data;
 	char	**arr;
 
-	// arr = ft_split(line, "' '\t\r\n\v\f");
 	if (only_space(line, root, map))
 		return ;
 	arr = ft_split(line, " ");
@@ -79,7 +78,8 @@ accepted)\n", map, root->nbr_line_data);
 			ft_printf("Wrong information on %s at line %d\n", map,
 				root->nbr_line_data);
 	}
-	else if (data)
+	// else if (data)
+	else if (data && !whitespace_on_line(arr))
 		get_data(root, line, arr, map);
 	free_double_array(arr);
 }
@@ -147,6 +147,23 @@ void	check_around(int i, int j, t_data *root, t_map *data_map)
 	{
 		check_first_error(root);
 		ft_printf("At line %d, pos %d, map must be enclosed by walls\n", data_map->start_line + i, j + 1);
+	}
+	else if (is_player(root->map[i][j]))
+	{
+		if (!root->pos_player.empty)
+		{
+			check_first_error(root);
+			ft_printf("At line %d, pos %d, there is many players on ths map\n", data_map->start_line + i, j + 1);
+		}
+		else
+		{
+			root->pos_player.empty = false;
+			root->pos_player.x = j;
+			root->pos_player.y = i;
+			root->pos_player.dir = root->map[i][j];
+			// TEST
+			// printf("x = %d\ny = %d\nchar = %c\n", root->pos_player.x, root->pos_player.y, root->pos_player.dir);
+		}
 	}
 }
 

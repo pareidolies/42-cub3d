@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/04 14:00:42 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:30:26 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	main(int argc, char **argv)
 
 /*	A voir avec Sacha :
 
-	- Lignes vides mais avec des espaces = erreur ?
 	
-	- Petit probleme de Makefile : n'affiche pas les warnings et
-	ne les transforment pas en erreur (genre une variable qu'on utilise pas).
 	
 	- Voir si on compte les whitespaces comme des espaces ou non, car si
 	on les considerent comme des espaces (pour les data), on doit aussi le faire a
