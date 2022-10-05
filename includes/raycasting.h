@@ -52,6 +52,6 @@ typedef struct s_mlx {
     int     bpp;
     int     line_length;
     int     endian;
-}               t_mlx
+}               t_mlx;
 
 #endif

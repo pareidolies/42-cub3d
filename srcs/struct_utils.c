@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:58:51 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/04 14:33:39 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:06:13 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_struct(t_data *root)
 	root->c.empty = true;
 	root->map = NULL;
 	root->err = false;
+	root->pos_player.empty = true;
 }
 
 void	free_struct_exit(t_data *root)
