@@ -32,7 +32,7 @@ void init_dir(t_ray *ray, t_data *data)
 		ray->dir.x = 1;
 	if (data->player.dir == 'E')
 		ray->dir.y = 1;
-	if (data->player.dir == 'W')
+	else //(data->player.dir == 'W')
 		ray->dir.y = -1;
 }
 
@@ -44,7 +44,7 @@ void init_plan(t_ray *ray, t_data *data)
 		ray->plan.y = -0.66;
 	if (data->player.dir == 'E')
 		ray->plan.x = 0.66;
-	if (data->player.dir == 'W')
+	else //(data->player.dir == 'W')
 		ray->plan.x = -0.66;
 }
 
@@ -120,9 +120,29 @@ void init_one_ray(t_ray *ray, t_data *data)
 
 //Part 3
 
+void	print_map(t_data *data)
+{
+	int	i = 0;
+	int	j = 0;
+
+	while (i < data->height)
+	{
+		j = 0;
+		while (j < data->len)
+		{
+			printf("%c", data->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 void    compute_perpwalldist(t_ray *ray, t_data *data)
 {
-    while (ray->hit == EMPTY)
+	print_map(data);
+	printf("TEST\n");
+	while (ray->hit == EMPTY)
 	{
 		if (ray->sidedist.x < ray->sidedist.y)
 		{
@@ -136,8 +156,12 @@ void    compute_perpwalldist(t_ray *ray, t_data *data)
 			data->player.y += ray->step.y;
 			ray->side = VERTICAL;
 		}
+		printf("x : %d\n", data->player.x);
+		printf("y : %d\n", data->player.y);
+		printf("case : %c\n", data->map[data->player.x][data->player.y]);
 		if (data->map[data->player.x][data->player.y] == '1')
 			ray->hit = WALL;
+		printf("test\n");
 	}
     if (ray->side == HORIZONTAL)
 		ray->perpwalldist = ((double)data->player.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
@@ -171,11 +195,12 @@ void    launch_raycasting(t_ray *ray, t_data *data)
 		//printf("sidedisty : %f\n", ray->sidedist.y);
 		//printf("deltadistx : %f\n", ray->deltadist.x);
 		//printf("deltadisty : %f\n", ray->deltadist.x);
-        //compute_perpwalldist(ray, data);
+        compute_perpwalldist(ray, data);
 		//printf("perpwalldist : %f\n", ray->perpwalldist);
         //compute_line_attributes(ray);
         //transpose_to_color(ray);
         ray->i++;
+		break;
     }
 }
 
