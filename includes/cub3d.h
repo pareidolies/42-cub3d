@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 13:05:50 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:12:43 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_data {
 	t_rgb			c;
 	char			**map;
 	t_pos_player	pos_player;
+	int				height;
+	int				len;
 	bool	err;
 }				t_data;
 
@@ -107,15 +109,19 @@ void	free_struct_exit(t_data *root);
 void	check_first_error(t_data *root);
 void	init_struct_map(t_map *data_map);
 void	error_missing_data(t_data *root);
+void	check_array(t_data *root, t_map *data_map);
 void	check_map(t_map *data_map, t_data *root, char *map);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);
 void	cpy_rgb(t_data *root, int data, char **arr, char *line);
 void	map_file_to_array(t_map *data_map, char *map, t_data *root);
 
+bool	is_player(char c);
 bool	check_format(char **arr);
-bool	line_only_char_map(char* line);
+bool	is_space_or_player(char c);
 bool	all_data_set(t_data *root);
+bool	line_only_char_map(char* line);
 bool	whitespace_on_line(char **arr);
+bool	line_only_space(char *line, t_data *root);
 bool	only_space(char *line, t_data *root, char *map);
 
 #endif

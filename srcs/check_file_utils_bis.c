@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:20:31 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/04 15:57:46 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:06:54 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	error_missing_data(t_data *root)
 		ft_printf("Data : WE is missing\n");
 	if (!root->ea)
 		ft_printf("Data : EA is missing\n");
-	if (root->f.b)
+	if (root->f.empty)
 		ft_printf("Data : F is missing\n");
 	if (root->c.empty)
 		ft_printf("Data : C is missing\n");
+	free_struct_exit(root);
 }
 
 void	go_end_file(int fd)
@@ -68,7 +69,21 @@ bool	only_space(char *line, t_data *root, char *map)
 	if (line[i])
 		return (false);
 	check_first_error(root);
-	ft_printf("Line contains only space on %s at line %d\n"
-		, map, root->nbr_line_data);
+	ft_printf("Line contains only space on %s at line %d\n",
+		map, root->nbr_line_data);
+	return (true);
+}
+
+bool	line_only_space(char *line, t_data *root)
+{
+	int	i;
+
+	i = 0;
+	if (line[i] != ' ')
+		return (false);
+	while (line[i] == ' ')
+		i++;
+	if (line[i])
+		return (false);
 	return (true);
 }
