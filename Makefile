@@ -38,7 +38,7 @@ NAME		= cub3D
 
 NAME_BONUS	= cub3D
 
-RM		= rm -f
+RM		= rm -Rf
 
 CC		= cc -I $(INC_DIR) -MMD
 
@@ -73,7 +73,7 @@ $(NAME): $(LIBRARY) $(OBJS)
 clean:
 		$(MAKE) clean $(PATH_LIBFT)
 		$(MAKE) clean $(PATH_MLX)
-		${RM} ${OBJS} ${DEPS} ${OBJS_BONUS}
+		${RM} ${OBJS} ${OBJS_DIR} ${DEPS} ${OBJS_BONUS}
 		@echo "\033[93m [OK] | clean.\033[0m"
 
 fclean:		clean
