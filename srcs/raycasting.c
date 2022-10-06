@@ -288,35 +288,6 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 	return (0);
 }
 
-/*int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
-{
-	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
-	if (!mlx->img)
-	{
-		//handling error && free
-		return (1);
-	}
-	//init_all_values(ray);
-	//init_all_ray_before_launch(ray, data);
-	ray->i = 0;
-    while (ray->i < WIDTH)
-    {
-        init_one_ray(ray, data);
-		//printf("sidedistx : %f\n", ray->sidedist.x);
-		//printf("sidedisty : %f\n", ray->sidedist.y);
-		//printf("deltadistx : %f\n", ray->deltadist.x);
-		//printf("deltadisty : %f\n", ray->deltadist.x);
-        compute_perpwalldist(ray, data);
-		//printf("perpwalldist : %f\n", ray->perpwalldist);
-        compute_line_attributes(ray);
-        transpose_to_color(ray, mlx);
-        ray->i++;
-    }
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
-	mlx_destroy_image(mlx->ptr, mlx->img);
-	return (0);
-}*/
-
 int start_cub3d(t_data *data)
 {
 	t_all	all;

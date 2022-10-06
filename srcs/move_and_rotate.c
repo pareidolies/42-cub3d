@@ -17,23 +17,6 @@ int		keys_handler(int keycode, t_all *all)
 	return (1);
 }
 
-/*int		key_release_handler(int keycode, t_ray *ray)
-{
-	if (keycode == MOVE_FORWARD)
-		ray->forward = OFF;
-	else if (keycode == MOVE_BACKWARD)
-		ray->backward = OFF;
-	else if (keycode == MOVE_LEFTWARD)
-		ray->leftward = OFF;
-	else if (keycode == MOVE_RIGHTWARD)
-		ray->rightward = OFF;
-	else if (keycode == ROTATE_LEFT)
-		ray->rotate_left = OFF;
-	else if (keycode == ROTATE_RIGHT)
-		ray->rotate_right = OFF;
-	return (1);
-}*/
-
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 {
     if (keycode == MOVE_FORWARD)
