@@ -17,12 +17,50 @@ int initialize_mlx(t_mlx *mlx)
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 	{
-		//handling error
+		//handling error && free
 		return (1);
 	}
 	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
     return (0);
+}
+
+void	init_all_values(t_ray *ray)
+{
+	ray->dir.x = 0;
+	ray->dir.y = 0;
+	ray->plan.x = 0;
+	ray->plan.y = 0;
+	ray->perpwalldist = 0;
+	ray->lineheight = 0;
+    ray->drawstart = 0;
+    ray->drawend = 0;
+}
+
+void	revert_map(t_ray *ray, t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	ray->revert_map = malloc(sizeof(char *) * data->len);
+	while (i < data->len)
+	{
+		ray->revert_map[i] = malloc(sizeof(char) * data->height);
+		i++;
+	}
+	i = 0;
+	j = 0;
+	while (i < data->len)
+	{
+		j = 0;
+		while (j < data->height)
+		{
+			ray->revert_map[i][j] = data->map[j][i];
+			j++;
+		}
+		i++;
+	}
 }
 
 //Part 1
@@ -93,17 +131,17 @@ void init_sidedist(t_ray *ray, t_data *data)
 	else
 	{
 		ray->step.x = 1;
-		ray->sidedist.x = ray->map.x + 1.0 - ray->pos.x * ray->deltadist.x;
+		ray->sidedist.x = (ray->map.x + 1.0 - ray->pos.x) * ray->deltadist.x;
 	}
 	if (ray->raydir.y < 0)
 	{
 		ray->step.y = -1;
-		ray->sidedist.y = ray->pos.y - ray->map.y * ray->deltadist.y;
+		ray->sidedist.y = (ray->pos.y - ray->map.y) * ray->deltadist.y;
 	}
 	else
 	{
 		ray->step.y = 1;
-		ray->sidedist.y = ray->map.y + 1.0 - ray->pos.y * ray->deltadist.y;
+		ray->sidedist.y = (ray->map.y + 1.0 - ray->pos.y) * ray->deltadist.y;
 	}
 }
 
@@ -125,11 +163,12 @@ void init_one_ray(t_ray *ray, t_data *data)
 
 //Part 3
 
-void	print_map(t_data *data)
+void	print_map_data(t_data *data)
 {
 	int	i = 0;
 	int	j = 0;
 
+	printf("--- parse map ---\n");
 	while (j < data->height)
 	{
 		i = 0;
@@ -145,9 +184,29 @@ void	print_map(t_data *data)
 	printf("y : %d\n", data->player.y);
 }
 
+void	print_map_ray(t_ray *ray, t_data *data)
+{
+	int	i = 0;
+	int	j = 0;
+
+	printf("--- revert map ---\n");
+	while (j < data->height)
+	{
+		i = 0;
+		while (i < data->len)
+		{
+			printf("%c", ray->revert_map[i][j]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+	printf("x : %d\n", data->player.x);
+	printf("y : %d\n", data->player.y);
+}
+
 void    compute_perpwalldist(t_ray *ray, t_data *data)
 {
-	print_map(data);
 	//printf("TEST\n");
 	while (ray->hit == EMPTY)
 	{
@@ -163,10 +222,10 @@ void    compute_perpwalldist(t_ray *ray, t_data *data)
 			ray->map.y += ray->step.y;
 			ray->side = VERTICAL;
 		}
-		printf("x : %d\n", ray->map.x);
-		printf("y : %d\n", ray->map.y);
-		printf("case : %c\n", data->map[ray->map.y][ray->map.x]);
-		if (data->map[ray->map.y][ray->map.x] == '1')
+		//printf("x : %d\n", ray->map.x);
+		//printf("y : %d\n", ray->map.y);
+		//printf("case : %c\n", data->map[ray->map.y][ray->map.x]);
+		if (ray->revert_map[ray->map.x][ray->map.y] == '1')
 			ray->hit = WALL;
 		//printf("test\n");
 	}
@@ -197,8 +256,8 @@ void    transpose_to_color(t_ray *ray, t_mlx *mlx)
 {
 	int	j;
 
-	printf("drawstart : %d\n", ray->drawstart);
-	printf("drawend : %d\n", ray->drawend);
+	//printf("drawstart : %d\n", ray->drawstart);
+	//printf("drawend : %d\n", ray->drawend);
 	j = ray->drawstart;
 	while(j < ray->drawend)
 	{
@@ -233,6 +292,12 @@ int start_cub3d(t_data *data)
     t_ray   ray;
 	t_mlx	mlx;
     initialize_mlx(&mlx);
+	init_all_values(&ray);
+	//debug
+	print_map_data(data);
+	revert_map(&ray, data);
+	print_map_ray(&ray, data);
+	//fin debug
     init_all_ray_before_launch(&ray, data);
     launch_raycasting(&ray, data, &mlx);
 
