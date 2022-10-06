@@ -83,8 +83,8 @@ void init_plan(t_ray *ray, t_data *data)
 
 void init_all_ray_before_launch(t_ray *ray, t_data *data)
 {
-	ray->width = 640;
-	ray->height = 480;
+	ray->width = 1280;
+	ray->height = 960;
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     init_dir(ray, data);
@@ -355,6 +355,7 @@ int start_cub3d(t_data *data)
 	all.data = data;
 	// mlx_key_hook(mlx.win, &keys_handler, &all);
 	mlx_hook(mlx.win, 2, 1L << 0, keys_handler, &all);
+	// mlx_hook(mlx.win, 17, 1L << 8, mlx_loop_end, &all);
 	minimap(&mlx, data);
 	mlx_loop(mlx.ptr);
 	mlx_destroy_window(mlx.ptr, mlx.win);
