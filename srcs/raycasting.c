@@ -141,8 +141,8 @@ void	print_map(t_data *data)
 		printf("\n");
 		j++;
 	}
-	printf("x : %d\n", ray->map.x);
-	printf("y : %d\n", ray->map.y);
+	printf("x : %d\n", data->player.x);
+	printf("y : %d\n", data->player.y);
 }
 
 void    compute_perpwalldist(t_ray *ray, t_data *data)
