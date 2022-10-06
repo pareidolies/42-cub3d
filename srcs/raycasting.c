@@ -288,6 +288,84 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 	return (0);
 }
 
+/*int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
+{
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	if (!mlx->img)
+	{
+		//handling error && free
+		return (1);
+	}
+	//init_all_values(ray);
+	//init_all_ray_before_launch(ray, data);
+	ray->i = 0;
+    while (ray->i < WIDTH)
+    {
+        init_one_ray(ray, data);
+		//printf("sidedistx : %f\n", ray->sidedist.x);
+		//printf("sidedisty : %f\n", ray->sidedist.y);
+		//printf("deltadistx : %f\n", ray->deltadist.x);
+		//printf("deltadisty : %f\n", ray->deltadist.x);
+        compute_perpwalldist(ray, data);
+		//printf("perpwalldist : %f\n", ray->perpwalldist);
+        compute_line_attributes(ray);
+        transpose_to_color(ray, mlx);
+        ray->i++;
+    }
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	mlx_destroy_image(mlx->ptr, mlx->img);
+	return (0);
+}*/
+
+
+void	carre(t_mlx *mlx, int x, int y, int color)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j < 5)
+	{
+		mlx_pixel_put(mlx->ptr, mlx->win, x + i, y + j, color);
+		i++;
+		if (i == 5)
+		{
+			i = 0;
+			j++;
+		}
+	}
+}
+
+
+void	minimap(t_mlx *mlx, t_data *data)
+{
+	// my_mlx_pixel_put(mlx->img, 5, 5, 0x00FF0000);
+	// carre(mlx, 0, 0, 0x00FF0000);
+	int i = 0;
+	int j = 0;
+	int test = create_trgb(0, 100, 0, 0);
+	int test2 = create_trgb(0, 0, 50, 0);
+	while (i < data->height)
+	{
+		// printf("i = %d j = %d\n", i, j);
+		if (data->map[i][j] == '1')
+			carre(mlx, (j * 5) + 5, (i * 5) + 150, test);
+		else
+			carre(mlx, (j * 5) + 5, (i * 5) + 150, 0x0000FF00);
+		j++;
+		if (j == data->len)
+		{
+			j = 0;
+			i++;
+		}
+	}
+	// carre(mlx, 0, 0, 0x0000FF00);
+	// mlx_pixel_put(mlx->ptr, mlx->win, 0, 0, 0x00FF0000);
+	// mlx_put_image_to_window(mlx, mlx->win, mlx->img, 1, 1);
+}
+
+
 int start_cub3d(t_data *data)
 {
 	t_all	all;
@@ -311,6 +389,7 @@ int start_cub3d(t_data *data)
 	all.mlx = &mlx;
 	all.data = data;
 	mlx_key_hook(mlx.win, &keys_handler, &all);
+	minimap(&mlx, data);
 	mlx_loop(mlx.ptr);
 	//while(1)
 	//	;
