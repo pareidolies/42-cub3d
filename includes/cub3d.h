@@ -88,6 +88,7 @@ typedef struct s_data {
 typedef struct s_all {
 	t_ray	*ray;
 	t_data	*data;
+	t_mlx	*mlx;
 }			t_all;
 
 int		is_data(char *data);
@@ -126,5 +127,9 @@ bool	only_space(char *line, t_data *root, char *map);
 int		start_cub3d(t_data *root);
 int	create_trgb(int t, int r, int g, int b);
 int	create_rgb(int r, int g, int b);
+int		keys_handler(int keycode, t_all *all);
+void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
 
 #endif

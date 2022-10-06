@@ -9,6 +9,13 @@
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.033 * 1.8
 
+# define MOVE_FORWARD 119
+# define MOVE_BACKWARD 115
+# define MOVE_RIGHTWARD 100
+# define MOVE_LEFTWARD 97
+# define ROTATE_RIGHT 65363
+# define ROTATE_LEFT 65361
+
 typedef enum	e_hit
 {
 	WALL,
@@ -31,6 +38,12 @@ typedef struct s_vector {
 	double	y;
 }				t_vector;
 
+typedef enum	e_button
+{
+	ON,
+	OFF,
+}		        t_button;
+
 typedef struct s_ray {
 	t_vector	pos;
 	t_vector	dir;
@@ -52,6 +65,12 @@ typedef struct s_ray {
     int     width;
     int     height;
     char    **revert_map;
+    t_button    forward;
+	t_button    backward;
+    t_button    leftward;
+	t_button    rightward;
+	t_button    rotate_left;
+	t_button    rotate_right;
 }				t_ray;
 
 typedef struct s_mlx {

@@ -14,14 +14,6 @@ int initialize_mlx(t_mlx *mlx)
 		free(mlx->ptr);
 		return (1);
 	}
-	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
-	if (!mlx->img)
-	{
-		//handling error && free
-		return (1);
-	}
-	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
     return (0);
 }
 
@@ -91,7 +83,6 @@ void init_plan(t_ray *ray, t_data *data)
 
 void init_all_ray_before_launch(t_ray *ray, t_data *data)
 {
-    ray->i = 0;
 	ray->width = 640;
 	ray->height = 480;
     ray->pos.x = (double)data->player.x + 0.5;
@@ -155,8 +146,8 @@ void init_one_ray(t_ray *ray, t_data *data)
     ray->camerax = 2 * ray->i / width - 1;
     ray->raydir.x = ray->dir.x + ray->plan.x * ray->camerax;
     ray->raydir.y = ray->dir.y + ray->plan.y * ray->camerax;
-	ray->map.x = data->player.x;
-	ray->map.y = data->player.y;
+	ray->map.x = (int)ray->pos.x;
+	ray->map.y = (int)ray->pos.y;
     init_deltadist(ray);
     init_sidedist(ray, data);
 }
@@ -254,7 +245,8 @@ void    compute_line_attributes(t_ray *ray)
 void    transpose_to_color(t_ray *ray, t_mlx *mlx)
 {
 	int	j;
-
+	
+	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
 	//printf("drawstart : %d\n", ray->drawstart);
 	//printf("drawend : %d\n", ray->drawend);
 	j = ray->drawstart;
@@ -269,8 +261,15 @@ void    transpose_to_color(t_ray *ray, t_mlx *mlx)
 	}
 }
 
-void    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
+int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 {
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	if (!mlx->img)
+	{
+		//handling error && free
+		return (1);
+	}
+	ray->i = 0;
     while (ray->i < WIDTH)
     {
         init_one_ray(ray, data);
@@ -284,10 +283,43 @@ void    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
         transpose_to_color(ray, mlx);
         ray->i++;
     }
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	mlx_destroy_image(mlx->ptr, mlx->img);
+	return (0);
+}
+
+int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
+{
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	if (!mlx->img)
+	{
+		//handling error && free
+		return (1);
+	}
+	//init_all_values(ray);
+	//init_all_ray_before_launch(ray, data);
+	ray->i = 0;
+    while (ray->i < WIDTH)
+    {
+        init_one_ray(ray, data);
+		//printf("sidedistx : %f\n", ray->sidedist.x);
+		//printf("sidedisty : %f\n", ray->sidedist.y);
+		//printf("deltadistx : %f\n", ray->deltadist.x);
+		//printf("deltadisty : %f\n", ray->deltadist.x);
+        compute_perpwalldist(ray, data);
+		//printf("perpwalldist : %f\n", ray->perpwalldist);
+        compute_line_attributes(ray);
+        transpose_to_color(ray, mlx);
+        ray->i++;
+    }
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	mlx_destroy_image(mlx->ptr, mlx->img);
+	return (0);
 }
 
 int start_cub3d(t_data *data)
 {
+	t_all	all;
     t_ray   ray;
 	t_mlx	mlx;
     initialize_mlx(&mlx);
@@ -300,14 +332,17 @@ int start_cub3d(t_data *data)
     init_all_ray_before_launch(&ray, data);
     launch_raycasting(&ray, data, &mlx);
 
-    mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
+    //mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
 	//mlx_destroy_image(mlx.ptr, mlx.img);
 	//mlx_loop_hook(mlx.ptr, &rayloop, &ray);
 	//mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
-	//mlx_hook(mlx.win, KeyPress, KeyRelease, &key_handle, &ray);
-	//mlx_loop(mlx.win);
-	while(1)
-		;
+	all.ray = &ray;
+	all.mlx = &mlx;
+	all.data = data;
+	mlx_key_hook(mlx.win, &keys_handler, &all);
+	mlx_loop(mlx.ptr);
+	//while(1)
+	//	;
 	mlx_destroy_window(mlx.ptr, mlx.win);
 	mlx_destroy_display(mlx.ptr);
 	free(mlx.ptr);
@@ -320,4 +355,5 @@ int start_cub3d(t_data *data)
 - récupérer player x et y dans map dans structure pour avoir réinitialisation pour chaque rayon
 - retourner la map en inversant x et y
 - vérifier float / int des valeurs récupérées dans compute_line_attributes
+- verifier orientation EST / WEST avec une boussole
 */
