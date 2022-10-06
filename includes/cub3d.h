@@ -130,6 +130,5 @@ int	create_rgb(int r, int g, int b);
 int		keys_handler(int keycode, t_all *all);
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
-int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
 
 #endif

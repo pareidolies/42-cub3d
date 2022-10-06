@@ -4,21 +4,29 @@ SRCS		=	main.c check_file.c get_next_line.c get_next_line_utils.c \
 				map_file_to_array.c check_map.c check_map_utils.c raycasting.c mlx_utils.c \
 				move_and_rotate.c
 
-SRCS_DIR	= ./srcs/
+SRCS_DIR	= srcs
 
-BONUS_DIR	= ./srcs_bonus/
+OBJS_DIR	= objs
+
+BONUS_DIR	= srcs_bonus
 
 INC_DIR		= includes
 
-SRCS_PATH	= $(SRCS:%=$(SRCS_DIR)%)
+#SRCS_PATH	= $(SRCS:%=$(SRCS_DIR)%)
 
-SRCS_B_PATH = $(SRCS:%=$(BONUS_DIR)%)
+#SRCS_B_PATH = $(SRCS:%=$(BONUS_DIR)%)
 
-OBJS		= $(SRCS_PATH:%.c=%.o)
+SRCS_PATH 	= ${addprefix ${SRCS_DIR}/, ${SRCS}}
 
-OBJS_BONUS	= $(SRCS_B_PATH:%.c=%.o)
+OBJS		= ${SRCS_PATH:${SRCS_DIR}/%.c=${OBJS_DIR}/%.o}
 
-DEPS		= $(SRCS_PATH:%.c=%.d)
+#OBJS		= $(SRCS_PATH:%.c=%.o)
+
+#OBJS_BONUS	= $(SRCS_B_PATH:%.c=%.o)
+
+#DEPS		= $(SRCS_PATH:%.c=%.d)
+
+DEPS		= ${SRCS_PATH:${SRCS_DIR}/%.c=${OBJS_DIR}/%.d}
 
 PATH_LIBFT	= -C libft -s --no-print-directory
 
@@ -30,7 +38,7 @@ NAME		= cub3D
 
 NAME_BONUS	= cub3D
 
-RM		= rm -f
+RM		= rm -Rf
 
 CC		= cc -I $(INC_DIR) -MMD
 
@@ -38,8 +46,12 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 LIBFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
-%.o: %.c
-	@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+#%.o: %.c
+#	@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+
+${OBJS_DIR}/%.o : ${SRCS_DIR}/%.c
+		@[ ! -d ${OBJS_DIR} ] && mkdir -p  ${OBJS_DIR} || true
+		@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all:		$(NAME)
 
@@ -61,7 +73,7 @@ $(NAME): $(LIBRARY) $(OBJS)
 clean:
 		$(MAKE) clean $(PATH_LIBFT)
 		$(MAKE) clean $(PATH_MLX)
-		${RM} ${OBJS} ${DEPS} ${OBJS_BONUS}
+		${RM} ${OBJS} ${OBJS_DIR} ${DEPS} ${OBJS_BONUS}
 		@echo "\033[93m [OK] | clean.\033[0m"
 
 fclean:		clean
