@@ -239,15 +239,14 @@ void    compute_perpwalldist(t_ray *ray, t_data *data)
 
 void    compute_line_attributes(t_ray *ray)
 {
-	double	height = (double)ray->height;
 
-    ray->lineheight = (int)(height / ray->perpwalldist);
-	ray->drawstart = -ray->lineheight / 2 + height / 2;
+    ray->lineheight = (int)(ray->height / ray->perpwalldist);
+	ray->drawstart = -ray->lineheight / 2 + ray->height / 2;
 	if (ray->drawstart < 0)
 		ray->drawstart = 0;
-	ray->drawend = ray->lineheight / 2 + height / 2;
-	if (ray->drawend >= height || ray->drawend < 0)
-		ray->drawend = height - 1;
+	ray->drawend = ray->lineheight / 2 + ray->height / 2;
+	if (ray->drawend >= ray->height || ray->drawend < 0)
+		ray->drawend = ray->height - 1;
 }
 
 //Part 4
