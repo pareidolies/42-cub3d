@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:36:35 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:29:55 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:47:06 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ void	map_file_to_array(t_map *data_map, char *map, t_data *root)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
-		exit(1);
+		check_first_error(root);
+		ft_printf("%s: %s\n", map, strerror(errno));
+		free_struct_exit(root);
 	}
 	go_to_beginning_of_map(fd, data_map);
 	file_to_array(fd, root, data_map);

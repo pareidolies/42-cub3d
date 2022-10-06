@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:26:45 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:42:51 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
+
+#include <string.h>
+#include <errno.h>
 
 # define WIDTH				640
 # define HEIGHT				480

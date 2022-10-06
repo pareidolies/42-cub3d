@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 17:21:25 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:17:43 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,6 @@ int	main(int argc, char **argv)
 	free_struct_exit(&root);
 	return (0);
 }
+
+
+/* On a le droit a errno ?? */
