@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:59:53 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:28:03 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:09:42 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	go_end_data(t_map *data_map, t_data *root, int fd)
 	}
 }
 
-static void	error_no_map(t_data *root, int fd)
+static void	error_no_map(t_data *root, int fd, char *map)
 {
 	check_first_error(root);
-	ft_printf("Err parsing, pas de map dans le fichier\n", root->nbr_line_data);
+	ft_printf("No map detected in %s\n", map);
 	close(fd);
 	free_struct_exit(root);
 }
@@ -60,7 +60,7 @@ static void	check_line_befor_map(t_map *data, t_data *root, int fd, char *map)
 		root->nbr_line_data++;
 	}
 	if (!line)
-		error_no_map(root, fd);
+		error_no_map(root, fd, map);
 	free(line);
 }
 
@@ -78,11 +78,11 @@ static void	parsing_map(t_map *data_map, t_data *root, int fd, char *map)
 		{
 			check_first_error(root);
 			if (!line_only_char_map(line))
-				ft_printf("Err parsing at line %d, la map doit contenir uniquem\
-ent l'un de ces caracteres : 0, 1, N, S, E, W ou espace\n", data_map->end_line);
+				ft_printf("At line %d, map must contain only one of\
+ these characters : 0, 1, N, S, E, W or space\n", data_map->end_line);
 			else
-				ft_printf("Err parsing at line %d, la map est separee par une l\
-igne vide ou finit par plusieurs lignes vide\n", data_map->end_line);
+				ft_printf("At line %d, map is separated by an empty line\
+ or finish with many empty lines\n", data_map->end_line);
 		}
 		if (ft_strlen(line) > data_map->len_line_max)
 			data_map->len_line_max = ft_strlen(line);
@@ -103,8 +103,9 @@ void	check_map(t_map *data_map, t_data *root, char *map)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
-		exit(1);
+		check_first_error(root);
+		ft_printf("%s: %s\n", map, strerror(errno));
+		free_struct_exit(root);
 	}
 	go_end_data(data_map, root, fd);
 	check_line_befor_map(data_map, root, fd, map);
@@ -114,8 +115,8 @@ void	check_map(t_map *data_map, t_data *root, char *map)
 	{
 		check_first_error(root);
 		if (data_map->end_line - data_map->start_line <= 2)
-			ft_printf("La carte doit avoir une hauteur minimal de 3\n");
+			ft_printf("The minimum heigh of the map is\n");
 		if (data_map->len_line_max <= 2)
-			ft_printf("La carte doit avoir une largeur minimal de 3\n");
+			ft_printf("The minimum lenght of the map is\n");
 	}
 }

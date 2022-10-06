@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:36:41 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:49:57 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
 static void	check_name(char *map)
 {
@@ -23,13 +25,13 @@ static void	check_name(char *map)
 	len = ft_strlen(map);
 	if (len < 5)
 	{
-		ft_putstr_fd("Error !\nLe nom du fichier doit finir par \".cub\"\n", 2);
+		ft_putstr_fd("Error !\nFile name must end with \".cub\"\n", 2);
 		exit(1);
 	}
 	if (map[len - 4] == '.' && map[len - 3] == 'c' && map[len - 2] == 'u'
 		&& map[len - 1] == 'b')
 		return ;
-	ft_putstr_fd("Error !\nLe nom du fichier doit finir par \".cub\"\n", 2);
+	ft_putstr_fd("Error !\nFile name must end with \".cub\"\n", 2);
 	exit(1);
 }
 
@@ -48,11 +50,7 @@ static void	get_data(t_data *root, char *line, char **arr, char *map)
 		cpy_rgb(root, is_data(arr[0]), arr, line);
 	else
 	{
-		if (!root->err)
-		{
-			root->err = true;
-			ft_putstr_fd("Error\n", 2);
-		}
+		check_first_error(root);
 		ft_printf("Wrong information on %s at line %d, data : %s is already\
  configured\n", map, root->nbr_line_data, arr[0]);
 	}
@@ -91,8 +89,9 @@ static void	check_data(char *map, t_data *root)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error\nEchec lors de l'ouverture du fichier\n", 2);
-		exit(1);
+		check_first_error(root);
+		ft_printf("%s: %s\n", map, strerror(errno));
+		free_struct_exit(root);
 	}
 	while (!all_data_set(root))
 	{
@@ -114,11 +113,7 @@ int	check_error(int argc, char **argv, t_data *root)
 	init_struct_map(&data_map);
 	if (argc == 1 || argc > 2)
 	{
-		if (argc == 1)
-			ft_putstr_fd("Error !\nPas assez d'arguments\nUsage : ./cub3D \
-./name.cub\n", 2);
-		else
-			ft_putstr_fd("Error !\nTrop d'arguments\nUsage : ./cub3D \
+			ft_putstr_fd("Error !\n2 expected argumets\nUsage : ./cub3D \
 ./name.cub\n", 2);
 		exit(1);
 	}

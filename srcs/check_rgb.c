@@ -6,18 +6,11 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:35:18 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/03 16:27:33 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:53:31 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-/* On regarde deja si le format est respecte :
-	- Nombres espacs par une virgules pour chaque nombre
-	
-	Puis on fait un split avec comme separateur la virgule + espace
-	et on attribue a la struct chaque valeur avec un ft_atoi(). 
-*/
 
 static bool	check_rgb_format_bis(char *rgb, char data, t_data *root)
 {
@@ -112,8 +105,8 @@ static bool	str_rgb_to_int(char c, char *res, t_data *root)
 			root->err = true;
 			ft_putstr_fd("Error\n", 2);
 		}
-		ft_printf("Wrong information at line %d, Les valeurs doivent etres \
-comprises entre 0 et 255\n", root->nbr_line_data);
+		ft_printf("Wrong information at line %d, values must be \
+betwen 0 and 255\n", root->nbr_line_data);
 		free_double_array(rgb);
 		return (false);
 	}
