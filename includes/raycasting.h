@@ -37,7 +37,7 @@ typedef struct s_ray {
 	t_vector	plan;
 	t_vector	raydir;
 	double  	camerax;
-	//t_point	map; //int
+	t_point     map; //int
 	t_vector	sidedist;
 	t_vector	deltadist;
 	t_point	step; //int
