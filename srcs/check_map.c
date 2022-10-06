@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 16:19:19 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:45:10 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ void	check_array(t_data *root, t_map *data_map)
 			j++;
 		}
 		i++;
+	}
+	if (root->player.empty)
+	{
+		check_first_error(root);
+		ft_printf("No player detected on the map\n");
+		free_struct_exit(root);
 	}
 	if (!root->err)
 		get_final_arr(root);
