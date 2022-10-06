@@ -51,6 +51,7 @@ typedef struct s_ray {
     double  *buffer;
     int     width;
     int     height;
+    char    **revert_map;
 }				t_ray;
 
 typedef struct s_mlx {
