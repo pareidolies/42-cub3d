@@ -76,7 +76,7 @@ void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x * (MOVE_SPEED * 2))] != '1')
 			ray->pos.y += ray->dir.x * MOVE_SPEED;
 	}
-    re_launch_raycasting(ray, data, mlx);
+    launch_raycasting(ray, data, mlx);
 }
 
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
@@ -102,5 +102,5 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		ray->plan.x = ray->plan.x * cos(ROT_SPEED / 2) - ray->plan.y * sin(ROT_SPEED / 2);
 		ray->plan.y = former_plan_x * sin(ROT_SPEED / 2) + ray->plan.y * cos(ROT_SPEED / 2);
     }
-    re_launch_raycasting(ray, data, mlx);
+    launch_raycasting(ray, data, mlx);
 }

@@ -288,7 +288,7 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 	return (0);
 }
 
-int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
+/*int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 {
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
@@ -315,7 +315,7 @@ int    re_launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);
-}
+}*/
 
 int start_cub3d(t_data *data)
 {
