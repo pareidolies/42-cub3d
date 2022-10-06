@@ -83,13 +83,8 @@ void init_plan(t_ray *ray, t_data *data)
 
 void init_all_ray_before_launch(t_ray *ray, t_data *data)
 {
-<<<<<<< HEAD
 	ray->width = 1280;
 	ray->height = 960;
-=======
-	ray->width = 1280;//640;
-	ray->height = 960;//480;
->>>>>>> 79b58d2a1a0de753ed6aecb42023dbe9c844f8b9
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     init_dir(ray, data);
