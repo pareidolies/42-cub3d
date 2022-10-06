@@ -316,7 +316,6 @@ void	carre(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
-
 void	minimap(t_mlx *mlx, t_data *data)
 {
 	// my_mlx_pixel_put(mlx->img, 5, 5, 0x00FF0000);
