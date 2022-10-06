@@ -26,8 +26,8 @@
 #include <string.h>
 #include <errno.h>
 
-# define WIDTH				640
-# define HEIGHT				480
+# define WIDTH				1280
+# define HEIGHT				960
 # define TITLE				"cub3D"
 
 # define ANSI_COLOR_BLUE			"\x1b[94m"

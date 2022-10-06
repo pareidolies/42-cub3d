@@ -83,8 +83,8 @@ void init_plan(t_ray *ray, t_data *data)
 
 void init_all_ray_before_launch(t_ray *ray, t_data *data)
 {
-	ray->width = 640;
-	ray->height = 480;
+	ray->width = 1280;//640;
+	ray->height = 960;//480;
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     init_dir(ray, data);
@@ -247,14 +247,25 @@ void    transpose_to_color(t_ray *ray, t_mlx *mlx)
 	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
 	//printf("drawstart : %d\n", ray->drawstart);
 	//printf("drawend : %d\n", ray->drawend);
-	j = ray->drawstart;
-	while(j < ray->drawend)
+	j = 0;
+	while(j < HEIGHT)
 	{
 		//mlx->addr[j * mlx->line_length / 4 + ray->i] = create_trgb(0,0,0,255);
-		if (ray->side == HORIZONTAL)
-			mlx->addr[j * WIDTH + ray->i] = create_rgb(0,0,255);
+		if (j < ray->drawstart)
+		{
+			mlx->addr[j * WIDTH + ray->i] = create_rgb(37,1,65);
+		}
+		else if (j > ray->drawend)
+		{
+			mlx->addr[j * WIDTH + ray->i] = create_rgb(66,5,114);
+		}
 		else
-			mlx->addr[j * WIDTH + ray->i] = create_rgb(0,0,255) / 2;
+		{
+			if (ray->side == HORIZONTAL)
+				mlx->addr[j * WIDTH + ray->i] = create_rgb(0,0,255);
+			else
+				mlx->addr[j * WIDTH + ray->i] = create_rgb(0,0,255) / 2;
+		}
 		j++;
 	}
 }
