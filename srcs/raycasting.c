@@ -344,15 +344,15 @@ void	minimap(t_mlx *mlx, t_data *data)
 	// carre(mlx, 0, 0, 0x00FF0000);
 	int i = 0;
 	int j = 0;
-	int test = create_trgb(0, 100, 0, 0);
-	int test2 = create_trgb(0, 0, 50, 0);
+	int test = create_rgb(255, 0, 0);
+	int test2 = create_rgb(0, 255, 0);
 	while (i < data->height)
 	{
 		// printf("i = %d j = %d\n", i, j);
 		if (data->map[i][j] == '1')
 			carre(mlx, (j * 5) + 5, (i * 5) + 150, test);
 		else
-			carre(mlx, (j * 5) + 5, (i * 5) + 150, 0x0000FF00);
+			carre(mlx, (j * 5) + 5, (i * 5) + 150, test2);
 		j++;
 		if (j == data->len)
 		{
@@ -388,7 +388,8 @@ int start_cub3d(t_data *data)
 	all.ray = &ray;
 	all.mlx = &mlx;
 	all.data = data;
-	mlx_key_hook(mlx.win, &keys_handler, &all);
+	// mlx_key_hook(mlx.win, &keys_handler, &all);
+	mlx_hook(mlx.win, 2, 1L << 0, keys_handler, &all);
 	minimap(&mlx, data);
 	mlx_loop(mlx.ptr);
 	//while(1)
