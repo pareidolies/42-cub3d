@@ -15,6 +15,7 @@
 # define MOVE_LEFTWARD 97
 # define ROTATE_RIGHT 65363
 # define ROTATE_LEFT 65361
+# define ESC 65307
 
 typedef enum	e_hit
 {

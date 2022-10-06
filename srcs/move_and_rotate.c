@@ -1,5 +1,12 @@
 #include "../includes/cub3d.h"
 
+void	exit_safe(t_all *all)
+{
+	mlx_destroy_window(all->mlx->ptr, all->mlx->win);
+	mlx_destroy_display(all->mlx->ptr);
+	exit (1);
+}
+
 int		keys_handler(int keycode, t_all *all)
 {
 	if (keycode == MOVE_FORWARD)
@@ -14,6 +21,8 @@ int		keys_handler(int keycode, t_all *all)
 		rotate(keycode, all->ray, all->mlx, all->data);
 	else if (keycode == ROTATE_RIGHT)
 		rotate(keycode, all->ray, all->mlx, all->data);
+	else if (keycode == ESC)
+		exit_safe(all);
 	return (1);
 }
 
