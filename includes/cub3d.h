@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 17:30:46 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:34:02 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ int	create_rgb(int r, int g, int b);
 int		keys_handler(int keycode, t_all *all);
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
 
 #endif

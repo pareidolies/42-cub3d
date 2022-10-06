@@ -312,13 +312,8 @@ void	minimap(t_mlx *mlx, t_data *data)
 	// carre(mlx, 0, 0, 0x00FF0000);
 	int i = 0;
 	int j = 0;
-<<<<<<< HEAD
 	int test = create_rgb(255, 0, 0);
 	int test2 = create_rgb(0, 255, 0);
-=======
-	int test = create_trgb(255, 100, 0, 0);
-	int test2 = create_trgb(255, 0, 50, 0);
->>>>>>> 2a2073b46ddb857fef5b73ac61840ad90f219eb8
 	while (i < data->height)
 	{
 		// printf("i = %d j = %d\n", i, j);
