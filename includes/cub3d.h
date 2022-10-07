@@ -26,6 +26,10 @@
 #include <string.h>
 #include <errno.h>
 
+/******************************************************************************
+ *                                 MACROS                                     *
+ *****************************************************************************/
+
 // # define WIDTH				640
 // # define HEIGHT				480
 # define WIDTH				1280
@@ -64,6 +68,36 @@
 # define TAB_KEY			65289
 # define ZOOM_IN_KEY		4
 # define ZOOM_OUT_KEY		5
+
+/******************************************************************************
+*                              ENUMERATIONS                                   *
+******************************************************************************/
+
+typedef enum	e_hit
+{
+	WALL,
+	EMPTY,
+}		        t_hit;
+
+typedef enum    e_side
+{
+    HORIZONTAL,
+    VERTICAL,
+}               t_side;
+
+/******************************************************************************
+ *                               STRUCTURES                                   *
+ *****************************************************************************/
+
+typedef struct s_point {
+	int	x;
+	int	y;
+}				t_point;
+
+typedef struct s_vector {
+	double	x;
+	double	y;
+}				t_vector;
 
 typedef struct s_player {
 	bool	empty;
@@ -110,34 +144,6 @@ typedef struct s_mlx {
     int     endian;
 }               t_mlx;
 
-typedef enum	e_hit
-{
-	WALL,
-	EMPTY,
-}		        t_hit;
-
-typedef enum    e_side
-{
-    HORIZONTAL,
-    VERTICAL,
-}               t_side;
-
-typedef struct s_point {
-	int	x;
-	int	y;
-}				t_point;
-
-typedef struct s_vector {
-	double	x;
-	double	y;
-}				t_vector;
-
-typedef enum	e_button
-{
-	ON,
-	OFF,
-}		        t_button;
-
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
@@ -161,16 +167,13 @@ typedef struct s_ray {
     int     width;
     int     height;
     char    **revert_map;
-    t_button    forward;
-	t_button    backward;
-    t_button    leftward;
-	t_button    rightward;
-	t_button    rotate_left;
-	t_button    rotate_right;
 }				t_ray;
 
+/******************************************************************************
+ *                               FUNCTIONS                                    *
+ *****************************************************************************/
 
-
+//parsing.c
 int		is_data(char *data);
 int		check_error(int argc, char **argv, t_data *root);
 
