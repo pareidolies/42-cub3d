@@ -38,7 +38,7 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 	}
 }
 
-void init_dir(t_ray *ray, t_data *data)
+void get_dir(t_ray *ray, t_data *data)
 {
     if (data->player.dir == 'N')
 		ray->dir.x = -1;
@@ -50,7 +50,7 @@ void init_dir(t_ray *ray, t_data *data)
 		ray->dir.y = -1;
 }
 
-void init_plane(t_ray *ray, t_data *data)
+void get_plane(t_ray *ray, t_data *data)
 {
     if (data->player.dir == 'N')
 		ray->plane.y = 0.66;
@@ -68,7 +68,7 @@ void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 	ray->height = 960;
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
-    init_dir(ray, data);
-    init_plane(ray, data);
+    get_dir(ray, data);
+    get_plane(ray, data);
     //map => data->map ne plus utiliser data
 }

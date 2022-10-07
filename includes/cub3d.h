@@ -16,14 +16,14 @@
 
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
+
 # include <stdbool.h>
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
-
-#include <string.h>
-#include <errno.h>
+# include <string.h>
+# include <errno.h>
 
 /******************************************************************************
  *                                 MACROS                                     *
@@ -31,9 +31,9 @@
 
 // # define WIDTH				640
 // # define HEIGHT				480
-# define WIDTH				1280
-# define HEIGHT				960
-# define TITLE				"cub3D"
+# define WIDTH 1280
+# define HEIGHT 960
+# define TITLE "cub3D"
 
 # define FOV 60
 # define PI 3.1415926535
@@ -47,6 +47,8 @@
 # define ROTATE_RIGHT 65363
 # define ROTATE_LEFT 65361
 # define ESC 65307
+# define SPACE 32
+# define TAB 65289
 
 # define ANSI_COLOR_BLUE			"\x1b[94m"
 # define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
@@ -57,16 +59,6 @@
 # define M11			"--------------------------------------\n\n"
 
 # define GOODBYE	"\nSee you soon !\n\n"
-
-# define ESC_KEY			65307
-# define LEFT_KEY			65361
-# define RIGHT_KEY			65363
-# define UP_KEY				65362
-# define DOWN_KEY			65364
-# define SPACE_KEY			32
-# define TAB_KEY			65289
-# define ZOOM_IN_KEY		4
-# define ZOOM_OUT_KEY		5
 
 /******************************************************************************
 *                              ENUMERATIONS                                   *
@@ -162,7 +154,6 @@ typedef struct s_ray {
     int     drawstart;
     int     drawend;
     int     i;
-    double  *buffer;
     int     width;
     int     height;
     char    **revert_map;
@@ -215,8 +206,8 @@ int initialize_mlx(t_mlx *mlx);
 
 //tranpose.c
 void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
-void init_dir(t_ray *ray, t_data *data);
-void init_plane(t_ray *ray, t_data *data);
+void get_dir(t_ray *ray, t_data *data);
+void get_plane(t_ray *ray, t_data *data);
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 
 //raycasting.c
