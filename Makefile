@@ -1,8 +1,20 @@
-SRCS		=	main.c check_file.c get_next_line.c get_next_line_utils.c \
-				struct_utils.c check_file_utils.c check_file_utils_bis.c \
-				check_rgb.c check_rgb_bis.c struct_map_utils.c parsing_map.c \
-				map_file_to_array.c check_map.c check_map_utils.c raycasting.c mlx_utils.c \
-				move_and_rotate.c
+SRCS		=	main.c \
+				parsing/check_file.c \
+				utils/get_next_line.c \
+				utils/get_next_line_utils.c \
+				parsing/struct_utils.c \
+				parsing/check_file_utils.c \
+				parsing/check_file_utils_bis.c \
+				parsing/check_rgb.c \
+				parsing/check_rgb_bis.c \
+				parsing/struct_map_utils.c \
+				parsing/parsing_map.c \
+				parsing/map_file_to_array.c \
+				parsing/check_map.c \
+				parsing/check_map_utils.c \
+				raycasting/raycasting.c \
+				utils/mlx_utils.c \
+				hooks/move_and_rotate.c
 
 SRCS_DIR	= srcs
 
@@ -51,6 +63,10 @@ LIBFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 ${OBJS_DIR}/%.o : ${SRCS_DIR}/%.c
 		@[ ! -d ${OBJS_DIR} ] && mkdir -p  ${OBJS_DIR} || true
+		@[ ! -d ${OBJS_DIR}/hooks/ ] && mkdir -p  ${OBJS_DIR}/hooks/ || true
+		@[ ! -d ${OBJS_DIR}/raycasting/ ] && mkdir -p  ${OBJS_DIR}/raycasting/ || true
+		@[ ! -d ${OBJS_DIR}/parsing/ ] && mkdir -p  ${OBJS_DIR}/parsing/ || true
+		@[ ! -d ${OBJS_DIR}/utils/ ] && mkdir -p  ${OBJS_DIR}/utils/ || true
 		@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all:		$(NAME)
