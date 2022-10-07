@@ -12,9 +12,15 @@ SRCS		=	main.c \
 				parsing/map_file_to_array.c \
 				parsing/check_map.c \
 				parsing/check_map_utils.c \
-				raycasting/raycasting.c \
 				utils/mlx_utils.c \
-				hooks/move_and_rotate.c
+				raycasting/raycasting.c \
+				raycasting/computation.c \
+				raycasting/minimap.c \
+				raycasting/transpose.c \
+				raycasting/initialize.c \
+				raycasting/debug.c \
+				raycasting/start.c \
+				hooks/move_and_rotate.c \
 
 SRCS_DIR	= srcs
 

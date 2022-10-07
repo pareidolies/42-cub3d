@@ -17,72 +17,7 @@
 # define ROTATE_LEFT 65361
 # define ESC 65307
 
-typedef enum	e_hit
-{
-	WALL,
-	EMPTY,
-}		        t_hit;
 
-typedef enum    e_side
-{
-    HORIZONTAL,
-    VERTICAL,
-}               t_side;
-
-typedef struct s_point {
-	int	x;
-	int	y;
-}				t_point;
-
-typedef struct s_vector {
-	double	x;
-	double	y;
-}				t_vector;
-
-typedef enum	e_button
-{
-	ON,
-	OFF,
-}		        t_button;
-
-typedef struct s_ray {
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	plan;
-	t_vector	raydir;
-	double  	camerax;
-	t_point     map; //int
-	t_vector	sidedist;
-	t_vector	deltadist;
-	t_point	step; //int
-	t_hit	hit;
-    t_side  side;
-    double  perpwalldist;
-    int     lineheight;
-    int     drawstart;
-    int     drawend;
-    int     i;
-    double  *buffer;
-    int     width;
-    int     height;
-    char    **revert_map;
-    t_button    forward;
-	t_button    backward;
-    t_button    leftward;
-	t_button    rightward;
-	t_button    rotate_left;
-	t_button    rotate_right;
-}				t_ray;
-
-typedef struct s_mlx {
-    void    *ptr;
-    void    *win;
-    void    *img;
-    int     *addr;
-    int     bpp;
-    int     line_length;
-    int     endian;
-}               t_mlx;
 
 
 #endif

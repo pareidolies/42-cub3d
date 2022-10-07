@@ -87,11 +87,76 @@ typedef struct s_data {
 	bool			err;
 }				t_data;
 
-typedef struct s_all {
-	t_ray	*ray;
-	t_data	*data;
-	t_mlx	*mlx;
-}			t_all;
+typedef struct s_mlx {
+    void    *ptr;
+    void    *win;
+    void    *img;
+    int     *addr;
+    int     bpp;
+    int     line_length;
+    int     endian;
+}               t_mlx;
+
+typedef enum	e_hit
+{
+	WALL,
+	EMPTY,
+}		        t_hit;
+
+typedef enum    e_side
+{
+    HORIZONTAL,
+    VERTICAL,
+}               t_side;
+
+typedef struct s_point {
+	int	x;
+	int	y;
+}				t_point;
+
+typedef struct s_vector {
+	double	x;
+	double	y;
+}				t_vector;
+
+typedef enum	e_button
+{
+	ON,
+	OFF,
+}		        t_button;
+
+typedef struct s_ray {
+	t_mlx		*mlx;
+	t_data		*data;
+	t_vector	pos;
+	t_vector	dir;
+	t_vector	plan;
+	t_vector	raydir;
+	double  	camerax;
+	t_point     map; //int
+	t_vector	sidedist;
+	t_vector	deltadist;
+	t_point	step; //int
+	t_hit	hit;
+    t_side  side;
+    double  perpwalldist;
+    int     lineheight;
+    int     drawstart;
+    int     drawend;
+    int     i;
+    double  *buffer;
+    int     width;
+    int     height;
+    char    **revert_map;
+    t_button    forward;
+	t_button    backward;
+    t_button    leftward;
+	t_button    rightward;
+	t_button    rotate_left;
+	t_button    rotate_right;
+}				t_ray;
+
+
 
 int		is_data(char *data);
 int		check_error(int argc, char **argv, t_data *root);
@@ -126,12 +191,46 @@ bool	whitespace_on_line(char **arr);
 bool	line_only_space(char *line, t_data *root);
 bool	only_space(char *line, t_data *root, char *map);
 
-int		start_cub3d(t_data *root);
+//start.c
+int start_raycasting(t_data *data);
+
+//initialize.c
+void	initialize_all_values(t_ray *ray);
+int initialize_mlx(t_mlx *mlx);
+
+//tranpose.c
+void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
+void init_dir(t_ray *ray, t_data *data);
+void init_plan(t_ray *ray, t_data *data);
+void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
+
+//raycasting.c
+void initialize_ray_i(t_ray *ray, t_data *data);
+void    print_results_on_screen(t_ray *ray, t_mlx *mlx);
+int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
+
+//computation.c
+void compute_deltadist(t_ray *ray);
+void compute_sidedist(t_ray *ray, t_data *data);
+void    compute_perpwalldist(t_ray *ray, t_data *data);
+void    compute_line_attributes(t_ray *ray);
+
+//minimap.c
+void	carre(t_mlx *mlx, int x, int y, int color);
+void	minimap(t_mlx *mlx, t_data *data);
+
+//debug.c
+void	print_map_data(t_data *data);
+void	print_map_ray(t_ray *ray, t_data *data);
+
+//mlx_utils.c
 int	create_trgb(int t, int r, int g, int b);
 int	create_rgb(int r, int g, int b);
-int		keys_handler(int keycode, t_all *all);
+
+//hooks.c
+int		keys_handler(int keycode, t_ray *ray);
+void	exit_safe(t_ray *ray);
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
-int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
 
 #endif

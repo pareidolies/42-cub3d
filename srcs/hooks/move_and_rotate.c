@@ -1,28 +1,28 @@
 #include "../includes/cub3d.h"
 
-void	exit_safe(t_all *all)
+void	exit_safe(t_ray *ray)
 {
-	mlx_destroy_window(all->mlx->ptr, all->mlx->win);
-	mlx_destroy_display(all->mlx->ptr);
+	mlx_destroy_window(ray->mlx->ptr, ray->mlx->win);
+	mlx_destroy_display(ray->mlx->ptr);
 	exit (1);
 }
 
-int		keys_handler(int keycode, t_all *all)
+int		keys_handler(int keycode, t_ray *ray)
 {
 	if (keycode == MOVE_FORWARD)
-		move(keycode, all->ray, all->mlx, all->data);
+		move(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == MOVE_BACKWARD)
-		move(keycode, all->ray, all->mlx, all->data);
+		move(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == MOVE_LEFTWARD)
-		move(keycode, all->ray, all->mlx, all->data);
+		move(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == MOVE_RIGHTWARD)
-		move(keycode, all->ray, all->mlx, all->data);
+		move(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == ROTATE_LEFT)
-		rotate(keycode, all->ray, all->mlx, all->data);
+		rotate(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == ROTATE_RIGHT)
-		rotate(keycode, all->ray, all->mlx, all->data);
+		rotate(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == ESC)
-		exit_safe(all);
+		exit_safe(ray);
 	return (1);
 }
 
