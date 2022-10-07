@@ -20,7 +20,10 @@ SRCS		=	main.c \
 				raycasting/initialize.c \
 				raycasting/debug.c \
 				raycasting/start.c \
-				hooks/move_and_rotate.c \
+				hooks/exit.c \
+				hooks/keys.c \
+				hooks/move.c \
+				hooks/rotate.c \
 
 SRCS_DIR	= srcs
 
