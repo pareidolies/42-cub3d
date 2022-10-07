@@ -16,7 +16,6 @@
 
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
-# include "raycasting.h"
 # include <stdbool.h>
 # include <X11/keysym.h>
 # include <stdlib.h>
