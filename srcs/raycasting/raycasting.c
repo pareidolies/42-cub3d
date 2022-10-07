@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:36:09 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:14:14 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void    print_results_on_screen(t_ray *ray, t_mlx *mlx)
 		else if (j > ray->drawend)
 		{
 			mlx->addr[j * WIDTH + ray->i] = create_rgb(66,5,114);
+			//       (y * WIDTH) + x
 		}
 		else
 		{
@@ -89,6 +90,7 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
         ray->i++;
     }
 	//printf("coucou2\n");
+	minimap(ray->mlx, data, ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);

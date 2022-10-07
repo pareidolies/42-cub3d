@@ -1,5 +1,77 @@
 #include "../includes/cub3d.h"
 
+// void	carre(t_mlx *mlx, int x, int y, int color)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (j < 10)
+// 	{
+// 		mlx_pixel_put(mlx->ptr, mlx->win, x + i, y + j, color);
+// 		i++;
+// 		if (i == 10)
+// 		{
+// 			i = 0;
+// 			j++;
+// 		}
+// 	}
+// }
+
+// void	pos_player(t_mlx *mlx, t_data *data, t_ray *ray)
+// {
+// 	int	i;
+// 	int	j;
+// 	int pos_x;
+// 	int pos_y;
+
+// 	i = 1;
+// 	j = 1;
+// 	pos_x = (int)(ray->pos.x + (ray->dir.x * MOVE_SPEED * 2));
+// 	pos_y = (int)ray->pos.y;
+// 	while (j < 9)
+// 	{
+// 		mlx_pixel_put(mlx->ptr, mlx->win, (pos_x * 10 + i) + 20, (pos_y * 10 + j) + 20, create_rgb(0, 0, 255));
+// 		i++;
+// 		if (i == 9)
+// 		{
+// 			i = 1;
+// 			j++;
+// 		}
+// 	}
+// }
+
+// void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
+// {
+// 	int i = 0;
+// 	int j = 0;
+// 	int test = create_rgb(255, 0, 0);
+// 	int test2 = create_rgb(0, 255, 0);
+// 	while (i < data->height)
+// 	{
+// 		if (data->map[i][j] == '1')
+// 			carre(mlx, (j * 10) + 20, (i * 10) + 20, test);
+// 		else
+// 			carre(mlx, (j * 10) + 20, (i * 10) + 20, test2);
+// 		j++;
+// 		if (j == data->len)
+// 		{
+// 			j = 0;
+// 			i++;
+// 		}
+// 	}
+// 	pos_player(mlx, data, ray);
+// }
+
+
+
+
+
+
+
+
+
 void	carre(t_mlx *mlx, int x, int y, int color)
 {
 	int	i;
@@ -7,11 +79,11 @@ void	carre(t_mlx *mlx, int x, int y, int color)
 
 	i = 0;
 	j = 0;
-	while (j < 5)
+	while (j < 10)
 	{
-		mlx_pixel_put(mlx->ptr, mlx->win, x + i, y + j, color);
+		mlx->addr[((y + j) * WIDTH) + (x + i)] = color;
 		i++;
-		if (i == 5)
+		if (i == 10)
 		{
 			i = 0;
 			j++;
@@ -19,21 +91,43 @@ void	carre(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
-void	minimap(t_mlx *mlx, t_data *data)
+void	pos_player(t_mlx *mlx, t_data *data, t_ray *ray)
 {
-	// my_mlx_pixel_put(mlx->img, 5, 5, 0x00FF0000);
-	// carre(mlx, 0, 0, 0x00FF0000);
-	int i = 0;
-	int j = 0;
-	int test = create_rgb(255, 0, 0);
-	int test2 = create_rgb(0, 255, 0);
+	int	i;
+	int	j;
+	int pos_x;
+	int pos_y;
+
+	i = 1;
+	j = 1;
+	pos_x = (int)(ray->pos.x + (ray->dir.x * MOVE_SPEED * 2));
+	pos_y = (int)ray->pos.y;
+	while (j < 9)
+	{
+		mlx->addr[((j + (pos_y  * 10) + 20) * WIDTH) + (i + 20 + (pos_x * 10))] = create_rgb(255, 255, 0);
+	
+		i++;
+		if (i == 9)
+		{
+			i = 1;
+			j++;
+		}
+	}
+}
+
+void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
 	while (i < data->height)
 	{
-		// printf("i = %d j = %d\n", i, j);
 		if (data->map[i][j] == '1')
-			carre(mlx, (j * 5) + 5, (i * 5) + 150, test);
+			carre(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(255, 0, 0));
 		else
-			carre(mlx, (j * 5) + 5, (i * 5) + 150, test2);
+			carre(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(0, 255, 0));
 		j++;
 		if (j == data->len)
 		{
@@ -41,7 +135,5 @@ void	minimap(t_mlx *mlx, t_data *data)
 			i++;
 		}
 	}
-	// carre(mlx, 0, 0, 0x0000FF00);
-	// mlx_pixel_put(mlx->ptr, mlx->win, 0, 0, 0x00FF0000);
-	// mlx_put_image_to_window(mlx, mlx->win, mlx->img, 1, 1);
+	pos_player(mlx, data, ray);
 }

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 17:53:04 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:20:46 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ char	*ft_get_line(char *left_str);
 char	*ft_strchr_gnl(char *s, int c);
 char	*ft_new_left_str(char *left_str);
 char	*ft_strjoin_gnl(char *left_str, char *buff);
+char	*go_to_beginning_of_map_bis(int fd, t_map *data_map);
 
 void	go_end_file(int fd);
 void	show_data(t_data *root);
@@ -183,6 +184,7 @@ void	check_first_error(t_data *root);
 void	init_struct_map(t_map *data_map);
 void	error_missing_data(t_data *root);
 void	check_array(t_data *root, t_map *data_map);
+void	go_to_beginning_of_map(int fd, t_map *data_map);
 void	check_map(t_map *data_map, t_data *root, char *map);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);
 void	cpy_rgb(t_data *root, int data, char **arr, char *line);
@@ -223,7 +225,8 @@ void    compute_line_attributes(t_ray *ray);
 
 //minimap.c
 void	carre(t_mlx *mlx, int x, int y, int color);
-void	minimap(t_mlx *mlx, t_data *data);
+void	minimap(t_mlx *mlx, t_data *data, t_ray *ray);
+
 
 //debug.c
 void	print_map_data(t_data *data);
@@ -236,7 +239,9 @@ int	create_rgb(int r, int g, int b);
 //hooks.c
 int		keys_handler(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
+int		exit_safe_bis(int keycode, t_ray *ray);
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+
 
 #endif

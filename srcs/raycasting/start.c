@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:03 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:37:04 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:26:06 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int start_raycasting(t_data *data)
 	//all.data = data;
 	// mlx_key_hook(mlx.win, &keys_handler, &all);
 	mlx_hook(ray.mlx->win, 2, 1L << 0, keys_handler, &ray);
+	mlx_hook(ray.mlx->win, 17, 1L << 8, exit_safe_bis, &ray);
 	// mlx_hook(mlx.win, 17, 1L << 8, mlx_loop_end, &all);
-	minimap(ray.mlx, data);
 	mlx_loop(ray.mlx->ptr);
 	mlx_destroy_window(ray.mlx->ptr, ray.mlx->win);
 	mlx_destroy_display(ray.mlx->ptr);

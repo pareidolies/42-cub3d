@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:59:53 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 13:09:42 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:33:16 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,30 @@ static void	check_line_befor_map(t_map *data, t_data *root, int fd, char *map)
 	if (!line)
 		error_no_map(root, fd, map);
 	free(line);
+	go_end_file(fd);
+	// close(fd);
+	// free(line);
 }
 
-static void	parsing_map(t_map *data_map, t_data *root, int fd, char *map)
+// static void	parsing_map(t_map *data_map, t_data *root, int fd, char *map)
+static void	parsing_map(t_map *data_map, t_data *root, char *map)
 {
+	int		fd;
 	char	*line;
 
 	data_map->end_line = data_map->start_line;
-	line = get_next_line(fd);
-	data_map->end_line++;
-	root->nbr_line_data++;
+	// line = get_next_line(fd);
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		check_first_error(root);
+		ft_printf("%s: %s\n", map, strerror(errno));
+		free_struct_exit(root);
+	}
+	line = go_to_beginning_of_map_bis(fd, data_map);
+	// printf("%s\n", line);
+	// data_map->end_line++;
+	// root->nbr_line_data++;
 	while (line)
 	{
 		if (!line_only_char_map(line) || (line && !ft_strlen(line)))
@@ -85,7 +99,9 @@ static void	parsing_map(t_map *data_map, t_data *root, int fd, char *map)
  or finish with many empty lines\n", data_map->end_line);
 		}
 		if (ft_strlen(line) > data_map->len_line_max)
+		{
 			data_map->len_line_max = ft_strlen(line);
+		}
 		only_space(line, root, map);
 		free(line);
 		line = get_next_line(fd);
@@ -109,7 +125,8 @@ void	check_map(t_map *data_map, t_data *root, char *map)
 	}
 	go_end_data(data_map, root, fd);
 	check_line_befor_map(data_map, root, fd, map);
-	parsing_map(data_map, root, fd, map);
+	// parsing_map(data_map, root, fd, map);
+	parsing_map(data_map, root, map);
 	if (data_map->end_line - data_map->start_line <= 2
 		|| data_map->len_line_max <= 2)
 	{

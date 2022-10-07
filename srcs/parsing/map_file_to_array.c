@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:36:35 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 12:47:06 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:29:49 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ static void	cpy_line(char *dest, char *line, t_map *data_map)
 			dest[i] = line[i];
 		i++;
 	}
+	// printf("%d\n", data_map->len_line_max);
 	while (i < data_map->len_line_max)
 		dest[i++] = 'x';
 	dest[i] = '\0';
 }
 
-static void	go_to_beginning_of_map(int fd, t_map *data_map)
+void	go_to_beginning_of_map(int fd, t_map *data_map)
 {
 	int		i;
 	char	*line;
@@ -45,6 +46,23 @@ static void	go_to_beginning_of_map(int fd, t_map *data_map)
 		free(line);
 		i++;
 	}
+}
+
+char	*go_to_beginning_of_map_bis(int fd, t_map *data_map)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (i < data_map->start_line)
+	{
+		line = get_next_line(fd);
+		i++;
+		if (i == data_map->start_line)
+			return (line);
+		free(line);
+	}
+	return (NULL);
 }
 
 static void	file_to_array(int fd, t_data *root, t_map *data_map)
@@ -69,6 +87,9 @@ static void	file_to_array(int fd, t_data *root, t_map *data_map)
 		i++;
 	}
 	root->map[i] = NULL;
+	// for(int i = 0; root->map[i]; i++)
+		// printf("%d\n", ft_strlen(root->map[i]));
+		// printf("%s.\n", root->map[i]);
 	close(fd);
 }
 

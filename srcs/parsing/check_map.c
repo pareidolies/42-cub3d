@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 14:45:10 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/07 23:05:03 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ static void	get_final_arr(t_data *root)
 	int	j;
 
 	i = 0;
+	// for(int i = 0; root->map[i]; i++)
+		// printf("%d\n", ft_strlen(root->map[i]));
+		// printf("%s.\n", root->map[i]);
 	while (root->map[i])
 	{
 		j = 0;
@@ -107,6 +110,8 @@ void	check_array(t_data *root, t_map *data_map)
 		ft_printf("No player detected on the map\n");
 		free_struct_exit(root);
 	}
+	if (root->err)
+		free_struct_exit(root);
 	if (!root->err)
 		get_final_arr(root);
 }

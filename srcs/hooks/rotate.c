@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:37:32 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:17:14 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 	old_dir_x = ray->dir.x;
 	if (keycode == ROTATE_RIGHT)
 	{
-        printf("rotate right\n");
+        // printf("rotate right\n");
 		ray->dir.x = ray->dir.x * cos(-ROT_SPEED / 2) - ray->dir.y * sin(-ROT_SPEED / 2);
 		ray->dir.y = old_dir_x * sin(-ROT_SPEED / 2) + ray->dir.y * cos(-ROT_SPEED / 2);
 		ray->plane.x = ray->plane.x * cos(-ROT_SPEED / 2) - ray->plane.y * sin(-ROT_SPEED / 2);
@@ -29,7 +29,7 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 	}
 	if (keycode == ROTATE_LEFT)
 	{
-        printf("rotate left\n");
+        // printf("rotate left\n");
 		ray->dir.x = ray->dir.x * cos(ROT_SPEED / 2) - ray->dir.y * sin(ROT_SPEED / 2);
 		ray->dir.y = old_dir_x * sin(ROT_SPEED / 2) + ray->dir.y * cos(ROT_SPEED / 2);
 		ray->plane.x = ray->plane.x * cos(ROT_SPEED / 2) - ray->plane.y * sin(ROT_SPEED / 2);

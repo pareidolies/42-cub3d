@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:20 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:36:22 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:41:25 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	print_map_ray(t_ray *ray, t_data *data)
 		printf("\n");
 		j++;
 	}
-	printf("x : %d\n", data->player.x);
-	printf("y : %d\n", data->player.y);
+	// printf("x : %d\n", data->player.x);
+	// printf("y : %d\n", data->player.y);
 }
