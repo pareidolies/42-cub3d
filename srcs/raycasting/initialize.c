@@ -34,8 +34,8 @@ void	initialize_all_values(t_ray *ray)
 {
 	ray->dir.x = 0;
 	ray->dir.y = 0;
-	ray->plan.x = 0;
-	ray->plan.y = 0;
+	ray->plane.x = 0;
+	ray->plane.y = 0;
 	ray->perpwalldist = 0;
 	ray->lineheight = 0;
     ray->drawstart = 0;

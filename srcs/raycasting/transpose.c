@@ -50,16 +50,16 @@ void init_dir(t_ray *ray, t_data *data)
 		ray->dir.y = -1;
 }
 
-void init_plan(t_ray *ray, t_data *data)
+void init_plane(t_ray *ray, t_data *data)
 {
     if (data->player.dir == 'N')
-		ray->plan.y = 0.66;
+		ray->plane.y = 0.66;
 	if (data->player.dir == 'S')
-		ray->plan.y = -0.66;
+		ray->plane.y = -0.66;
 	if (data->player.dir == 'E')
-		ray->plan.x = 0.66;
+		ray->plane.x = 0.66;
 	else //(data->player.dir == 'W')
-		ray->plan.x = -0.66;
+		ray->plane.x = -0.66;
 }
 
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
@@ -69,6 +69,6 @@ void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     init_dir(ray, data);
-    init_plan(ray, data);
+    init_plane(ray, data);
     //map => data->map ne plus utiliser data
 }

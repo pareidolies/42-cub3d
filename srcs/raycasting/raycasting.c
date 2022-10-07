@@ -20,8 +20,8 @@ void initialize_ray_i(t_ray *ray, t_data *data)
     ray->hit = EMPTY;
     ray->perpwalldist = 0;
     ray->camerax = 2 * ray->i / width - 1;
-    ray->raydir.x = ray->dir.x + ray->plan.x * ray->camerax;
-    ray->raydir.y = ray->dir.y + ray->plan.y * ray->camerax;
+    ray->raydir.x = ray->dir.x + ray->plane.x * ray->camerax;
+    ray->raydir.y = ray->dir.y + ray->plane.y * ray->camerax;
 	ray->map.x = (int)ray->pos.x;
 	ray->map.y = (int)ray->pos.y;
 }

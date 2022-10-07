@@ -149,7 +149,7 @@ typedef struct s_ray {
 	t_data		*data;
 	t_vector	pos;
 	t_vector	dir;
-	t_vector	plan;
+	t_vector	plane;
 	t_vector	raydir;
 	double  	camerax;
 	t_point     map; //int
@@ -217,7 +217,7 @@ int initialize_mlx(t_mlx *mlx);
 //tranpose.c
 void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
 void init_dir(t_ray *ray, t_data *data);
-void init_plan(t_ray *ray, t_data *data);
+void init_plane(t_ray *ray, t_data *data);
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 
 //raycasting.c
