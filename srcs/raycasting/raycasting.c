@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 22:14:14 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:55:23 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,45 @@ void    print_results_on_screen(t_ray *ray, t_mlx *mlx)
 }
 
 int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
+{
+	//printf("coucou\n");
+	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	if (!mlx->img)
+	{
+		//handling error && free
+		return (1);
+	}
+	ray->i = 0;
+	//printf("coucou10\n");
+    while (ray->i < WIDTH)
+    {
+        initialize_ray_i(ray, data);
+		//printf("coucou3\n");
+		compute_deltadist(ray);
+		//printf("coucou4\n");
+    	compute_sidedist(ray, data);
+		//printf("coucou5\n");
+		//printf("sidedistx : %f\n", ray->sidedist.x);
+		//printf("sidedisty : %f\n", ray->sidedist.y);
+		//printf("deltadistx : %f\n", ray->deltadist.x);
+		//printf("deltadisty : %f\n", ray->deltadist.x);
+        compute_perpwalldist(ray, data);
+		//printf("coucou6\n");
+		//printf("perpwalldist : %f\n", ray->perpwalldist);
+        compute_line_attributes(ray);
+		//printf("coucou7\n");
+        print_results_on_screen(ray, mlx);
+		//printf("coucou8\n");
+        ray->i++;
+    }
+	// 	minimap(ray->mlx, data, ray);
+	//printf("coucou2\n");
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	mlx_destroy_image(mlx->ptr, mlx->img);
+	return (0);
+}
+
+int    launch_raycasting_with_map(t_ray *ray, t_data *data, t_mlx *mlx)
 {
 	//printf("coucou\n");
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);

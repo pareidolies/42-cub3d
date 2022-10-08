@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/07 23:20:46 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:55:47 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 // # define HEIGHT				480
 # define WIDTH 1280
 # define HEIGHT 960
+// # define WIDTH 2560
+// # define HEIGHT 1200
 # define TITLE "cub3D"
 
 # define FOV 60
@@ -157,6 +159,9 @@ typedef struct s_ray {
     int     width;
     int     height;
     char    **revert_map;
+	
+	
+	bool	minimap;
 }				t_ray;
 
 /******************************************************************************
@@ -216,6 +221,7 @@ void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 void initialize_ray_i(t_ray *ray, t_data *data);
 void    print_results_on_screen(t_ray *ray, t_mlx *mlx);
 int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
+int    launch_raycasting_with_map(t_ray *ray, t_data *data, t_mlx *mlx);
 
 //computation.c
 void compute_deltadist(t_ray *ray);
@@ -242,6 +248,8 @@ void	exit_safe(t_ray *ray);
 int		exit_safe_bis(int keycode, t_ray *ray);
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+
+
 
 
 #endif

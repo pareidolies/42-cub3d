@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:03 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 22:26:06 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:53:24 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int start_raycasting(t_data *data)
 	//print_map_ray(&ray, data);
 	//fin debug
     transpose_parsed_data_to_ray(&ray, data);
-    launch_raycasting(&ray, data, ray.mlx);
+	if (!ray.minimap)
+    	launch_raycasting(&ray, data, ray.mlx);
+	else
+    	launch_raycasting_with_map(&ray, data, ray.mlx);
 
 	//mlx_hook(mlx.win, 17, (1L << 17), &quit, &ray);
 	//all.ray = &ray;

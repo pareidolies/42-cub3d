@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transpose.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:14 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:36:16 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:29:32 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 {
 	ray->width = 1280;
 	ray->height = 960;
+	// ray->width = 2560;
+	// ray->height = 1440;
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     get_dir(ray, data);

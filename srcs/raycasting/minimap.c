@@ -125,9 +125,9 @@ void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
 	while (i < data->height)
 	{
 		if (data->map[i][j] == '1')
-			carre(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(255, 0, 0));
+			carre(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(128, 128, 128));
 		else
-			carre(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(0, 255, 0));
+			carre(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(51, 51, 255));
 		j++;
 		if (j == data->len)
 		{

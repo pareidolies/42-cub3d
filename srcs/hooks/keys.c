@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 22:09:13 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:53:09 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ int		keys_handler(int keycode, t_ray *ray)
 		rotate(keycode, ray, ray->mlx, ray->data);
 	else if (keycode == ROTATE_RIGHT)
 		rotate(keycode, ray, ray->mlx, ray->data);
+	else if (keycode == 101)
+	{
+		if (ray->minimap)
+		{
+			ray->minimap = false;
+			launch_raycasting(ray, ray->data, ray->mlx);
+		}
+		else
+		{
+			ray->minimap = true;
+			launch_raycasting_with_map(ray, ray->data, ray->mlx);
+		}
+	}
 	else if (keycode == ESC)
 		exit_safe(ray);
 	return (1);

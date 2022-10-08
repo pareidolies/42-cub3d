@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:36:04 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/08 13:42:08 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int initialize_mlx(t_mlx *mlx)
 {
-    printf("salut");
+    // printf("salut");
     mlx->ptr = mlx_init();
 	if (!mlx->ptr)
     {
@@ -40,4 +40,5 @@ void	initialize_all_values(t_ray *ray)
 	ray->lineheight = 0;
     ray->drawstart = 0;
     ray->drawend = 0;
+	ray->minimap = false;
 }
