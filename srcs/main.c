@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/08 14:38:06 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:01:41 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	main(int argc, char **argv)
 /*	Il faut appuyer sur 'e' pour afficher la minimap
 
 	Pb minimap, on rentre dans les murs en ouest et est
+	(a voir si pb sacha sinon je peux regler le pb sur la minimap)
 
 	Latence en plein ecran (2560 x 1440)
 
-	Spawn de travers avec les lettres 'N' et 'S' */
+	Spawn de travers avec les lettres 'N' et 'S' et pas les
+	bonnes  direction de spawn avec 'E' et 'W' "*/

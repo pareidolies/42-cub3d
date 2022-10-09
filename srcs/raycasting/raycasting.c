@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/08 13:55:23 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:25:17 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
     while (ray->i < WIDTH)
     {
         initialize_ray_i(ray, data);
-		//printf("coucou3\n");
+		// printf("coucou3\n");
 		compute_deltadist(ray);
 		//printf("coucou4\n");
     	compute_sidedist(ray, data);
@@ -106,7 +106,7 @@ int    launch_raycasting_with_map(t_ray *ray, t_data *data, t_mlx *mlx)
 		return (1);
 	}
 	ray->i = 0;
-	//printf("coucou10\n");
+	// printf("coucou10\n");
     while (ray->i < WIDTH)
     {
         initialize_ray_i(ray, data);
@@ -129,8 +129,8 @@ int    launch_raycasting_with_map(t_ray *ray, t_data *data, t_mlx *mlx)
         ray->i++;
     }
 	//printf("coucou2\n");
-	minimap(ray->mlx, data, ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	minimap(ray->mlx, data, ray);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);
 }

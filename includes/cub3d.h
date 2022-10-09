@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/08 13:55:47 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:35:18 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define WIDTH 1280
 # define HEIGHT 960
 // # define WIDTH 2560
-// # define HEIGHT 1200
+// # define HEIGHT 1440
 # define TITLE "cub3D"
 
 # define FOV 60
@@ -159,9 +159,13 @@ typedef struct s_ray {
     int     width;
     int     height;
     char    **revert_map;
-	
-	
 	bool	minimap;
+
+	// TEST
+	int		img_width;
+	int		img_height;
+	void	*img;
+	
 }				t_ray;
 
 /******************************************************************************
@@ -170,6 +174,7 @@ typedef struct s_ray {
 
 //parsing.c
 int		is_data(char *data);
+int		check_useless_wall_width(t_data *root);
 int		check_error(int argc, char **argv, t_data *root);
 
 char	*get_next_line(int fd);

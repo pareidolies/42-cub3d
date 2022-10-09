@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/08 13:42:08 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:36:29 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,13 @@ void	initialize_all_values(t_ray *ray)
     ray->drawstart = 0;
     ray->drawend = 0;
 	ray->minimap = false;
+
+
+
+	// TEST
+	ray->img_height = 0;
+	ray->img_height = 0;
+	ray->img = mlx_xpm_file_to_image(ray->mlx->ptr, "textures/map.xpm", &ray->img_width, &ray->img_height);
+	if (!ray->img)
+		printf("Error img\n");
 }

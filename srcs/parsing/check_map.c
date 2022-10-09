@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/07 23:05:03 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:58:19 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,59 @@ static void	check_around(int i, int j, t_data *root, t_map *data_map)
 	}
 }
 
-static void	get_final_arr(t_data *root)
+int	check_useless_wall_height(t_data *root)
 {
 	int	i;
 	int	j;
+	int	res;
 
 	i = 0;
-	// for(int i = 0; root->map[i]; i++)
-		// printf("%d\n", ft_strlen(root->map[i]));
-		// printf("%s.\n", root->map[i]);
+	res = 0;
 	while (root->map[i])
 	{
 		j = 0;
 		while (root->map[i][j])
 		{
-			if (root->map[i][j] == 'x')
-				root->map[i][j] = '1';
+			if (is_space_or_player(root->map[i][j]))
+				res = i;
 			j++;
 		}
 		i++;
 	}
+	return(res);
+}
+
+void	free_uselsee_wall(t_data *root, int pos)
+{
+	pos += 2;
+	while (root->map[pos])
+		free(root->map[pos++]);
+}
+
+static void	get_final_arr(t_data *root)
+{
+	int	i;
+	int	j;
+	int	max_width;
+	int	max_height;
+
+	i = 0;
+	max_width = check_useless_wall_width(root);
+	max_height = check_useless_wall_height(root);
+	while (i < max_height + 2)
+	{
+		j = 0;
+		while (j < max_width + 2)
+		{
+			if (root->map[i][j] == 'x')
+				root->map[i][j] = '1';
+			j++;
+		}
+		root->map[i][j] = '\0';
+		i++;
+	}
+	free_uselsee_wall(root, max_height);
+	root->map[i] = NULL;
 	root->len = ft_strlen(root->map[0]);
 	root->height = len_double_array(root->map);
 }
