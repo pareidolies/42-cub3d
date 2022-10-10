@@ -63,7 +63,7 @@ RM		= rm -Rf
 
 CC		= cc -I $(INC_DIR) -MMD
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 
 LIBFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 

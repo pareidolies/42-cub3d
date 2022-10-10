@@ -99,12 +99,13 @@ void	square(t_ray *ray, int x, int y, int color)
 		}
 	}
 }
-int	middle_x(t_data *data, int sq)
-{
-	// printf("test = %d\n", data->len);
-	// x = data->len
-	return ((WIDTH / 2) - ((data->len * sq) / 2));
-}
+
+// int	middle_x(t_data *data, int sq)
+// {
+// 	// printf("test = %d\n", data->len);
+// 	// x = data->len
+// 	return ((WIDTH / 2) - ((data->len * sq) / 2));
+// }
 
 void	pos_player(t_mlx *mlx, t_data *data, t_ray *ray, int sq)
 {
@@ -117,10 +118,21 @@ void	pos_player(t_mlx *mlx, t_data *data, t_ray *ray, int sq)
 	j = 1;
 	pos_x = (int)(ray->pos.x + (ray->dir.x * MOVE_SPEED * 2));
 	pos_y = (int)ray->pos.y;
+	if (ray->revert_map[pos_x][pos_y] == '1')
+	{
+		pos_x = ray->pos_map.x;
+		pos_y = ray->pos_map.y;
+	}
+	else
+	{
+		ray->pos_map.x = pos_x;
+		ray->pos_map.y = pos_y;
+	}
+	// printf("x = %d\ny = %d\n", pos_x, pos_y);
 	while (j < sq - 1)
 	{
-		// mlx->addr[((j + (pos_y  * 10) + 20) * WIDTH) + (i + 20 + (pos_x * 10))] = create_rgb(255, 255, 0);
-		mlx->addr[((j + (pos_y  * sq) + 20) * WIDTH) + (i + middle_x(data, sq) + (pos_x * sq))] = create_rgb(255, 255, 0);
+		// mlx->addr[((j + (pos_y  * sq) + 20) * WIDTH) + (i + middle_x(data, sq) + (pos_x * sq))] = create_rgb(255, 255, 0);
+		mlx->addr[((j + (pos_y  * sq) + 20) * WIDTH) + (i + 20 + (pos_x * sq))] = create_rgb(255, 255, 0);
 		i++;
 		if (i == sq - 1)
 		{
@@ -162,11 +174,11 @@ void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
 	while (i < data->height)
 	{
 		if (data->map[i][j] == '1')
-			square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(128, 128, 128));
-			// square(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(128, 128, 128));
+			square(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(128, 128, 128));
+			// square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(128, 128, 128));
 		else
-			square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(0, 0, 255));
-			// square(mlx, (j * 10) + 20, (i * 10) + 20, create_rgb(128, 128, 128));
+			square(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(0, 0, 255));
+			// square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(0, 0, 255));
 		j++;
 		if (j == data->len)
 		{

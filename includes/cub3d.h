@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 16:35:46 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:14:02 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,11 @@ typedef struct s_mlx {
     int     endian;
 }               t_mlx;
 
+typedef struct s_minimap {
+	int	x;
+	int	y;
+}				t_minimap;
+
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
@@ -165,6 +170,7 @@ typedef struct s_ray {
 	int		img_width;
 	int		img_height;
 	void	*img;
+	t_minimap	pos_map;
 	
 }				t_ray;
 
