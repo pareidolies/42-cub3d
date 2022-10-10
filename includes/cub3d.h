@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 17:14:02 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:48:29 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ void	exit_safe(t_ray *ray);
 int		exit_safe_bis(int keycode, t_ray *ray);
 void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+int		mouse_move(int x, int y, t_ray *ray);
 
 
 

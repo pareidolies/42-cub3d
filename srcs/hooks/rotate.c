@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/10 16:34:34 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:47:57 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		ray->plane.y = old_plane_x * sin(ROT_SPEED / 2) + ray->plane.y * cos(ROT_SPEED / 2);
     }
 	launch_raycasting(ray, data, mlx);
+}
+
+int	mouse_move(int x, int y, t_ray *ray)
+{
+	int i;
+	int j;
+	
+	mlx_mouse_get_pos(ray->mlx->ptr, ray->mlx->win, &i, &j);
+	if (i > 1)
+		rotate(ROTATE_RIGHT, ray, ray->mlx, ray->data);
+	else if (i < 1)
+		rotate(ROTATE_LEFT, ray, ray->mlx, ray->data);
+	mlx_mouse_move(ray->mlx->ptr, ray->mlx->win, 1, 1);
+	return(1);
 }
