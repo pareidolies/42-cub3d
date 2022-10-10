@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/10 17:47:57 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:49:18 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ int	mouse_move(int x, int y, t_ray *ray)
 	else if (i < 1)
 		rotate(ROTATE_LEFT, ray, ray->mlx, ray->data);
 	mlx_mouse_move(ray->mlx->ptr, ray->mlx->win, 1, 1);
-	return(1);
+	return (1);
 }
