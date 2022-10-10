@@ -32,13 +32,10 @@ int start_raycasting(t_data *data)
 	mlx_destroy_window(ray.mlx->ptr, ray.mlx->win);
 	mlx_destroy_display(ray.mlx->ptr);
 	free(ray.mlx->ptr);
-	//free_data
+	free_double_array(ray.revert_map);
     return (0);
 }
 
 /*TO DO :
-- récupérer player x et y dans map dans structure pour avoir réinitialisation pour chaque rayon
-- retourner la map en inversant x et y
 - vérifier float / int des valeurs récupérées dans compute_line_attributes
-- verifier orientation EST / WEST avec une boussole
 */

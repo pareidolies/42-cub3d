@@ -46,6 +46,13 @@ void compute_sidedist(t_ray *ray)
 		ray->step.y = 1;
 		ray->sidedist.y = (ray->map.y + 1.0 - ray->pos.y) * ray->deltadist.y;
 	}
+	/*if (ray->i == 150)
+	{
+		printf("POS 1 x : %f\n", ray->pos.x - ray->map.x);
+		printf("POS 2 x : %f\n", (ray->map.x + 1.0 - ray->pos.x));
+		printf("POS 3 y : %f\n", (ray->pos.y - ray->map.y));
+		printf("POS 4 y : %f\n", (ray->map.y + 1.0 - ray->pos.y));
+	}*/
 }
 
 void    compute_perpwalldist(t_ray *ray)

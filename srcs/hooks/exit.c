@@ -4,6 +4,9 @@ void	exit_safe(t_ray *ray)
 {
 	mlx_destroy_window(ray->mlx->ptr, ray->mlx->win);
 	mlx_destroy_display(ray->mlx->ptr);
+	free(ray->mlx->ptr);
+	free_double_array(ray->revert_map);
+	free_struct_exit(ray->data);
 	exit (1);
 }
 
