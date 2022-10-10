@@ -16,7 +16,7 @@ void initialize_ray_i(t_ray *ray)
 {
     ray->hit = EMPTY;
     ray->perpwalldist = 0;
-    ray->camerax = 2 * ray->i / (double)ray->width - 1;
+    ray->camerax = 2 * ray->i / (double)WIDTH - 1;
     ray->raydir.x = ray->dir.x + ray->plane.x * ray->camerax;
     ray->raydir.y = ray->dir.y + ray->plane.y * ray->camerax;
 	ray->map.x = (int)ray->pos.x;
