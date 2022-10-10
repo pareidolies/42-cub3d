@@ -35,11 +35,11 @@ void    print_results_on_screen(t_ray *ray, t_mlx *mlx)
 	{
 		if (j < ray->drawstart)
 		{
-			mlx->addr[j * WIDTH + ray->i] = create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b);
+			mlx->addr[j * WIDTH + ray->i] = create_rgb(ray->data->c.r, ray->data->c.g, ray->data->c.b);
 		}
 		else if (j > ray->drawend)
 		{
-			mlx->addr[j * WIDTH + ray->i] = create_rgb(ray->data->c.r, ray->data->c.g, ray->data->c.b);
+			mlx->addr[j * WIDTH + ray->i] = create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b);
 			//       (y * WIDTH) + x
 		}
 		else
