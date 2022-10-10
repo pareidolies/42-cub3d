@@ -64,8 +64,8 @@ void get_plane(t_ray *ray, t_data *data)
 
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 {
-	ray->width = 1280;
-	ray->height = 960;
+	ray->width = data->len;
+	ray->height = data->height;
 	// ray->width = 2560;
 	// ray->height = 1440;
     ray->pos.x = (double)data->player.x + 0.5;

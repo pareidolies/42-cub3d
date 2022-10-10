@@ -24,7 +24,7 @@ void compute_deltadist(t_ray *ray)
 		ray->deltadist.y = fabs(1 / ray->raydir.y);
 }
 
-void compute_sidedist(t_ray *ray, t_data *data)
+void compute_sidedist(t_ray *ray)
 {
     if (ray->raydir.x < 0)
 	{
@@ -48,7 +48,7 @@ void compute_sidedist(t_ray *ray, t_data *data)
 	}
 }
 
-void    compute_perpwalldist(t_ray *ray, t_data *data)
+void    compute_perpwalldist(t_ray *ray)
 {
 	//printf("TEST\n");
 	while (ray->hit == EMPTY)

@@ -144,7 +144,6 @@ typedef struct s_minimap {
 
 typedef struct s_ray {
 	t_mlx		*mlx;
-	t_data		*data;
 	t_vector	pos;
 	t_vector	dir;
 	t_vector	plane;
@@ -229,14 +228,14 @@ void get_plane(t_ray *ray, t_data *data);
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 
 //raycasting.c
-void initialize_ray_i(t_ray *ray, t_data *data);
+void initialize_ray_i(t_ray *ray);
 void    print_results_on_screen(t_ray *ray, t_mlx *mlx);
-int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
+int    launch_raycasting(t_ray *ray, t_mlx *mlx);
 
 //computation.c
 void compute_deltadist(t_ray *ray);
-void compute_sidedist(t_ray *ray, t_data *data);
-void    compute_perpwalldist(t_ray *ray, t_data *data);
+void compute_sidedist(t_ray *ray);
+void    compute_perpwalldist(t_ray *ray);
 void    compute_line_attributes(t_ray *ray);
 
 //minimap.c

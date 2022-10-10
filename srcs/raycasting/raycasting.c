@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void initialize_ray_i(t_ray *ray, t_data *data)
+void initialize_ray_i(t_ray *ray)
 {
 	double	width = (double)ray->width;
 
@@ -57,7 +57,7 @@ void    print_results_on_screen(t_ray *ray, t_mlx *mlx)
 	}
 }
 
-int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
+int    launch_raycasting(t_ray *ray, t_mlx *mlx)
 {
 	//printf("coucou\n");
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
@@ -70,17 +70,17 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 	//printf("coucou10\n");
     while (ray->i < WIDTH)
     {
-        initialize_ray_i(ray, data);
+        initialize_ray_i(ray);
 		// printf("coucou3\n");
 		compute_deltadist(ray);
 		//printf("coucou4\n");
-    	compute_sidedist(ray, data);
+    	compute_sidedist(ray);
 		//printf("coucou5\n");
 		//printf("sidedistx : %f\n", ray->sidedist.x);
 		//printf("sidedisty : %f\n", ray->sidedist.y);
 		//printf("deltadistx : %f\n", ray->deltadist.x);
 		//printf("deltadisty : %f\n", ray->deltadist.x);
-        compute_perpwalldist(ray, data);
+        compute_perpwalldist(ray);
 		//printf("coucou6\n");
 		//printf("perpwalldist : %f\n", ray->perpwalldist);
         compute_line_attributes(ray);
@@ -92,7 +92,7 @@ int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx)
 	// 	minimap(ray->mlx, data, ray);
 	//printf("coucou2\n");
 	if (ray->minimap)
-		minimap(ray->mlx, data, ray);
+		minimap(ray->mlx, ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);

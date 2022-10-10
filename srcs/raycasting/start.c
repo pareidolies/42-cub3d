@@ -17,7 +17,6 @@ int start_raycasting(t_data *data)
     t_ray   ray;
     t_mlx   mlx;
 
-    ray.data = data;
     initialize_mlx(&mlx);
     ray.mlx = &mlx;
 	initialize_all_values(&ray);
