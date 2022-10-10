@@ -65,8 +65,8 @@ void get_plane(t_ray *ray, t_data *data)
 
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 {
-	ray->width = WIDTH;
-	ray->height = HEIGHT;
+	//ray->width = WIDTH;
+	//ray->height = HEIGHT;
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     get_dir(ray, data);

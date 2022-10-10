@@ -161,8 +161,8 @@ typedef struct s_ray {
     int     drawstart;
     int     drawend;
     int     i;
-    int     width;
-    int     height;
+    //int     width;
+    //int     height;
     char    **revert_map;
 	bool	minimap;
 

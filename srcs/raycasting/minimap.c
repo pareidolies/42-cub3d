@@ -1,12 +1,12 @@
 #include "../includes/cub3d.h"
 
-int	len_square(t_ray *ray)
+int	len_square(void)
 {
 	int	res;
 
 	res = 10;
 	// while ((res * data->len) > WIDTH || (res * data->height) > HEIGHT)
-	while ((res * ray->width) > WIDTH || (res * ray->height) > HEIGHT)
+	while ((res * WIDTH) > WIDTH || (res * HEIGHT) > HEIGHT)
 		res--;
 	return(res);
 }
@@ -20,7 +20,7 @@ void	square(t_ray *ray, int x, int y, int color)
 	i = 0;
 	j = 0;
 	// sq = len_square(ray->data);
-	sq = len_square(ray);
+	sq = len_square();
 	while (j < 10)
 	{
 		ray->mlx->addr[((y + j) * WIDTH) + (x + i)] = color;
@@ -95,11 +95,11 @@ void	minimap(t_ray *ray)
 	i = 0;
 	j = 0;
 	// sq = len_square(data);
-	sq = len_square(ray);
+	sq = len_square();
 	if (sq < 4)
 		return ;
 	// while (i < data->height)
-	while (i < ray->height)
+	while (i < HEIGHT)
 	{
 		// if (data->map[i][j] == '1')
 		if (ray->revert_map[j][i] == '1')
@@ -110,7 +110,7 @@ void	minimap(t_ray *ray)
 			// square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(0, 0, 255));
 		j++;
 		// if (j == data->len)
-		if (j == ray->width)
+		if (j == WIDTH)
 		{
 			j = 0;
 			i++;
