@@ -7,7 +7,7 @@ void	exit_safe(t_ray *ray)
 	exit (1);
 }
 
-int	exit_safe_bis(int keycode, t_ray *ray)
+int	exit_safe_bis(int keycode)
 {
 	(void)keycode;
 	// mlx_destroy_window(ray->mlx->ptr, ray->mlx->win);

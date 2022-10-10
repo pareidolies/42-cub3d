@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:59:53 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/07 23:33:16 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:48:22 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	check_line_befor_map(t_map *data, t_data *root, int fd, char *map)
 	data->start_line++;
 	root->nbr_line_data++;
 	while (line && ((!line_only_char_map(line) || !ft_strlen(line))
-			|| line_only_space(line, root)))
+			|| line_only_space(line)))
 	{
-		if (!line_only_char_map(line) || line_only_space(line, root))
+		if (!line_only_char_map(line) || line_only_space(line))
 		{
 			check_first_error(root);
 			if (!line_only_char_map(line))
@@ -98,7 +98,7 @@ static void	parsing_map(t_map *data_map, t_data *root, char *map)
 				ft_printf("At line %d, map is separated by an empty line\
  or finish with many empty lines\n", data_map->end_line);
 		}
-		if (ft_strlen(line) > data_map->len_line_max)
+		if ((int)ft_strlen(line) > data_map->len_line_max)
 		{
 			data_map->len_line_max = ft_strlen(line);
 		}
@@ -114,7 +114,6 @@ static void	parsing_map(t_map *data_map, t_data *root, char *map)
 void	check_map(t_map *data_map, t_data *root, char *map)
 {
 	int		fd;
-	char	*line;
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)

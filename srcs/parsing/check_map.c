@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/09 17:58:19 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:50:25 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	len_double_array(char **arr)
 	return (i);
 }
 
-static bool	check_around_bis(int i, int j, t_data *root, t_map *data_map)
+static bool	check_around_bis(int i, int j, t_data *root)
 {
 	if (root->map[i - 1][j - 1] == 'x' || root->map[i - 1][j] == 'x'
 		|| root->map[i - 1][j + 1] == 'x')
@@ -39,7 +39,7 @@ static void	check_around(int i, int j, t_data *root, t_map *data_map)
 {
 	if ((i - 1 == -1 || i + 2 > len_double_array(root->map))
 		|| (j - 1 == -1 || j + 1 > data_map->len_line_max)
-		|| !check_around_bis(i, j, root, data_map))
+		|| !check_around_bis(i, j, root))
 	{
 		check_first_error(root);
 		ft_printf("At line %d, pos %d, map must be enclosed by walls\n",

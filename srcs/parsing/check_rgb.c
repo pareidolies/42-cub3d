@@ -6,13 +6,13 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:35:18 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 12:53:31 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:47:00 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static bool	check_rgb_format_bis(char *rgb, char data, t_data *root)
+static bool	check_rgb_format_bis(char *rgb)
 {
 	int	i;
 	int	nbr;
@@ -41,7 +41,7 @@ static bool	check_rgb_format_bis(char *rgb, char data, t_data *root)
 	return (false);
 }
 
-static bool	check_rgb_format(char *rgb, char data, t_data *root)
+static bool	check_rgb_format(char *rgb)
 {
 	int	i;
 	int	j;
@@ -58,7 +58,7 @@ static bool	check_rgb_format(char *rgb, char data, t_data *root)
 	}
 	if (j != 2)
 		return (false);
-	if (!check_rgb_format_bis(rgb, data, root))
+	if (!check_rgb_format_bis(rgb))
 		return (false);
 	return (true);
 }
@@ -77,7 +77,7 @@ static bool	cpy_str_to_struct(t_data *root, int i, char *res, char *line)
 	j = 0;
 	while (line[j] == ' ')
 		j++;
-	if (!check_rgb_format(res, line[j], root))
+	if (!check_rgb_format(res))
 	{
 		if (!root->err)
 		{
@@ -115,7 +115,7 @@ betwen 0 and 255\n", root->nbr_line_data);
 	return (true);
 }
 
-void	cpy_rgb(t_data *root, int data, char **arr, char *line)
+void	cpy_rgb(t_data *root, char *line)
 {
 	int		i;
 	int		j;

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 18:19:40 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:53:33 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void	check_array(t_data *root, t_map *data_map);
 void	go_to_beginning_of_map(int fd, t_map *data_map);
 void	check_map(t_map *data_map, t_data *root, char *map);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);
-void	cpy_rgb(t_data *root, int data, char **arr, char *line);
+void	cpy_rgb(t_data *root, char *line);
 void	map_file_to_array(t_map *data_map, char *map, t_data *root);
 
 bool	is_player(char c);
@@ -212,7 +212,7 @@ bool	is_space_or_player(char c);
 bool	all_data_set(t_data *root);
 bool	line_only_char_map(char *line);
 bool	whitespace_on_line(char **arr);
-bool	line_only_space(char *line, t_data *root);
+bool	line_only_space(char *line);
 bool	only_space(char *line, t_data *root, char *map);
 
 //start.c
@@ -255,10 +255,10 @@ int	create_rgb(int r, int g, int b);
 //hooks.c
 int		keys_handler(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
-int		exit_safe_bis(int keycode, t_ray *ray);
+int		exit_safe_bis(int keycode);
 void    move(int keycode, t_ray *ray, t_mlx *mlx);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx);
-int		mouse_move(int x, int y, t_ray *ray);
+int		mouse_move(t_ray *ray);
 
 
 

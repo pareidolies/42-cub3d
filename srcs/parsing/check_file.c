@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/06 12:49:57 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:47:30 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	get_data(t_data *root, char *line, char **arr, char *map)
 		root->ea = ft_strdup(arr[1]);
 	else if ((is_data(arr[0]) == 5 && root->f.empty)
 		|| (is_data(arr[0]) == 6 && root->c.empty))
-		cpy_rgb(root, is_data(arr[0]), arr, line);
+		cpy_rgb(root, line);
 	else
 	{
 		check_first_error(root);
@@ -72,7 +72,7 @@ static void	check_data_line(char *line, t_data *root, char *map)
 		if (whitespace_on_line(arr))
 			ft_printf("Whitespace detected on %s at line %d (only space is \
 accepted)\n", map, root->nbr_line_data);
-		else if (!line_only_char_map(line) && !line_only_space(line, root))
+		else if (!line_only_char_map(line) && !line_only_space(line))
 			ft_printf("Wrong information on %s at line %d\n", map,
 				root->nbr_line_data);
 	}

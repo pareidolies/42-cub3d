@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:36:35 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/07 23:29:49 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:49:56 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static void	file_to_array(int fd, t_data *root, t_map *data_map)
 	int		i;
 
 	i = 0;
-	while (line)
+	// while (line)
+	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -96,7 +97,6 @@ static void	file_to_array(int fd, t_data *root, t_map *data_map)
 void	map_file_to_array(t_map *data_map, char *map, t_data *root)
 {
 	int		fd;
-	char	*line;
 
 	root->map = malloc(sizeof(char *)
 			* ((data_map->end_line - data_map->start_line) + 1));

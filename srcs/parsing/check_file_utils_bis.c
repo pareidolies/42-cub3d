@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:20:31 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 15:06:54 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:43:54 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	only_space(char *line, t_data *root, char *map)
 	return (true);
 }
 
-bool	line_only_space(char *line, t_data *root)
+bool	line_only_space(char *line)
 {
 	int	i;
 

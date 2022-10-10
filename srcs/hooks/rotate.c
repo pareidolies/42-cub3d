@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/10 17:49:18 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:52:36 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx)
 	launch_raycasting(ray, mlx);
 }
 
-int	mouse_move(int x, int y, t_ray *ray)
+int	mouse_move(t_ray *ray)
 {
 	int i;
 	int j;
