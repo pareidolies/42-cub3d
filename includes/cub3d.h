@@ -144,6 +144,7 @@ typedef struct s_minimap {
 
 typedef struct s_ray {
 	t_mlx		*mlx;
+	t_data		*data;
 	t_vector	pos;
 	t_vector	dir;
 	t_vector	plane;
