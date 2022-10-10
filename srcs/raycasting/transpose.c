@@ -18,12 +18,13 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 	int	j;
 
 	i = 0;
-	ray->revert_map = malloc(sizeof(char *) * data->len);
+	ray->revert_map = malloc(sizeof(char *) * (data->len + 1));
 	while (i < data->len)
 	{
 		ray->revert_map[i] = malloc(sizeof(char) * data->height);
 		i++;
 	}
+	ray->revert_map[i] = NULL;
 	i = 0;
 	j = 0;
 	while (i < data->len)
