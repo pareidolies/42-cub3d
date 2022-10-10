@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
+void    move(int keycode, t_ray *ray, t_mlx *mlx)
 {
     if (keycode == MOVE_FORWARD)
 	{
@@ -54,5 +54,5 @@ void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x * (MOVE_SPEED * 2))] != '1')
 			ray->pos.y += ray->dir.x * MOVE_SPEED;
 	}
-	launch_raycasting(ray, data, mlx);
+	launch_raycasting(ray, mlx);
 }

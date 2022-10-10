@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
+void    rotate(int keycode, t_ray *ray, t_mlx *mlx)
 {
     double old_plane_x;
 	double old_dir_x;
@@ -35,7 +35,7 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		ray->plane.x = ray->plane.x * cos(ROT_SPEED / 2) - ray->plane.y * sin(ROT_SPEED / 2);
 		ray->plane.y = old_plane_x * sin(ROT_SPEED / 2) + ray->plane.y * cos(ROT_SPEED / 2);
     }
-	launch_raycasting(ray, data, mlx);
+	launch_raycasting(ray, mlx);
 }
 
 int	mouse_move(int x, int y, t_ray *ray)
@@ -45,9 +45,9 @@ int	mouse_move(int x, int y, t_ray *ray)
 	
 	mlx_mouse_get_pos(ray->mlx->ptr, ray->mlx->win, &i, &j);
 	if (i > 1)
-		rotate(ROTATE_RIGHT, ray, ray->mlx, ray->data);
+		rotate(ROTATE_RIGHT, ray, ray->mlx);
 	else if (i < 1)
-		rotate(ROTATE_LEFT, ray, ray->mlx, ray->data);
+		rotate(ROTATE_LEFT, ray, ray->mlx);
 	mlx_mouse_move(ray->mlx->ptr, ray->mlx->win, 1, 1);
 	return (1);
 }

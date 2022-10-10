@@ -27,7 +27,7 @@ int start_raycasting(t_data *data)
 	//fin debug
     transpose_parsed_data_to_ray(&ray, data);
 	// if (!ray.minimap)
-    	launch_raycasting(&ray, data, ray.mlx);
+    launch_raycasting(&ray, ray.mlx);
 	// else
     	// launch_raycasting_with_map(&ray, data, ray.mlx);
 

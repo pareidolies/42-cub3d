@@ -255,8 +255,8 @@ int	create_rgb(int r, int g, int b);
 int		keys_handler(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
 int		exit_safe_bis(int keycode, t_ray *ray);
-void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
-void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data);
+void    move(int keycode, t_ray *ray, t_mlx *mlx);
+void    rotate(int keycode, t_ray *ray, t_mlx *mlx);
 int		mouse_move(int x, int y, t_ray *ray);
 
 
