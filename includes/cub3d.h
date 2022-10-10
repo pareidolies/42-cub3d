@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 14:36:29 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:35:46 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,6 @@ void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 void initialize_ray_i(t_ray *ray, t_data *data);
 void    print_results_on_screen(t_ray *ray, t_mlx *mlx);
 int    launch_raycasting(t_ray *ray, t_data *data, t_mlx *mlx);
-int    launch_raycasting_with_map(t_ray *ray, t_data *data, t_mlx *mlx);
 
 //computation.c
 void compute_deltadist(t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/08 13:53:18 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:34:34 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,5 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		ray->plane.x = ray->plane.x * cos(ROT_SPEED / 2) - ray->plane.y * sin(ROT_SPEED / 2);
 		ray->plane.y = old_plane_x * sin(ROT_SPEED / 2) + ray->plane.y * cos(ROT_SPEED / 2);
     }
-	if (!ray->minimap)
-		launch_raycasting(ray, data, mlx);
-	 else
-		launch_raycasting_with_map(ray, data, mlx);
+	launch_raycasting(ray, data, mlx);
 }

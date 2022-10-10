@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:26 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/08 13:53:14 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:35:30 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,5 @@ void    move(int keycode, t_ray *ray, t_mlx *mlx, t_data *data)
 		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x * (MOVE_SPEED * 2))] != '1')
 			ray->pos.y += ray->dir.x * MOVE_SPEED;
 	}
-	if (!ray->minimap)
-		launch_raycasting(ray, data, mlx);
-	 else
-		launch_raycasting_with_map(ray, data, mlx);
+	launch_raycasting(ray, data, mlx);
 }
