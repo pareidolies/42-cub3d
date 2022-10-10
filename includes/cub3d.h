@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 17:48:29 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:19:40 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ void    compute_line_attributes(t_ray *ray);
 
 //minimap.c
 void	carre(t_mlx *mlx, int x, int y, int color);
-void	minimap(t_mlx *mlx, t_data *data, t_ray *ray);
+void	minimap(t_ray *ray);
 
 
 //debug.c

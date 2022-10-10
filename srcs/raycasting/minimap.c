@@ -69,12 +69,13 @@
 
 
 
-int	len_square(t_data *data)
+int	len_square(t_ray *ray)
 {
 	int	res;
 
 	res = 10;
-	while ((res * data->len) > WIDTH || (res * data->height) > HEIGHT)
+	// while ((res * data->len) > WIDTH || (res * data->height) > HEIGHT)
+	while ((res * ray->width) > WIDTH || (res * ray->height) > HEIGHT)
 		res--;
 	return(res);
 }
@@ -87,7 +88,8 @@ void	square(t_ray *ray, int x, int y, int color)
 
 	i = 0;
 	j = 0;
-	sq = len_square(ray->data);
+	// sq = len_square(ray->data);
+	sq = len_square(ray);
 	while (j < 10)
 	{
 		ray->mlx->addr[((y + j) * WIDTH) + (x + i)] = color;
@@ -107,7 +109,7 @@ void	square(t_ray *ray, int x, int y, int color)
 // 	return ((WIDTH / 2) - ((data->len * sq) / 2));
 // }
 
-void	pos_player(t_mlx *mlx, t_data *data, t_ray *ray, int sq)
+void	pos_player(t_mlx *mlx, t_ray *ray, int sq)
 {
 	int	i;
 	int	j;
@@ -160,7 +162,7 @@ void	show_minimap(t_mlx *mlx, t_data *data, t_ray *ray)
 	}
 }
 
-void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
+void	minimap(t_ray *ray)
 {
 	int i;
 	int j;
@@ -168,25 +170,29 @@ void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
 
 	i = 0;
 	j = 0;
-	sq = len_square(data);
+	// sq = len_square(data);
+	sq = len_square(ray);
 	if (sq < 4)
 		return ;
-	while (i < data->height)
+	// while (i < data->height)
+	while (i < ray->height)
 	{
-		if (data->map[i][j] == '1')
+		// if (data->map[i][j] == '1')
+		if (ray->revert_map[j][i] == '1')
 			square(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(128, 128, 128));
 			// square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(128, 128, 128));
 		else
 			square(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(0, 0, 255));
 			// square(ray, (j * sq) + middle_x(data, sq), (i * sq) + 20, create_rgb(0, 0, 255));
 		j++;
-		if (j == data->len)
+		// if (j == data->len)
+		if (j == ray->width)
 		{
 			j = 0;
 			i++;
 		}
 	}
-	pos_player(mlx, data, ray, sq);
+	pos_player(ray->mlx, ray, sq);
 	// show_minimap(mlx, data, ray);
 	// TEST
 	// mlx_put_image_to_window(mlx->ptr, mlx->win, ray->img, 100, 200);

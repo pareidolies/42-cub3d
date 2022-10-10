@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/10 16:35:42 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 18:19:25 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int    launch_raycasting(t_ray *ray, t_mlx *mlx)
 	// 	minimap(ray->mlx, data, ray);
 	//printf("coucou2\n");
 	if (ray->minimap)
-		minimap(ray->mlx, ray);
+		minimap(ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);
