@@ -14,7 +14,6 @@
 
 int initialize_mlx(t_mlx *mlx)
 {
-    // printf("salut");
     mlx->ptr = mlx_init();
 	if (!mlx->ptr)
     {

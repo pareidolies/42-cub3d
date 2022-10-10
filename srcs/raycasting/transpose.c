@@ -53,21 +53,19 @@ void get_dir(t_ray *ray, t_data *data)
 void get_plane(t_ray *ray, t_data *data)
 {
     if (data->player.dir == 'N')
-		ray->plane.y = 0.66;
-	if (data->player.dir == 'S')
-		ray->plane.y = -0.66;
-	if (data->player.dir == 'E')
 		ray->plane.x = 0.66;
-	else //(data->player.dir == 'W')
+	if (data->player.dir == 'S')
 		ray->plane.x = -0.66;
+	if (data->player.dir == 'E')
+		ray->plane.y = 0.66;
+	else //(data->player.dir == 'W')
+		ray->plane.y = -0.66;
 }
 
 void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 {
 	ray->width = WIDTH;
 	ray->height = HEIGHT;
-	// ray->width = 2560;
-	// ray->height = 1440;
     ray->pos.x = (double)data->player.x + 0.5;
     ray->pos.y = (double)data->player.y + 0.5;
     get_dir(ray, data);

@@ -16,7 +16,6 @@ void initialize_ray_i(t_ray *ray)
 {
 	double	width = (double)ray->width;
 
-	//printf("width : %f\n", width);
     ray->hit = EMPTY;
     ray->perpwalldist = 0;
     ray->camerax = 2 * ray->i / width - 1;
@@ -31,12 +30,9 @@ void    print_results_on_screen(t_ray *ray, t_mlx *mlx)
 	int	j;
 	
 	mlx->addr = (int*)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
-	//printf("drawstart : %d\n", ray->drawstart);
-	//printf("drawend : %d\n", ray->drawend);
 	j = 0;
 	while(j < HEIGHT)
 	{
-		//mlx->addr[j * mlx->line_length / 4 + ray->i] = create_trgb(0,0,0,255);
 		if (j < ray->drawstart)
 		{
 			mlx->addr[j * WIDTH + ray->i] = create_rgb(37,1,65);
@@ -59,7 +55,6 @@ void    print_results_on_screen(t_ray *ray, t_mlx *mlx)
 
 int    launch_raycasting(t_ray *ray, t_mlx *mlx)
 {
-	//printf("coucou\n");
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 	{
@@ -67,30 +62,16 @@ int    launch_raycasting(t_ray *ray, t_mlx *mlx)
 		return (1);
 	}
 	ray->i = 0;
-	//printf("coucou10\n");
     while (ray->i < WIDTH)
     {
         initialize_ray_i(ray);
-		// printf("coucou3\n");
 		compute_deltadist(ray);
-		//printf("coucou4\n");
     	compute_sidedist(ray);
-		//printf("coucou5\n");
-		//printf("sidedistx : %f\n", ray->sidedist.x);
-		//printf("sidedisty : %f\n", ray->sidedist.y);
-		//printf("deltadistx : %f\n", ray->deltadist.x);
-		//printf("deltadisty : %f\n", ray->deltadist.x);
         compute_perpwalldist(ray);
-		//printf("coucou6\n");
-		//printf("perpwalldist : %f\n", ray->perpwalldist);
         compute_line_attributes(ray);
-		//printf("coucou7\n");
         print_results_on_screen(ray, mlx);
-		//printf("coucou8\n");
         ray->i++;
     }
-	// 	minimap(ray->mlx, data, ray);
-	//printf("coucou2\n");
 	if (ray->minimap)
 		minimap(ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);

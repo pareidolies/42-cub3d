@@ -50,7 +50,6 @@ void compute_sidedist(t_ray *ray)
 
 void    compute_perpwalldist(t_ray *ray)
 {
-	//printf("TEST\n");
 	while (ray->hit == EMPTY)
 	{
 		if (ray->sidedist.x < ray->sidedist.y)
@@ -65,12 +64,8 @@ void    compute_perpwalldist(t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = VERTICAL;
 		}
-		//printf("x : %d\n", ray->map.x);
-		//printf("y : %d\n", ray->map.y);
-		//printf("case : %c\n", data->map[ray->map.y][ray->map.x]);
 		if (ray->revert_map[ray->map.x][ray->map.y] == '1')
 			ray->hit = WALL;
-		//printf("test\n");
 	}
     if (ray->side == HORIZONTAL)
 		//ray->perpwalldist = ((double)ray->map.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;

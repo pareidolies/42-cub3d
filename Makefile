@@ -76,7 +76,7 @@ ${OBJS_DIR}/%.o : ${SRCS_DIR}/%.c
 		@[ ! -d ${OBJS_DIR}/raycasting/ ] && mkdir -p  ${OBJS_DIR}/raycasting/ || true
 		@[ ! -d ${OBJS_DIR}/parsing/ ] && mkdir -p  ${OBJS_DIR}/parsing/ || true
 		@[ ! -d ${OBJS_DIR}/utils/ ] && mkdir -p  ${OBJS_DIR}/utils/ || true
-		@$(CC) ${CFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+		@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all:		$(NAME)
 
