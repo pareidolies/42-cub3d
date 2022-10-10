@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/09 18:01:41 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:27:26 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,4 @@ int	main(int argc, char **argv)
 	Latence en plein ecran (2560 x 1440)
 
 	Spawn de travers avec les lettres 'N' et 'S' et pas les
-	bonnes  direction de spawn avec 'E' et 'W' "*/
+	bonnes  direction de spawn avec 'E' et 'W' */

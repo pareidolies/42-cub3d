@@ -130,6 +130,24 @@ void	pos_player(t_mlx *mlx, t_data *data, t_ray *ray, int sq)
 	}
 }
 
+void	show_minimap(t_mlx *mlx, t_data *data, t_ray *ray)
+{
+	int	i;
+	int	hei;
+
+	hei = (HEIGHT / 4) * 2.5;
+	while (hei < HEIGHT)
+	{
+		i = WIDTH / 4;
+		while (i < ((WIDTH / 4) * 3))
+		{
+			ray->mlx->addr[(hei * WIDTH) + i] = create_rgb(255, 188, 71);
+			i++;
+		}
+		hei++;
+	}
+}
+
 void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
 {
 	int i;
@@ -157,7 +175,7 @@ void	minimap(t_mlx *mlx, t_data *data, t_ray *ray)
 		}
 	}
 	pos_player(mlx, data, ray, sq);
-	
+	// show_minimap(mlx, data, ray);
 	// TEST
 	// mlx_put_image_to_window(mlx->ptr, mlx->win, ray->img, 100, 200);
 }
