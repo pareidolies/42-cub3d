@@ -19,7 +19,7 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx)
 
 	old_plane_x = ray->plane.x;
 	old_dir_x = ray->dir.x;
-	if (keycode == ROTATE_RIGHT)
+	if (keycode == ROTATE_LEFT)
 	{
         // printf("rotate right\n");
 		ray->dir.x = ray->dir.x * cos(-ROT_SPEED / 2) - ray->dir.y * sin(-ROT_SPEED / 2);
@@ -27,7 +27,7 @@ void    rotate(int keycode, t_ray *ray, t_mlx *mlx)
 		ray->plane.x = ray->plane.x * cos(-ROT_SPEED / 2) - ray->plane.y * sin(-ROT_SPEED / 2);
 		ray->plane.y = old_plane_x * sin(-ROT_SPEED / 2) + ray->plane.y * cos(-ROT_SPEED / 2);
 	}
-	if (keycode == ROTATE_LEFT)
+	if (keycode == ROTATE_RIGHT)
 	{
         // printf("rotate left\n");
 		ray->dir.x = ray->dir.x * cos(ROT_SPEED / 2) - ray->dir.y * sin(ROT_SPEED / 2);

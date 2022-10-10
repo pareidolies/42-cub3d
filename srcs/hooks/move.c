@@ -41,18 +41,18 @@ void    move(int keycode, t_ray *ray, t_mlx *mlx)
     if (keycode == MOVE_RIGHTWARD)
 	{
         // printf("rightward\n");
-		if (ray->revert_map[(int)(ray->pos.x + ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-			ray->pos.x += ray->dir.y * MOVE_SPEED;
-		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x * (MOVE_SPEED * 2))] != '1')
-			ray->pos.y -= ray->dir.x * MOVE_SPEED;
-	}
-	if (keycode == MOVE_LEFTWARD)
-	{
-        // printf("leftward\n");
 		if (ray->revert_map[(int)(ray->pos.x - ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
 			ray->pos.x -= ray->dir.y * MOVE_SPEED;
 		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x * (MOVE_SPEED * 2))] != '1')
 			ray->pos.y += ray->dir.x * MOVE_SPEED;
+	}
+	if (keycode == MOVE_LEFTWARD)
+	{
+        // printf("leftward\n");
+		if (ray->revert_map[(int)(ray->pos.x + ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
+			ray->pos.x += ray->dir.y * MOVE_SPEED;
+		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x * (MOVE_SPEED * 2))] != '1')
+			ray->pos.y -= ray->dir.x * MOVE_SPEED;
 	}
 	launch_raycasting(ray, mlx);
 }

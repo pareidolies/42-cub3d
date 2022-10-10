@@ -41,22 +41,22 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 void get_dir(t_ray *ray, t_data *data)
 {
     if (data->player.dir == 'N')
-		ray->dir.x = -1;
-	if (data->player.dir == 'S')
-		ray->dir.x = 1;
-	if (data->player.dir == 'E')
-		ray->dir.y = 1;
-	else //(data->player.dir == 'W') pour eviter probleme uninitialized values
 		ray->dir.y = -1;
+	else if (data->player.dir == 'S')
+		ray->dir.y = 1;
+	else if (data->player.dir == 'E')
+		ray->dir.x = 1;
+	else //(data->player.dir == 'W') pour eviter probleme uninitialized values
+		ray->dir.x = -1;
 }
 
 void get_plane(t_ray *ray, t_data *data)
 {
     if (data->player.dir == 'N')
 		ray->plane.x = 0.66;
-	if (data->player.dir == 'S')
+	else if (data->player.dir == 'S')
 		ray->plane.x = -0.66;
-	if (data->player.dir == 'E')
+	else if (data->player.dir == 'E')
 		ray->plane.y = 0.66;
 	else //(data->player.dir == 'W')
 		ray->plane.y = -0.66;

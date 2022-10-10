@@ -23,10 +23,11 @@ int start_raycasting(t_data *data)
 	initialize_all_values(&ray);
 	transpose_parsed_map_to_ray(&ray, data);
     transpose_parsed_data_to_ray(&ray, data);
+	print_map_ray(&ray, data);
     launch_raycasting(&ray, ray.mlx);
 	mlx_hook(ray.mlx->win, 2, 1L << 0, keys_handler, &ray);
 	mlx_hook(ray.mlx->win, 17, 1L << 8, exit_safe_bis, &ray);
-	mlx_hook(ray.mlx->win, 6, 1L << 6, mouse_move, &ray);
+	//mlx_hook(ray.mlx->win, 6, 1L << 6, mouse_move, &ray);
 	mlx_loop(ray.mlx->ptr);
 	mlx_destroy_window(ray.mlx->ptr, ray.mlx->win);
 	mlx_destroy_display(ray.mlx->ptr);
