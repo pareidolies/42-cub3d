@@ -14,16 +14,12 @@
 
 void compute_deltadist(t_ray *ray)
 {
-    if (ray->raydir.y == 0)
-		ray->deltadist.x = 0;
-	else if (ray->raydir.x == 0)
-		ray->deltadist.x = 1;
+	if (ray->raydir.x == 0)
+		ray->deltadist.x = 2147483647;
 	else
 		ray->deltadist.x = fabs(1 / ray->raydir.x);
-	if (ray->raydir.x == 0)
-		ray->deltadist.y = 0;
-	else if (ray->raydir.y == 0)
-		ray->deltadist.y = 1;
+    if (ray->raydir.y == 0)
+		ray->deltadist.y = 2147483647;
 	else
 		ray->deltadist.y = fabs(1 / ray->raydir.y);
 }
