@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/11 17:06:27 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:09:36 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,21 @@ void	initialize_ray_i(t_ray *ray)
 
 void	print_results_on_screen(t_ray *ray, t_mlx *mlx)
 {
-	int	j;
+	int		j;
+	t_rgb	c;
+	t_rgb	f;
 
-	mlx->addr = (int *)mlx_get_data_addr(mlx->img, &mlx->bpp, &mlx->line_length, &mlx->endian);
+	mlx->addr = (int *)mlx_get_data_addr(mlx->img, &mlx->bpp,
+			&mlx->line_length, &mlx->endian);
 	j = 0;
+	c = ray->data->c;
+	f = ray->data->f;
 	while (j < HEIGHT)
 	{
 		if (j < ray->drawstart)
-			mlx->addr[j * WIDTH + ray->i] = create_rgb(ray->data->c.r, ray->data->c.g, ray->data->c.b);
+			mlx->addr[j * WIDTH + ray->i] = create_rgb(c.r, c.g, c.b);
 		else if (j > ray->drawend)
-			mlx->addr[j * WIDTH + ray->i] = create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b);
+			mlx->addr[j * WIDTH + ray->i] = create_rgb(f.r, f.g, f.b);
 		else
 		{
 			if (ray->side == HORIZONTAL)

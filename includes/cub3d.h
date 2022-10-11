@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 17:27:31 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:13:10 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,22 +194,22 @@ void	free_struct_exit(t_data *root);
 void	check_first_error(t_data *root);
 void	init_struct_map(t_map *data_map);
 void	error_missing_data(t_data *root);
+void	cpy_rgb(t_data *root, char *line);
 void	free_uselsee_wall(t_data *root, int pos);
 void	check_array(t_data *root, t_map *data_map);
 void	increment_data_line(t_data *root, t_map *data);
 void	go_to_beginning_of_map(int fd, t_map *data_map);
 void	check_map(t_map *data_map, t_data *root, char *map);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);
-void	cpy_rgb(t_data *root, char *line);
 void	map_file_to_array(t_map *data_map, char *map, t_data *root);
 
 bool	is_player(char c);
 bool	check_format(char **arr);
 bool	is_space_or_player(char c);
 bool	all_data_set(t_data *root);
+bool	line_only_space(char *line);
 bool	line_only_char_map(char *line);
 bool	whitespace_on_line(char **arr);
-bool	line_only_space(char *line);
 bool	only_space(char *line, t_data *root, char *map);
 
 //start.c

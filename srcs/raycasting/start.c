@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:03 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/11 16:47:21 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:18:30 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	start_raycasting(t_data *data)
 	launch_raycasting(&ray, ray.mlx);
 	mlx_hook(ray.mlx->win, 2, 1L << 0, keys_handler, &ray);
 	mlx_hook(mlx.win, 17, 1L << 8, mlx_loop_end, mlx.ptr);
-	// mlx_mouse_hide(mlx.ptr, mlx.win); // Effectivement la fonction cree des leaks
+	// mlx_mouse_hide(mlx.ptr, mlx.win); // La fonction cree des leaks :(
 	mlx_hook(ray.mlx->win, 6, 1L << 6, mouse_move, &ray);
 	mlx_loop(ray.mlx->ptr);
 	mlx_destroy_window(ray.mlx->ptr, ray.mlx->win);
