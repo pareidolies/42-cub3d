@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 18:53:33 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:42:20 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,9 @@ typedef struct s_ray {
 
 //parsing.c
 int		is_data(char *data);
+int		open_file(char *map, t_data *root);
 int		check_useless_wall_width(t_data *root);
+int		check_useless_wall_height(t_data *root);
 int		check_error(int argc, char **argv, t_data *root);
 
 char	*get_next_line(int fd);
@@ -199,7 +201,9 @@ void	free_struct_exit(t_data *root);
 void	check_first_error(t_data *root);
 void	init_struct_map(t_map *data_map);
 void	error_missing_data(t_data *root);
+void	free_uselsee_wall(t_data *root, int pos);
 void	check_array(t_data *root, t_map *data_map);
+void	increment_data_line(t_data *root, t_map *data);
 void	go_to_beginning_of_map(int fd, t_map *data_map);
 void	check_map(t_map *data_map, t_data *root, char *map);
 void	str_rgb_to_struct(t_data *root, char c, char **rgb);

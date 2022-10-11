@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:37 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/09 17:46:38 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:37:41 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,34 @@ int	check_useless_wall_width(t_data *root)
 		}
 		i++;
 	}
-	return(res);
+	return (res);
 }
 
+int	check_useless_wall_height(t_data *root)
+{
+	int	i;
+	int	j;
+	int	res;
+
+	i = 0;
+	res = 0;
+	while (root->map[i])
+	{
+		j = 0;
+		while (root->map[i][j])
+		{
+			if (is_space_or_player(root->map[i][j]))
+				res = i;
+			j++;
+		}
+		i++;
+	}
+	return (res);
+}
+
+void	free_uselsee_wall(t_data *root, int pos)
+{
+	pos += 2;
+	while (root->map[pos])
+		free(root->map[pos++]);
+}

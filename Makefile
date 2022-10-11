@@ -9,6 +9,7 @@ SRCS		=	main.c \
 				parsing/check_rgb_bis.c \
 				parsing/struct_map_utils.c \
 				parsing/parsing_map.c \
+				parsing/parsing_map_utils.c \
 				parsing/map_file_to_array.c \
 				parsing/check_map.c \
 				parsing/check_map_utils.c \

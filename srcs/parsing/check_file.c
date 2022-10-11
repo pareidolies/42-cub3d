@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 18:47:30 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:34:00 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	check_error(int argc, char **argv, t_data *root)
 	init_struct_map(&data_map);
 	if (argc == 1 || argc > 2)
 	{
-			ft_putstr_fd("Error !\n2 expected argumets\nUsage : ./cub3D \
+		ft_putstr_fd("Error !\n2 expected argumets\nUsage : ./cub3D \
 ./name.cub\n", 2);
 		exit(1);
 	}

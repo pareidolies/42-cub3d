@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:36:35 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 18:49:56 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:34:54 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	cpy_line(char *dest, char *line, t_map *data_map)
 			dest[i] = line[i];
 		i++;
 	}
-	// printf("%d\n", data_map->len_line_max);
 	while (i < data_map->len_line_max)
 		dest[i++] = 'x';
 	dest[i] = '\0';
@@ -71,7 +70,6 @@ static void	file_to_array(int fd, t_data *root, t_map *data_map)
 	int		i;
 
 	i = 0;
-	// while (line)
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -88,9 +86,6 @@ static void	file_to_array(int fd, t_data *root, t_map *data_map)
 		i++;
 	}
 	root->map[i] = NULL;
-	// for(int i = 0; root->map[i]; i++)
-		// printf("%d\n", ft_strlen(root->map[i]));
-		// printf("%s.\n", root->map[i]);
 	close(fd);
 }
 
