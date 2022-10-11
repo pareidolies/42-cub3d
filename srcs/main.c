@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 16:51:26 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:14:03 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int argc, char **argv)
 
 	Segfault move_mouse OK par contre, effectivement si on cache le curseur,
 	la fonction mlx_mouse_hide cree des leaks (elle est en commentaire dans start.c).
+	Ce qu'on poura faire pour la correction c'est mettre la fonction en commentaire (a la norme)
+	et expliquer aux correcteur le pb.
 
 	Latence en plein ecran (2560 x 1440)
 

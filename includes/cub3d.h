@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 16:26:28 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:27:31 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 /******************************************************************************
  *                                 MACROS                                     *
  *****************************************************************************/
-
 
 # define WIDTH 1280
 # define HEIGHT 960
@@ -65,17 +64,17 @@
 *                              ENUMERATIONS                                   *
 ******************************************************************************/
 
-typedef enum	e_hit
+typedef enum e_hit
 {
 	WALL,
 	EMPTY,
-}		        t_hit;
+}			t_hit;
 
-typedef enum    e_side
+typedef enum e_side
 {
-    HORIZONTAL,
-    VERTICAL,
-}               t_side;
+	HORIZONTAL,
+	VERTICAL,
+}			t_side;
 
 /******************************************************************************
  *                               STRUCTURES                                   *
@@ -127,14 +126,14 @@ typedef struct s_data {
 }				t_data;
 
 typedef struct s_mlx {
-    void    *ptr;
-    void    *win;
-    void    *img;
-    int     *addr;
-    int     bpp;
-    int     line_length;
-    int     endian;
-}               t_mlx;
+	void	*ptr;
+	void	*win;
+	void	*img;
+	int		*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_mlx;
 
 typedef struct s_minimap {
 	int	x;
@@ -148,24 +147,23 @@ typedef struct s_ray {
 	t_vector	dir;
 	t_vector	plane;
 	t_vector	raydir;
-	double  	camerax;
-	t_point     map; //int
+	double		camerax;
+	t_point		map; //int
 	t_vector	sidedist;
 	t_vector	deltadist;
-	t_point	step; //int
-	t_hit	hit;
-    t_side  side;
-    double  perpwalldist;
-    int     lineheight;
-    int     drawstart;
-    int     drawend;
-    int     i;
-    //int     width;
-    //int     height;
-    char    **revert_map;
-	bool	minimap;
+	t_point		step; //int
+	t_hit		hit;
+	t_side		side;
+	double		perpwalldist;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	int			i;
+	// int			width;
+	// int			height;
+	char		**revert_map;
+	bool		minimap;
 	t_minimap	pos_map;
-	
 }				t_ray;
 
 /******************************************************************************
@@ -215,50 +213,46 @@ bool	line_only_space(char *line);
 bool	only_space(char *line, t_data *root, char *map);
 
 //start.c
-int start_raycasting(t_data *data);
+int		start_raycasting(t_data *data);
 
 //initialize.c
 void	initialize_all_values(t_ray *ray);
-int initialize_mlx(t_mlx *mlx);
+int		initialize_mlx(t_mlx *mlx);
 
 //tranpose.c
 void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
-void get_dir(t_ray *ray, t_data *data);
-void get_plane(t_ray *ray, t_data *data);
-void transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
+void	get_dir(t_ray *ray, t_data *data);
+void	get_plane(t_ray *ray, t_data *data);
+void	transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 
 //raycasting.c
-void initialize_ray_i(t_ray *ray);
-void    print_results_on_screen(t_ray *ray, t_mlx *mlx);
-int    launch_raycasting(t_ray *ray, t_mlx *mlx);
+void	initialize_ray_i(t_ray *ray);
+void	print_results_on_screen(t_ray *ray, t_mlx *mlx);
+int		launch_raycasting(t_ray *ray, t_mlx *mlx);
 
 //computation.c
-void compute_deltadist(t_ray *ray);
-void compute_sidedist(t_ray *ray);
-void    compute_perpwalldist(t_ray *ray);
-void    compute_line_attributes(t_ray *ray);
+void	compute_deltadist(t_ray *ray);
+void	compute_sidedist(t_ray *ray);
+void	compute_perpwalldist(t_ray *ray);
+void	compute_line_attributes(t_ray *ray);
 
 //minimap.c
 void	carre(t_mlx *mlx, int x, int y, int color);
 void	minimap(t_ray *ray);
-
 
 //debug.c
 void	print_map_data(t_data *data);
 void	print_map_ray(t_ray *ray, t_data *data);
 
 //mlx_utils.c
-int	create_trgb(int t, int r, int g, int b);
-int	create_rgb(int r, int g, int b);
+int		create_trgb(int t, int r, int g, int b);
+int		create_rgb(int r, int g, int b);
 
 //hooks.c
 int		keys_handler(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
-void    move(int keycode, t_ray *ray, t_mlx *mlx);
-void    rotate(int keycode, t_ray *ray, t_mlx *mlx);
+void	move(int keycode, t_ray *ray, t_mlx *mlx);
+void	rotate(int keycode, t_ray *ray, t_mlx *mlx);
 int		mouse_move(int x, int y, t_ray *ray);
-
-
-
 
 #endif
