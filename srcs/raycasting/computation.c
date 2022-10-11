@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   computation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:35:50 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/07 14:35:52 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:32:43 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void compute_deltadist(t_ray *ray)
+void	compute_deltadist(t_ray *ray)
 {
 	if (ray->raydir.x == 0)
 		ray->deltadist.x = 2147483647;
 	else
 		ray->deltadist.x = fabs(1 / ray->raydir.x);
-    if (ray->raydir.y == 0)
+	if (ray->raydir.y == 0)
 		ray->deltadist.y = 2147483647;
 	else
 		ray->deltadist.y = fabs(1 / ray->raydir.y);
 }
 
-void compute_sidedist(t_ray *ray)
+void	compute_sidedist(t_ray *ray)
 {
-    if (ray->raydir.x < 0)
+	if (ray->raydir.x < 0)
 	{
 		ray->step.x = -1;
 		ray->sidedist.x = (ray->pos.x - ray->map.x) * ray->deltadist.x;
@@ -55,7 +55,7 @@ void compute_sidedist(t_ray *ray)
 	}*/
 }
 
-void    compute_perpwalldist(t_ray *ray)
+void	compute_perpwalldist(t_ray *ray)
 {
 	while (ray->hit == EMPTY)
 	{
@@ -74,7 +74,7 @@ void    compute_perpwalldist(t_ray *ray)
 		if (ray->revert_map[ray->map.x][ray->map.y] == '1')
 			ray->hit = WALL;
 	}
-    if (ray->side == HORIZONTAL)
+	if (ray->side == HORIZONTAL)
 		//ray->perpwalldist = ((double)ray->map.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
 		ray->perpwalldist = ray->sidedist.x - ray->deltadist.x;
 	else
@@ -82,9 +82,9 @@ void    compute_perpwalldist(t_ray *ray)
 		ray->perpwalldist = ray->sidedist.y - ray->deltadist.y;
 }
 
-void    compute_line_attributes(t_ray *ray)
+void	compute_line_attributes(t_ray *ray)
 {
-    ray->lineheight = (int)(HEIGHT / ray->perpwalldist);
+	ray->lineheight = (int)(HEIGHT / ray->perpwalldist);
 	ray->drawstart = -ray->lineheight / 2 + HEIGHT / 2;
 	if (ray->drawstart < 0)
 		ray->drawstart = 0;

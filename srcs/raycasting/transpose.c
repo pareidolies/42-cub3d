@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:14 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/10 17:14:13 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:48:22 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 	}
 }
 
-void get_dir(t_ray *ray, t_data *data)
+void	get_dir(t_ray *ray, t_data *data)
 {
-    if (data->player.dir == 'N')
+	if (data->player.dir == 'N')
 		ray->dir.y = -1;
 	else if (data->player.dir == 'S')
 		ray->dir.y = 1;
@@ -51,9 +51,9 @@ void get_dir(t_ray *ray, t_data *data)
 		ray->dir.x = -1;
 }
 
-void get_plane(t_ray *ray, t_data *data)
+void	get_plane(t_ray *ray, t_data *data)
 {
-    if (data->player.dir == 'N')
+	if (data->player.dir == 'N')
 		ray->plane.x = 0.66;
 	else if (data->player.dir == 'S')
 		ray->plane.x = -0.66;
@@ -63,13 +63,13 @@ void get_plane(t_ray *ray, t_data *data)
 		ray->plane.y = -0.66;
 }
 
-void transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
+void	transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 {
 	//ray->width = WIDTH;
 	//ray->height = HEIGHT;
-    ray->pos.x = (double)data->player.x + 0.5;
-    ray->pos.y = (double)data->player.y + 0.5;
-    get_dir(ray, data);
-    get_plane(ray, data);
-    //map => data->map ne plus utiliser data
+	ray->pos.x = (double)data->player.x + 0.5;
+	ray->pos.y = (double)data->player.y + 0.5;
+	get_dir(ray, data);
+	get_plane(ray, data);
+	//map => data->map ne plus utiliser data
 }

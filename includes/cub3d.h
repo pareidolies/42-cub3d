@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 15:42:20 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:26:28 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
  *                                 MACROS                                     *
  *****************************************************************************/
 
-// # define WIDTH				640
-// # define HEIGHT				480
+
 # define WIDTH 1280
 # define HEIGHT 960
 // # define WIDTH 2560
@@ -165,11 +164,6 @@ typedef struct s_ray {
     //int     height;
     char    **revert_map;
 	bool	minimap;
-
-	// TEST
-	int		img_width;
-	int		img_height;
-	void	*img;
 	t_minimap	pos_map;
 	
 }				t_ray;
@@ -195,6 +189,7 @@ char	*go_to_beginning_of_map_bis(int fd, t_map *data_map);
 void	go_end_file(int fd);
 void	show_data(t_data *root);
 void	init_struct(t_data *root);
+void	free_struct(t_data *root);
 void	free_double_array(char **arr);
 void	show_data_map(t_map *data_map);
 void	free_struct_exit(t_data *root);
@@ -259,10 +254,9 @@ int	create_rgb(int r, int g, int b);
 //hooks.c
 int		keys_handler(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
-int		exit_safe_bis(int keycode);
 void    move(int keycode, t_ray *ray, t_mlx *mlx);
 void    rotate(int keycode, t_ray *ray, t_mlx *mlx);
-int		mouse_move(t_ray *ray);
+int		mouse_move(int x, int y, t_ray *ray);
 
 
 

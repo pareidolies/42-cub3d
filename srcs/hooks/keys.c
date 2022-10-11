@@ -6,13 +6,13 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/10 16:35:18 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:27:44 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int		keys_handler(int keycode, t_ray *ray)
+int	keys_handler(int keycode, t_ray *ray)
 {
 	if (keycode == MOVE_FORWARD)
 		move(keycode, ray, ray->mlx);

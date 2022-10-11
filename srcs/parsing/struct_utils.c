@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:58:51 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 13:06:13 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:25:21 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ void	free_struct_exit(t_data *root)
 	if (root->map)
 		free_double_array(root->map);
 	exit(1);
+}
+
+void	free_struct(t_data *root)
+{
+	if (root->no)
+		free(root->no);
+	if (root->so)
+		free(root->so);
+	if (root->we)
+		free(root->we);
+	if (root->ea)
+		free(root->ea);
+	if (root->map)
+		free_double_array(root->map);
 }
 
 bool	all_data_set(t_data *root)
