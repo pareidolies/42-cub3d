@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 19:13:10 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:07:48 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
  *                                 MACROS                                     *
  *****************************************************************************/
 
-# define WIDTH 1280
-# define HEIGHT 960
-// # define WIDTH 2560
-// # define HEIGHT 1440
+// # define WIDTH 1280
+// # define HEIGHT 960
+# define WIDTH 2560
+# define HEIGHT 1440
 # define TITLE "cub3D"
 
 # define FOV 60
@@ -140,6 +140,15 @@ typedef struct s_minimap {
 	int	y;
 }				t_minimap;
 
+typedef struct s_key {
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	rr;
+	bool	rl;
+}				t_key;
+
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
@@ -164,6 +173,9 @@ typedef struct s_ray {
 	char		**revert_map;
 	bool		minimap;
 	t_minimap	pos_map;
+	
+
+	t_key	key;
 }				t_ray;
 
 /******************************************************************************
@@ -249,10 +261,15 @@ int		create_trgb(int t, int r, int g, int b);
 int		create_rgb(int r, int g, int b);
 
 //hooks.c
-int		keys_handler(int keycode, t_ray *ray);
+int		key_press(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
-void	move(int keycode, t_ray *ray, t_mlx *mlx);
-void	rotate(int keycode, t_ray *ray, t_mlx *mlx);
+// void	move(int keycode, t_ray *ray, t_mlx *mlx);
+int		move(t_ray *ray);
+// void	rotate(int keycode, t_ray *ray, t_mlx *mlx);
+int		rotate(t_ray *ray);
 int		mouse_move(int x, int y, t_ray *ray);
+
+
+int		keys_handler_bis(t_ray *ray);
 
 #endif

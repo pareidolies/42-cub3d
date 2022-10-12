@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/11 18:09:36 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:00:18 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	print_results_on_screen(t_ray *ray, t_mlx *mlx)
 
 int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 {
+	// for (int i = 0; i < 10000000; i++)
+	// 	printf("%d\n", i);
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 	{

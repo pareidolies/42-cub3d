@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/11 16:33:53 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:07:34 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,12 @@ void	initialize_all_values(t_ray *ray)
 	ray->minimap = false;
 	ray->pos_map.x = 0;
 	ray->pos_map.y = 0;
+
+
+	ray->key.w = false;
+	ray->key.a = false;
+	ray->key.s = false;
+	ray->key.d = false;
+	ray->key.rr = false;
+	ray->key.rl = false;
 }
