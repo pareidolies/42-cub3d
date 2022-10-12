@@ -149,6 +149,17 @@ typedef struct s_key {
 	bool	rl;
 }				t_key;
 
+typedef struct s_xpm {
+	int		**buffer;
+	int		width;
+	int		height;
+	int		id;
+	double	step;
+	double	pos;
+	int		x;
+	int		y;
+}		t_xpm;
+
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
