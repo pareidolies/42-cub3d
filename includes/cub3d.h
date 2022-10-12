@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/12 17:07:48 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:15:49 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@
 
 // # define WIDTH 1280
 // # define HEIGHT 960
-# define WIDTH 2560
-# define HEIGHT 1440
+// # define WIDTH 2560
+// # define HEIGHT 1440
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TITLE "cub3D"
 
 # define FOV 60
@@ -147,6 +149,7 @@ typedef struct s_key {
 	bool	d;
 	bool	rr;
 	bool	rl;
+	bool	menu;
 }				t_key;
 
 typedef struct s_xpm {

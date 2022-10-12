@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/12 17:00:18 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:14:16 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,40 @@ void	print_results_on_screen(t_ray *ray, t_mlx *mlx)
 // 	if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
 // }
 
+
+
+void square(t_ray *ray)
+{
+	int wi = (WIDTH / 4) * 3;
+	int he = (HEIGHT / 4) * 3;
+	int i = WIDTH / 4;
+	int j = HEIGHT / 4;
+	while (j < he)
+	{
+		// i = WIDTH / 4;
+		ray->mlx->addr[(j * WIDTH) + i] = create_rgb(254, 254, 254);
+		// ray->mlx->addr[((y + j) * WIDTH) + (x + i)] = color;
+		i++;
+		if (i == wi)
+		{
+			i = WIDTH / 4;
+			j++;
+		}
+	}
+	mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->mlx->img, 0, 0);
+	// printf("TEST\n");
+}
+
+void show_menu(t_ray *ray)
+{
+	square(ray);
+	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 0, 0), "HELLO !");
+	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 35, create_rgb(0, 0, 0), "HELLO !");
+	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 50, create_rgb(0, 0, 0), "HELLO !");
+	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 65, create_rgb(0, 0, 0), "HELLO !");
+	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 80, create_rgb(0, 0, 0), "HELLO !");
+}
+
 int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 {
 	// for (int i = 0; i < 10000000; i++)
@@ -93,7 +127,11 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	//print_results_on_screen(); //NEW
 	if (ray->minimap)
 		minimap(ray);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	if (!ray->key.menu)
+		mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
+	if (ray->key.menu)
+		show_menu(ray);
+	// mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);
 }

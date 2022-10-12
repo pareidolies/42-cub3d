@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/12 17:07:57 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:18:20 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ int	key_press(int keycode, t_ray *ray)
 		ray->key.rl = true;
 	if (keycode == ROTATE_RIGHT)
 		ray->key.rr = true;
+	if (keycode == 109)
+	{
+		if (ray->key.menu)
+			ray->key.menu = false;
+		else
+			ray->key.menu = true;
+	}
 	if (keycode == 101)
 	{
 		if (ray->minimap)
