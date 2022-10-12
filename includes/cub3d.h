@@ -156,8 +156,7 @@ typedef struct s_xpm {
 	int		id;
 	double	step;
 	double	pos;
-	int		x;
-	int		y;
+	t_point	tex;
 }		t_xpm;
 
 typedef struct s_ray {
@@ -175,6 +174,7 @@ typedef struct s_ray {
 	t_hit		hit;
 	t_side		side;
 	double		perpwalldist;
+	double		wallx; //where exactly the wall was hit
 	int			lineheight;
 	int			drawstart;
 	int			drawend;
@@ -243,6 +243,8 @@ int		start_raycasting(t_data *data);
 //initialize.c
 void	initialize_all_values(t_ray *ray);
 int		initialize_mlx(t_mlx *mlx);
+int		initialize_buffer(int **buffer);
+void	clear_buffer(int **buffer);
 
 //tranpose.c
 void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);

@@ -51,3 +51,35 @@ void	initialize_all_values(t_ray *ray)
 	ray->key.rr = false;
 	ray->key.rl = false;
 }
+
+int		initialize_buffer(int **buffer)
+{
+	int	i;
+
+	buffer = malloc(sizeof(int *) * HEIGHT);
+	i = 0;
+	while(i < HEIGHT)
+	{
+		buffer[i] = malloc(sizeof(int) * WIDTH);
+		i++;
+	}
+	return (0);
+}
+
+void	clear_buffer(int **buffer)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (j < HEIGHT)
+	{
+		i = 0;
+		while (i < WIDTH)
+		{
+			buffer[j][i] = 0;
+			i++;
+		}
+		j++;
+	}
+}

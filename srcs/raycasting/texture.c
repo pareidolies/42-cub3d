@@ -14,7 +14,7 @@
 
 int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx, t_mlx *tmp)
 {
-	int		*buffer;
+	int		*res;
 	int		x;
 	int		y;
 
@@ -26,8 +26,8 @@ int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx, t_mlx *tmp)
     }
 	tmp->addr = (int *)mlx_get_data_addr(tmp->img, &tmp->bpp,
 			&tmp->line_length, &tmp->endian);
-	buffer = malloc(sizeof(int) * ray->xpm->width * ray->xpm->height);
-	if (!buffer)
+	res = malloc(sizeof(int) * ray->xpm->width * ray->xpm->height);
+	if (!res)
 	{
 		//ERROR
 	}
@@ -37,13 +37,13 @@ int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx, t_mlx *tmp)
 		x = 0;
 		while (x < ray->xpm->width)
 		{
-			buffer[y * ray->xpm->height + x] = tmp->addr[y * ray->xpm->height + x];
-			++x;
+			res[y * ray->xpm->height + x] = tmp->addr[y * ray->xpm->height + x];
+			x++;
 		}
-		++y;
+		y++;
 	}
 	mlx_destroy_image(mlx->ptr, tmp->img);
-	return (buffer);
+	return (res);
 }
 
 int get_textures(t_ray *ray)

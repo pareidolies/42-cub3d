@@ -51,6 +51,23 @@ void	print_results_on_screen(t_ray *ray, t_mlx *mlx)
 	}
 }
 
+// void	fill_buffer()
+// {
+// 	//texturing calculations
+//     int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+
+// 	//calculate value of wallX
+// 	double wallX; //where exactly the wall was hit
+// 	if (side == 0) wallX = posY + perpWallDist * rayDirY;
+// 	else           wallX = posX + perpWallDist * rayDirX;
+// 	wallX -= floor((wallX));
+
+// 	//x coordinate on the texture
+// 	int texX = int(wallX * double(texWidth));
+// 	if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+// 	if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+// }
+
 int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 {
 	// for (int i = 0; i < 10000000; i++)
@@ -70,8 +87,10 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		compute_perpwalldist(ray);
 		compute_line_attributes(ray);
 		print_results_on_screen(ray, mlx);
+		//fill_buffer(); //NEW
 		ray->i++;
 	}
+	//print_results_on_screen(); //NEW
 	if (ray->minimap)
 		minimap(ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);

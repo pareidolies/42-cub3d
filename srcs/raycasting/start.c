@@ -44,14 +44,18 @@ int	start_raycasting(t_data *data)
 	initialize_mlx(&mlx);
 	ray.mlx = &mlx;
 	initialize_all_values(&ray);
+	//initialize_buffer(ray.xpm->buffer);
+	//clear_buffer(ray.xpm->buffer);
 	transpose_parsed_map_to_ray(&ray, data);
 	transpose_parsed_data_to_ray(&ray, data);
 	// print_map_ray(&ray, data);
-	// launch_raycasting(&ray, ray.mlx);
+	launch_raycasting(&ray, ray.mlx);
 	// mlx_hook(ray.mlx->win, 2, 1L << 0, keys_handler, &ray);
+	
 	mlx_hook(ray.mlx->win, 2, 1L << 0, key_press, &ray);
 	mlx_hook(ray.mlx->win, 3, 1L << 1, key_release, &ray);
 	mlx_loop_hook(ray.mlx->ptr, move, &ray);
+	
 	// mlx_loop_hook(ray.mlx->ptr, rotate, &ray);
 	mlx_hook(mlx.win, 17, 1L << 8, mlx_loop_end, mlx.ptr);
 	// mlx_mouse_hide(mlx.ptr, mlx.win); // La fonction cree des leaks :(
