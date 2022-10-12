@@ -21,6 +21,8 @@ SRCS		=	main.c \
 				raycasting/initialize.c \
 				raycasting/debug.c \
 				raycasting/start.c \
+				raycasting/menu.c \
+				raycasting/textures.c \
 				hooks/exit.c \
 				hooks/keys.c \
 				hooks/move.c \

@@ -287,6 +287,13 @@ int		move(t_ray *ray);
 int		rotate(t_ray *ray);
 int		mouse_move(int x, int y, t_ray *ray);
 
+//menu.c
+void square(t_ray *ray);
+void show_menu(t_ray *ray);
+
+//textures.c
+int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx, t_mlx *tmp);
+int get_textures(t_ray *ray);
 
 int		keys_handler_bis(t_ray *ray);
 

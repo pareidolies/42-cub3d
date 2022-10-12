@@ -44,10 +44,10 @@ int	start_raycasting(t_data *data)
 	initialize_mlx(&mlx);
 	ray.mlx = &mlx;
 	initialize_all_values(&ray);
-	//initialize_buffer(ray.xpm->buffer);
-	//clear_buffer(ray.xpm->buffer);
 	transpose_parsed_map_to_ray(&ray, data);
 	transpose_parsed_data_to_ray(&ray, data);
+	get_textures(ray); //NEW
+	initialize_buffer(ray.xpm->buffer); //NEW
 	// print_map_ray(&ray, data);
 	launch_raycasting(&ray, ray.mlx);
 	// mlx_hook(ray.mlx->win, 2, 1L << 0, keys_handler, &ray);

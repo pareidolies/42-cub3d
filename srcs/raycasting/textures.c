@@ -55,6 +55,10 @@ int get_textures(t_ray *ray)
 	ray->textures[2] = xpm_to_img(ray, ray->data.we, ray->mlx, &tmp);
 	ray->textures[3] = xpm_to_img(ray, ray->data.ea, ray->mlx, &tmp);
     ray->textures[4] = NULL;
-
-
+	ray->xpm = malloc(sizeof(t_xpm));
+	if (!ray->xpm)
+	{
+		//ERR
+	}
+	return (0);
 }
