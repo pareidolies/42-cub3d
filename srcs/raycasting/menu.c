@@ -22,11 +22,20 @@ void square(t_ray *ray)
 	// printf("TEST\n");
 }
 
+
 void show_menu(t_ray *ray)
 {
 	square(ray);
-	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 0, 0), "HELLO !");
-	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 35, create_rgb(0, 0, 0), "HELLO !");
+
+	// printf("pos_menu = %d\n", ray->key.pos_menu);
+	if (ray->key.pos_menu == 0)
+		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 255, 0), "MOVE SPEED !");
+	else
+		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 0, 0), "MOVE SPEED !");
+	if (ray->key.pos_menu == 1)
+		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 35, create_rgb(0, 255, 0), "HELLO !");
+	else
+		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 35, create_rgb(0, 0, 0), "HELLO !");
 	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 50, create_rgb(0, 0, 0), "HELLO !");
 	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 65, create_rgb(0, 0, 0), "HELLO !");
 	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 80, create_rgb(0, 0, 0), "HELLO !");

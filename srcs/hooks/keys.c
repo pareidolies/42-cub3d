@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 15:32:22 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:23:09 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,22 @@ static void	key_press_bis(int keycode, t_ray *ray)
 	if (keycode == 109)
 	{
 		if (ray->key.menu)
+		{
+			ray->key.pos_menu = 0;
 			ray->key.menu = false;
+		}
 		else
 			ray->key.menu = true;
+		// printf("menu = %d\n", ray->key.menu);
+		launch_raycasting(ray, ray->mlx);
+	}
+	else if (keycode == 65364 && ray->key.menu)
+	{
+		// printf("TEST\n");
+		ray->key.pos_menu++;
+		if (ray->key.pos_menu == 2)
+			ray->key.pos_menu = 0;
+		launch_raycasting(ray, ray->mlx);
 	}
 	if (keycode == 101)
 	{
@@ -31,8 +44,14 @@ static void	key_press_bis(int keycode, t_ray *ray)
 	}
 }
 
+
+// - = keycode = 65453
+// + = keycode = 65451
+
+
 int	key_press(int keycode, t_ray *ray)
 {
+	printf("keycode = %d\n", keycode);
 	if (keycode == MOVE_FORWARD)
 		ray->key.w = true;
 	if (keycode == MOVE_BACKWARD)
@@ -47,8 +66,13 @@ int	key_press(int keycode, t_ray *ray)
 		ray->key.rr = true;
 	if (keycode == ESC)
 		exit_safe(ray);
-	if (keycode == 109 || keycode == 101)
+	if (keycode == 109 || keycode == 101 || keycode == 65364)
 		key_press_bis(keycode, ray);
+	if (keycode == 65451 && ray->key.menu && ray->key.pos_menu == 0)
+	{
+		printf("OK\n");
+		ray->move_speed += 0.1;
+	}
 	return (0);
 }
 

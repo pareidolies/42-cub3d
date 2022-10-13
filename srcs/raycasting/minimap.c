@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 16:06:14 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:25:51 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	pos_player(t_ray *ray, int sq)
 
 	i = 1;
 	j = 1;
-	pos_x = (int)(ray->pos.x + (ray->dir.x * MOVE_SPEED * 2));
+	pos_x = (int)(ray->pos.x + (ray->dir.x * ray->move_speed * 2));
 	pos_y = (int)ray->pos.y;
 	get_pos_player(ray, pos_x, pos_y);
 	while (j < sq - 1)
