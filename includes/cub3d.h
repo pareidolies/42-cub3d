@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 15:26:28 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:05:06 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,8 @@ void	transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 
 //raycasting.c
 void	initialize_ray_i(t_ray *ray);
-void	print_results_on_screen(t_ray *ray, t_mlx *mlx);
+// void	print_results_on_screen(t_ray *ray, t_mlx *mlx);
+void	print_results_on_screen(t_ray *ray);
 int		launch_raycasting(t_ray *ray, t_mlx *mlx);
 
 //computation.c
@@ -288,6 +289,13 @@ bool	rotate(t_ray *ray, bool reload);
 int		mouse_move(int x, int y, t_ray *ray);
 int		key_release(int keycode, t_ray *ray);
 
+//menu.c
+void square(t_ray *ray);
+void show_menu(t_ray *ray);
+
+//textures.c
+int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx, t_mlx *tmp);
+int get_textures(t_ray *ray);
 
 
 #endif

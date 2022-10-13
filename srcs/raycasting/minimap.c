@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 15:53:55 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:06:14 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	len_square(t_data *data)
 	return (res);
 }
 
-static void	square(t_ray *ray, int x, int y, int color)
+static void	square_minimap(t_ray *ray, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -96,10 +96,10 @@ void	minimap(t_ray *ray)
 	while (i < ray->data->height)
 	{
 		if (ray->data->map[i][j] == '1')
-			square(ray, (j * sq) + 20, (i * sq) + 20,
+			square_minimap(ray, (j * sq) + 20, (i * sq) + 20,
 				create_rgb(128, 128, 128));
 		else
-			square(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(0, 0, 255));
+			square_minimap(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(0, 0, 255));
 		j++;
 		if (j == ray->data->len)
 		{
