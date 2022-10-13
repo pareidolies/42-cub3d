@@ -53,7 +53,7 @@ void	initialize_ray_i(t_ray *ray)
 
 void	compute_wallx(t_ray *ray)
 {
-	if (ray->side == VERTICAL) //HORI
+	if (ray->side == HORIZONTAL) //HORI
 	{
 		ray->xpm->id = 0;
 		if (ray->dir.x > 0)
@@ -76,8 +76,8 @@ void	fill_buffer(t_ray *ray)
 	int	color;
 
 	ray->xpm->tex.x = (int)(ray->wallx * ray->xpm->width);
-	if ((ray->side == VERTICAL && ray->raydir.x > 0)
-		|| (ray->side == HORIZONTAL && ray->raydir.y < 0))
+	if ((ray->side == HORIZONTAL && ray->raydir.x > 0)
+		|| (ray->side == VERTICAL && ray->raydir.y < 0))
 		ray->xpm->tex.x = ray->xpm->width - ray->xpm->tex.x - 1;
 	ray->xpm->step = 1.0 * ray->xpm->height / ray->lineheight; //
 	ray->xpm->pos = (ray->drawstart - HEIGHT / 2 + ray->lineheight / 2) * ray->xpm->step;
@@ -87,7 +87,7 @@ void	fill_buffer(t_ray *ray)
 		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->xpm->height - 1);
 		ray->xpm->pos += ray->xpm->step;
 		color = ray->textures[ray->xpm->id][ray->xpm->height * ray->xpm->tex.y + ray->xpm->tex.x];
-		if (ray->side == HORIZONTAL) // VERT
+		if (ray->side == VERTICAL) // VERT
 			color = (color >> 1) & 8355711;
 		if (color > 0)
 			ray->xpm->buffer[j][ray->i] = color;
