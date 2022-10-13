@@ -192,7 +192,7 @@ typedef struct s_ray {
 	
 
 	t_key	key;
-	int			*textures[5];
+	int			**textures;
 	t_xpm		*xpm;
 }				t_ray;
 
@@ -248,7 +248,7 @@ int		start_raycasting(t_data *data);
 //initialize.c
 void	initialize_all_values(t_ray *ray);
 int		initialize_mlx(t_mlx *mlx);
-int		initialize_buffer(int **buffer);
+int		initialize_buffer(t_ray *ray);
 void	clear_buffer(int **buffer);
 
 //tranpose.c
@@ -294,7 +294,7 @@ void square(t_ray *ray);
 void show_menu(t_ray *ray);
 
 //textures.c
-int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx, t_mlx *tmp);
+int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
 int get_textures(t_ray *ray);
 
 

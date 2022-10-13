@@ -51,49 +51,49 @@ void	initialize_ray_i(t_ray *ray)
 	}
 }*/
 
-// void	compute_wallx(t_ray *ray)
-// {
-// 	if (ray->is_side == 0)
-// 	{
-// 		ray->xpm->id = 0;
-// 		if (ray->dir.x > 0)
-// 			ray->xpm->id = 1;
-// 		ray->wallx = ray->pos.y + ray->perpwalldist * ray->raydir.y;
-// 	}
-// 	else
-// 	{
-// 		ray->xpm->id = 2;
-// 		if (ray->dir.y < 0)
-// 			ray->xpm->id = 3;
-// 		ray->wallx = ray->pos.x + ray->perpwalldist * ray->raydir.x;
-// 	}
-// 	ray->wallx -= floor(ray->wallx);
-// }
+void	compute_wallx(t_ray *ray)
+{
+	if (ray->side == VERTICAL) //HORI
+	{
+		ray->xpm->id = 0;
+		if (ray->dir.x > 0)
+			ray->xpm->id = 1;
+		ray->wallx = ray->pos.y + ray->perpwalldist * ray->raydir.y;
+	}
+	else
+	{
+		ray->xpm->id = 2;
+		if (ray->dir.y < 0)
+			ray->xpm->id = 3;
+		ray->wallx = ray->pos.x + ray->perpwalldist * ray->raydir.x;
+	}
+	ray->wallx -= floor(ray->wallx);
+}
 
-// void	fill_buffer(t_ray *ray)
-// {
-// 	int	j;
-// 	int	color;
+void	fill_buffer(t_ray *ray)
+{
+	int	j;
+	int	color;
 
-// 	ray->xpm->tex.x = (int)(ray->wallx * ray->xpm->width);
-// 	if ((ray->is_side == 0 && ray->raydir.x > 0)
-// 		|| (ray->is_side == 1 && ray->raydir.y < 0))
-// 		ray->xpm->tex.x = ray->xpm->width - ray->xpm->tex.x - 1;
-// 	ray->xpm->step = 1.0 * ray->xpm->height / ray->line_height; //
-// 	ray->xpm->pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * ray->xpm->step;
-// 	j = ray->draw_start;
-// 	while (j < ray->draw_end)
-// 	{
-// 		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->xpm->height - 1);
-// 		ray->xpm->pos += ray->xpm->step;
-// 		color = ray->textures[ray->xpm->id][ray->xpm->height * ray->xpm->tex.y + ray->xpm->tex.x];
-// 		if (ray->is_side == 1)
-// 			color = (color >> 1) & 8355711;
-// 		if (color > 0)
-// 			ray->xpm->buffer[j][ray->i] = color;
-// 		j++;
-// 	}
-// }
+	ray->xpm->tex.x = (int)(ray->wallx * ray->xpm->width);
+	if ((ray->side == VERTICAL && ray->raydir.x > 0)
+		|| (ray->side == HORIZONTAL && ray->raydir.y < 0))
+		ray->xpm->tex.x = ray->xpm->width - ray->xpm->tex.x - 1;
+	ray->xpm->step = 1.0 * ray->xpm->height / ray->lineheight; //
+	ray->xpm->pos = (ray->drawstart - HEIGHT / 2 + ray->lineheight / 2) * ray->xpm->step;
+	j = ray->drawstart;
+	while (j < ray->drawend)
+	{
+		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->xpm->height - 1);
+		ray->xpm->pos += ray->xpm->step;
+		color = ray->textures[ray->xpm->id][ray->xpm->height * ray->xpm->tex.y + ray->xpm->tex.x];
+		if (ray->side == HORIZONTAL) // VERT
+			color = (color >> 1) & 8355711;
+		if (color > 0)
+			ray->xpm->buffer[j][ray->i] = color;
+		j++;
+	}
+}
 
 //TUTORIAL LODEV
 
@@ -176,12 +176,12 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		compute_sidedist(ray);
 		compute_perpwalldist(ray);
 		compute_line_attributes(ray);
-		// compute_wallx(ray); //NEW
+		compute_wallx(ray); //NEW
 		//print_results_on_screen(ray, mlx);
-		// fill_buffer(ray); //NEW
+		fill_buffer(ray); //NEW
 		ray->i++;
 	}
-	//print_results_on_screen(); //NEW
+	print_results_on_screen(ray); //NEW
 	if (ray->minimap)
 		minimap(ray);
 	if (!ray->key.menu)
