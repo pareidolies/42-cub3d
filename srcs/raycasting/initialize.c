@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 18:28:11 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:48:12 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void initialize_all_values(t_ray *ray)
 	ray->key.menu = false;
 	ray->key.pos_menu = 0;
 	ray->move_speed = 0.1;
+	ray->rot_speed = 0.05;
 }
 
 int initialize_buffer(t_ray *ray)
@@ -88,7 +89,7 @@ void clear_buffer(int **buffer)
 	while (j < HEIGHT)
 	{
 		i = 0;
-		printf("%d\n", i);
+		// printf("%d\n", i);
 		while (i < WIDTH)
 		{
 			buffer[j][i] = 0;

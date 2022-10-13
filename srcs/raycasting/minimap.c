@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 18:25:51 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:39:03 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ static void	square_minimap(t_ray *ray, int x, int y, int color)
 	}
 }
 
-static void	get_pos_player(t_ray *ray, int pos_x, int pos_y)
+static void	get_pos_player(t_ray *ray, int *pos_x, int *pos_y)
 {
-	if (ray->revert_map[pos_x][pos_y] == '1')
+	if (ray->revert_map[*pos_x][*pos_y] == '1')
 	{
-		pos_x = ray->pos_map.x;
-		pos_y = ray->pos_map.y;
+		*pos_x = ray->pos_map.x;
+		*pos_y = ray->pos_map.y;
 	}
 	else
 	{
-		ray->pos_map.x = pos_x;
-		ray->pos_map.y = pos_y;
+		ray->pos_map.x = *pos_x;
+		ray->pos_map.y = *pos_y;
 	}
 }
 
@@ -68,7 +68,8 @@ static void	pos_player(t_ray *ray, int sq)
 	j = 1;
 	pos_x = (int)(ray->pos.x + (ray->dir.x * ray->move_speed * 2));
 	pos_y = (int)ray->pos.y;
-	get_pos_player(ray, pos_x, pos_y);
+	get_pos_player(ray, &pos_x, &pos_y);
+	// printf("minimap = %c\n", ray->revert_map[pos_x][pos_y]);
 	while (j < sq - 1)
 	{
 		ray->mlx->addr[((j + (pos_y * sq) + 20) * WIDTH)

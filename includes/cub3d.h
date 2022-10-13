@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 18:27:11 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:41:59 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define FOV 60
 # define PI 3.1415926535
 // # define MOVE_SPEED 0.1
-# define ROT_SPEED 0.033 * 1.8
+// # define ROT_SPEED 0.033 * 1.8
 
 # define MOVE_FORWARD 119
 # define MOVE_BACKWARD 115
@@ -194,6 +194,7 @@ typedef struct s_ray {
 
 	t_key	key;
 	double	move_speed;
+	double	rot_speed;
 	int			**textures;
 	t_xpm		*xpm;
 }				t_ray;

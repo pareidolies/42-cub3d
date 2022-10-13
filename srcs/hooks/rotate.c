@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:30 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 18:24:18 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:42:57 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static bool	rotate_left(t_ray *ray, bool reload, double old_p_x, double old_d_x)
 {
-	ray->dir.x = ray->dir.x * cos(-ROT_SPEED / 2)
-		- ray->dir.y * sin(-ROT_SPEED / 2);
-	ray->dir.y = old_d_x * sin(-ROT_SPEED / 2)
-		+ ray->dir.y * cos(-ROT_SPEED / 2);
-	ray->plane.x = ray->plane.x * cos(-ROT_SPEED / 2)
-		- ray->plane.y * sin(-ROT_SPEED / 2);
-	ray->plane.y = old_p_x * sin(-ROT_SPEED / 2)
-		+ ray->plane.y * cos(-ROT_SPEED / 2);
+	ray->dir.x = ray->dir.x * cos(-ray->rot_speed / 2)
+		- ray->dir.y * sin(-ray->rot_speed / 2);
+	ray->dir.y = old_d_x * sin(-ray->rot_speed / 2)
+		+ ray->dir.y * cos(-ray->rot_speed / 2);
+	ray->plane.x = ray->plane.x * cos(-ray->rot_speed / 2)
+		- ray->plane.y * sin(-ray->rot_speed / 2);
+	ray->plane.y = old_p_x * sin(-ray->rot_speed / 2)
+		+ ray->plane.y * cos(-ray->rot_speed / 2);
 	ray->key.mouse_l = false;
 	reload = true;
 	return (reload);
@@ -29,14 +29,14 @@ static bool	rotate_left(t_ray *ray, bool reload, double old_p_x, double old_d_x)
 
 static bool	rotate_right(t_ray *ray, bool rl, double old_p_x, double old_d_x)
 {
-	ray->dir.x = ray->dir.x * cos(ROT_SPEED / 2)
-		- ray->dir.y * sin(ROT_SPEED / 2);
-	ray->dir.y = old_d_x * sin(ROT_SPEED / 2)
-		+ ray->dir.y * cos(ROT_SPEED / 2);
-	ray->plane.x = ray->plane.x * cos(ROT_SPEED / 2)
-		- ray->plane.y * sin(ROT_SPEED / 2);
-	ray->plane.y = old_p_x * sin(ROT_SPEED / 2)
-		+ ray->plane.y * cos(ROT_SPEED / 2);
+	ray->dir.x = ray->dir.x * cos(ray->rot_speed / 2)
+		- ray->dir.y * sin(ray->rot_speed / 2);
+	ray->dir.y = old_d_x * sin(ray->rot_speed / 2)
+		+ ray->dir.y * cos(ray->rot_speed / 2);
+	ray->plane.x = ray->plane.x * cos(ray->rot_speed / 2)
+		- ray->plane.y * sin(ray->rot_speed / 2);
+	ray->plane.y = old_p_x * sin(ray->rot_speed / 2)
+		+ ray->plane.y * cos(ray->rot_speed / 2);
 	ray->key.mouse_r = false;
 	rl = true;
 	return (rl);

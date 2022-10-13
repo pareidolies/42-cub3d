@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 18:23:09 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:57:51 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,17 @@ static void	key_press_bis(int keycode, t_ray *ray)
 	{
 		// printf("TEST\n");
 		ray->key.pos_menu++;
-		if (ray->key.pos_menu == 2)
+		if (ray->key.pos_menu == 3)
 			ray->key.pos_menu = 0;
+		launch_raycasting(ray, ray->mlx);
+	}
+	else if (keycode == 65362 && ray->key.menu)
+	{
+		// printf("TEST\n");
+		ray->key.pos_menu--;
+		// printf("pos_menu = %d\n", ray->key.pos_menu);
+		if (ray->key.pos_menu == -1)
+			ray->key.pos_menu = 2;
 		launch_raycasting(ray, ray->mlx);
 	}
 	if (keycode == 101)
@@ -40,6 +49,13 @@ static void	key_press_bis(int keycode, t_ray *ray)
 			ray->minimap = false;
 		else
 			ray->minimap = true;
+		launch_raycasting(ray, ray->mlx);
+	}
+
+	// BACK GAME
+	if (keycode == 65293 && ray->key.menu && ray->key.pos_menu == 2)
+	{
+		ray->key.menu = false;
 		launch_raycasting(ray, ray->mlx);
 	}
 }
@@ -51,7 +67,10 @@ static void	key_press_bis(int keycode, t_ray *ray)
 
 int	key_press(int keycode, t_ray *ray)
 {
-	printf("keycode = %d\n", keycode);
+	// char	s[50];
+
+	// printf("keycode = %d\n", keycode);
+	bool refresh_menu = false;
 	if (keycode == MOVE_FORWARD)
 		ray->key.w = true;
 	if (keycode == MOVE_BACKWARD)
@@ -66,13 +85,42 @@ int	key_press(int keycode, t_ray *ray)
 		ray->key.rr = true;
 	if (keycode == ESC)
 		exit_safe(ray);
-	if (keycode == 109 || keycode == 101 || keycode == 65364)
+	if (keycode == 109 || keycode == 101 || keycode == 65364 || keycode == 65362 || keycode == 65293)
 		key_press_bis(keycode, ray);
+
+	// MOVE_SPEED
 	if (keycode == 65451 && ray->key.menu && ray->key.pos_menu == 0)
 	{
-		printf("OK\n");
-		ray->move_speed += 0.1;
+		ray->move_speed += 0.05;
+		if (ray->move_speed > 0.2)
+			ray->move_speed = 0.2;
+		refresh_menu = true;
 	}
+	if (keycode == 65453 && ray->key.menu && ray->key.pos_menu == 0)
+	{
+		ray->move_speed -= 0.025;
+		if (ray->move_speed <= 0.01)
+			ray->move_speed = 0.025;
+		refresh_menu = true;
+	}
+
+	//ROT_SPEED
+	if (keycode == 65451 && ray->key.menu && ray->key.pos_menu == 1)
+	{
+		ray->rot_speed += 0.01;
+		if (ray->rot_speed > 0.7)
+			ray->rot_speed = 0.7;
+		refresh_menu = true;
+	}
+	if (keycode == 65453 && ray->key.menu && ray->key.pos_menu == 1)
+	{
+		ray->rot_speed -= 0.01;
+		if (ray->rot_speed <= 0.001)
+			ray->rot_speed = 0.01;
+		refresh_menu = true;
+	}
+	if (refresh_menu)
+		launch_raycasting(ray, ray->mlx);
 	return (0);
 }
 
