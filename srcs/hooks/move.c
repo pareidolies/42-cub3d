@@ -6,46 +6,59 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:26 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/12 19:13:05 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:41:58 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-// void	move(int keycode, t_ray *ray, t_mlx *mlx)
-// {
-// 	if (keycode == MOVE_FORWARD)
-// 	{
-// 		if (ray->revert_map[(int)(ray->pos.x + (ray->dir.x * MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-// 			ray->pos.x += ray->dir.x * MOVE_SPEED;
-// 		if (ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y + (ray->dir.y * MOVE_SPEED * 2))] != '1')
-// 			ray->pos.y += ray->dir.y * MOVE_SPEED;
-// 	}
-// 	if (keycode == MOVE_BACKWARD)
-// 	{
-// 		if (ray->revert_map[(int)(ray->pos.x - (ray->dir.x * MOVE_SPEED * 2))][(int)(ray->pos.y)] != '1')
-// 			ray->pos.x -= ray->dir.x * MOVE_SPEED;
-// 		if (ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y - (ray->dir.y * MOVE_SPEED * 2))] != '1')
-// 			ray->pos.y -= ray->dir.y * MOVE_SPEED;
-// 	}
-// 	if (keycode == MOVE_RIGHTWARD)
-// 	{
-// 		if (ray->revert_map[(int)(ray->pos.x - ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-// 			ray->pos.x -= ray->dir.y * MOVE_SPEED;
-// 		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x * (MOVE_SPEED * 2))] != '1')
-// 			ray->pos.y += ray->dir.x * MOVE_SPEED;
-// 	}
-// 	if (keycode == MOVE_LEFTWARD)
-// 	{
-// 		if (ray->revert_map[(int)(ray->pos.x + ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-// 			ray->pos.x += ray->dir.y * MOVE_SPEED;
-// 		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x * (MOVE_SPEED * 2))] != '1')
-// 			ray->pos.y -= ray->dir.x * MOVE_SPEED;
-// 	}
-// 	launch_raycasting(ray, mlx);
-// }
+static bool	key_w(t_ray *ray, bool reload)
+{
+	if (ray->revert_map[(int)(ray->pos.x
+			+ (ray->dir.x * MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
+		ray->pos.x += ray->dir.x * MOVE_SPEED;
+	if (ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y
+		+ (ray->dir.y * MOVE_SPEED * 2))] != '1')
+		ray->pos.y += ray->dir.y * MOVE_SPEED;
+	reload = true;
+	return (reload);
+}
 
+static bool	key_s(t_ray *ray, bool reload)
+{
+	if (ray->revert_map[(int)(ray->pos.x
+			- (ray->dir.x * MOVE_SPEED * 2))][(int)(ray->pos.y)] != '1')
+		ray->pos.x -= ray->dir.x * MOVE_SPEED;
+	if (ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y
+		- (ray->dir.y * MOVE_SPEED * 2))] != '1')
+		ray->pos.y -= ray->dir.y * MOVE_SPEED;
+	reload = true;
+	return (reload);
+}
 
+static bool	key_d(t_ray *ray, bool reload)
+{
+	if (ray->revert_map[(int)(ray->pos.x - ray->dir.y
+			* (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
+		ray->pos.x -= ray->dir.y * MOVE_SPEED;
+	if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x
+		* (MOVE_SPEED * 2))] != '1')
+		ray->pos.y += ray->dir.x * MOVE_SPEED;
+	reload = true;
+	return (reload);
+}
+
+static bool	key_a(t_ray *ray, bool reload)
+{
+	if (ray->revert_map[(int)(ray->pos.x + ray->dir.y
+			* (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
+		ray->pos.x += ray->dir.y * MOVE_SPEED;
+	if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x
+		* (MOVE_SPEED * 2))] != '1')
+		ray->pos.y -= ray->dir.x * MOVE_SPEED;
+	reload = true;
+	return (reload);
+}
 
 int	move(t_ray *ray)
 {
@@ -53,58 +66,14 @@ int	move(t_ray *ray)
 
 	reload = false;
 	if (ray->key.w)
-	{
-		if (ray->revert_map[(int)(ray->pos.x + (ray->dir.x * MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-			ray->pos.x += ray->dir.x * MOVE_SPEED;
-		if (ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y + (ray->dir.y * MOVE_SPEED * 2))] != '1')
-			ray->pos.y += ray->dir.y * MOVE_SPEED;
-		reload = true;
-	}
+		reload = key_w(ray, reload);
 	if (ray->key.s)
-	{
-		if (ray->revert_map[(int)(ray->pos.x - (ray->dir.x * MOVE_SPEED * 2))][(int)(ray->pos.y)] != '1')
-			ray->pos.x -= ray->dir.x * MOVE_SPEED;
-		if (ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y - (ray->dir.y * MOVE_SPEED * 2))] != '1')
-			ray->pos.y -= ray->dir.y * MOVE_SPEED;
-		reload = true;
-	}
+		reload = key_s(ray, reload);
 	if (ray->key.d)
-	{
-		if (ray->revert_map[(int)(ray->pos.x - ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-			ray->pos.x -= ray->dir.y * MOVE_SPEED;
-		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x * (MOVE_SPEED * 2))] != '1')
-			ray->pos.y += ray->dir.x * MOVE_SPEED;
-		reload = true;
-	}
+		reload = key_d(ray, reload);
 	if (ray->key.a)
-	{
-		if (ray->revert_map[(int)(ray->pos.x + ray->dir.y * (MOVE_SPEED * 2))][(int)ray->pos.y] != '1')
-			ray->pos.x += ray->dir.y * MOVE_SPEED;
-		if (ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x * (MOVE_SPEED * 2))] != '1')
-			ray->pos.y -= ray->dir.x * MOVE_SPEED;
-		reload = true;
-	}
-	double	old_plane_x;
-	double	old_dir_x;
-
-	old_plane_x = ray->plane.x;
-	old_dir_x = ray->dir.x;
-	if (ray->key.rl)
-	{
-		ray->dir.x = ray->dir.x * cos(-ROT_SPEED / 2) - ray->dir.y * sin(-ROT_SPEED / 2);
-		ray->dir.y = old_dir_x * sin(-ROT_SPEED / 2) + ray->dir.y * cos(-ROT_SPEED / 2);
-		ray->plane.x = ray->plane.x * cos(-ROT_SPEED / 2) - ray->plane.y * sin(-ROT_SPEED / 2);
-		ray->plane.y = old_plane_x * sin(-ROT_SPEED / 2) + ray->plane.y * cos(-ROT_SPEED / 2);
-		reload = true;
-	}
-	if (ray->key.rr)
-	{
-		ray->dir.x = ray->dir.x * cos(ROT_SPEED / 2) - ray->dir.y * sin(ROT_SPEED / 2);
-		ray->dir.y = old_dir_x * sin(ROT_SPEED / 2) + ray->dir.y * cos(ROT_SPEED / 2);
-		ray->plane.x = ray->plane.x * cos(ROT_SPEED / 2) - ray->plane.y * sin(ROT_SPEED / 2);
-		ray->plane.y = old_plane_x * sin(ROT_SPEED / 2) + ray->plane.y * cos(ROT_SPEED / 2);
-		reload = true;
-	}
+		reload = key_a(ray, reload);
+	reload = rotate(ray, reload);
 	if (reload)
 		launch_raycasting(ray, ray->mlx);
 	return (0);

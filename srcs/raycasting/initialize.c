@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/12 19:15:24 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:43:48 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	initialize_all_values(t_ray *ray)
 	ray->lineheight = 0;
 	ray->drawstart = 0;
 	ray->drawend = 0;
-	ray->minimap = false;
+	ray->minimap = true;
 	ray->pos_map.x = 0;
 	ray->pos_map.y = 0;
 
@@ -50,6 +50,8 @@ void	initialize_all_values(t_ray *ray)
 	ray->key.d = false;
 	ray->key.rr = false;
 	ray->key.rl = false;
+	ray->key.mouse_l = false;
+	ray->key.mouse_r = false;
 	ray->key.menu = false;
 }
 

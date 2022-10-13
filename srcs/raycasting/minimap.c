@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 18:31:52 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:53:55 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	len_square(t_data *data)
 	int	res;
 
 	res = 10;
-	while ((res * data->len) > WIDTH || (res * data->height) > HEIGHT)
+	while ((res * data->len) > WIDTH / 4 || (res * data->height) > HEIGHT / 4)
 		res--;
 	return (res);
 }
@@ -26,14 +26,16 @@ static void	square(t_ray *ray, int x, int y, int color)
 {
 	int	i;
 	int	j;
+	int	sq;
 
 	i = 0;
 	j = 0;
-	while (j < 10)
+	sq = len_square(ray->data);
+	while (j < sq)
 	{
 		ray->mlx->addr[((y + j) * WIDTH) + (x + i)] = color;
 		i++;
-		if (i == 10)
+		if (i == sq)
 		{
 			i = 0;
 			j++;

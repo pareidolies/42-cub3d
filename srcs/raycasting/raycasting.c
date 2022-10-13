@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/12 19:14:16 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:53:36 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		compute_perpwalldist(ray);
 		compute_line_attributes(ray);
 		print_results_on_screen(ray, mlx);
-		//fill_buffer(); //NEW
+		// fill_buffer(); //NEW
 		ray->i++;
 	}
-	//print_results_on_screen(); //NEW
+	// print_results_on_screen(); //NEW
 	if (ray->minimap)
 		minimap(ray);
 	if (!ray->key.menu)

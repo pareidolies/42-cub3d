@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/12 19:15:49 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:26:28 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ typedef struct s_key {
 	bool	d;
 	bool	rr;
 	bool	rl;
+	bool	mouse_l;
+	bool	mouse_r;
 	bool	menu;
 }				t_key;
 
@@ -281,13 +283,11 @@ int		create_rgb(int r, int g, int b);
 //hooks.c
 int		key_press(int keycode, t_ray *ray);
 void	exit_safe(t_ray *ray);
-// void	move(int keycode, t_ray *ray, t_mlx *mlx);
 int		move(t_ray *ray);
-// void	rotate(int keycode, t_ray *ray, t_mlx *mlx);
-int		rotate(t_ray *ray);
+bool	rotate(t_ray *ray, bool reload);
 int		mouse_move(int x, int y, t_ray *ray);
+int		key_release(int keycode, t_ray *ray);
 
 
-int		keys_handler_bis(t_ray *ray);
 
 #endif
