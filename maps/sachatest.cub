@@ -1,7 +1,7 @@
-NO     ./textures/redbrick.xpm
-SO    ./textures/bluestone.xpm
-WE ./textures/greystone.xpm
-EA ./textures/purplestone.xpm
+NO     ./textures/metalwindows64.xpm
+SO    ./textures/metalwindows64.xpm
+WE ./textures/metalwindows64.xpm
+EA ./textures/metalwindows64.xpm
 
 
 

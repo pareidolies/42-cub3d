@@ -75,12 +75,12 @@ void	fill_buffer(t_ray *ray)
 	int	j;
 	int	color;
 
-	ray->xpm->tex.x = (int)(ray->wallx * ray->xpm->width);
+	ray->xpm->tex.x = (int)(ray->wallx * (double)ray->xpm->width);
 	if ((ray->side == HORIZONTAL && ray->raydir.x > 0)
 		|| (ray->side == VERTICAL && ray->raydir.y < 0))
 		ray->xpm->tex.x = ray->xpm->width - ray->xpm->tex.x - 1;
 	ray->xpm->step = 1.0 * ray->xpm->height / ray->lineheight; //
-	ray->xpm->pos = (ray->drawstart - HEIGHT / 2 + ray->lineheight / 2) * ray->xpm->step;
+	ray->xpm->pos = (ray->drawstart - (double)HEIGHT / 2 + (double)ray->lineheight / 2) * ray->xpm->step;
 	j = ray->drawstart;
 	while (j < ray->drawend)
 	{
