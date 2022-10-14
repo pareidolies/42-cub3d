@@ -71,8 +71,12 @@ void	compute_perpwalldist(t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = VERTICAL;
 		}
-		if (ray->revert_map[ray->map.x][ray->map.y] == '1')
+		if (ray->revert_map[ray->map.x][ray->map.y] == '1' || ray->revert_map[ray->map.x][ray->map.y] == '2')
+		{
 			ray->hit = WALL;
+			if (ray->revert_map[ray->map.x][ray->map.y] == '2')
+				ray->is_door = 1;
+		}
 	}
 	if (ray->side == HORIZONTAL)
 		//ray->perpwalldist = ((double)ray->map.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
@@ -84,7 +88,7 @@ void	compute_perpwalldist(t_ray *ray)
 
 void	compute_line_attributes(t_ray *ray)
 {
-	ray->lineheight = (int)(HEIGHT / ray->perpwalldist);
+	ray->lineheight = (int)(1.5 * HEIGHT / ray->perpwalldist);
 	ray->drawstart = -ray->lineheight / 2 + HEIGHT / 2;
 	if (ray->drawstart < 0)
 		ray->drawstart = 0;

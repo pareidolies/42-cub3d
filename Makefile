@@ -23,6 +23,7 @@ SRCS		=	main.c \
 				raycasting/start.c \
 				raycasting/menu.c \
 				raycasting/textures.c \
+				raycasting/doors.c \
 				hooks/exit.c \
 				hooks/keys.c \
 				hooks/move.c \

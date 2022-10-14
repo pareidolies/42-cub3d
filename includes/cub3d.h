@@ -112,6 +112,13 @@ typedef struct s_rgb {
 	int		b;
 }				t_rgb;
 
+typedef struct	s_door {
+	double	x;
+	double	y;
+	struct s_door	*next;
+	struct s_door	*prev;
+}		t_door;
+
 typedef struct s_data {
 	int				nbr_line_data;
 	char			*no;
@@ -189,6 +196,7 @@ typedef struct s_ray {
 	int			i;
 	// int			width;
 	// int			height;
+	int			is_door;
 	char		**revert_map;
 	bool		minimap;
 	t_minimap	pos_map;
@@ -199,6 +207,7 @@ typedef struct s_ray {
 	double	rot_speed;
 	int			**textures;
 	t_xpm		*xpm;
+	t_door		*door;
 }				t_ray;
 
 /******************************************************************************
@@ -302,5 +311,13 @@ void show_menu(t_ray *ray);
 int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
 int get_textures(t_ray *ray);
 
+
+//door.c
+
+t_door	*create_door(double x, double y);
+void	add_door(t_door *first, double x, double y);
+void    parse_doors(t_ray *ray);
+void    check_doors(t_ray *ray);
+void	print_doors(t_door *node);
 
 #endif

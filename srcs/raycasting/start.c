@@ -26,6 +26,8 @@ int	start_raycasting(t_data *data)
 	ray.mlx = &mlx;
 	initialize_all_values(&ray);
 	transpose_parsed_map_to_ray(&ray, data);
+	parse_doors(&ray); //DOORS
+	print_doors(ray.door); //DOORS
 	transpose_parsed_data_to_ray(&ray, data);
 	get_textures(&ray); //NEW
 	initialize_buffer(&ray); //NEW

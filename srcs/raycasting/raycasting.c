@@ -19,6 +19,7 @@ void	initialize_ray_i(t_ray *ray)
 	ray->camerax = 2 * ray->i / (double)WIDTH - 1;
 	ray->raydir.x = ray->dir.x + ray->plane.x * ray->camerax;
 	ray->raydir.y = ray->dir.y + ray->plane.y * ray->camerax;
+	ray->is_door = 0;
 	ray->map.x = (int)ray->pos.x;
 	ray->map.y = (int)ray->pos.y;
 }
@@ -67,6 +68,8 @@ void	compute_wallx(t_ray *ray)
 			ray->xpm->id = 3;
 		ray->wallx = ray->pos.x + ray->perpwalldist * ray->raydir.x;
 	}
+	if (ray->is_door == 1)
+		ray->xpm->id = 9;
 	ray->wallx -= floor(ray->wallx);
 }
 
@@ -148,9 +151,9 @@ void	print_results_on_screen(t_ray *ray)
 			if (ray->xpm->buffer[j][i] > 0)
 				ray->mlx->addr[j * WIDTH + i] = ray->xpm->buffer[j][i];
 			else if (j < HEIGHT / 2)
-				ray->mlx->addr[j * WIDTH + i] = create_rgb(f.r, f.g, f.b);
-			else
 				ray->mlx->addr[j * WIDTH + i] = create_rgb(c.r, c.g, c.b);
+			else
+				ray->mlx->addr[j * WIDTH + i] = create_rgb(f.r, f.g, f.b);
 			i++;
 		}
 		j++;
@@ -168,6 +171,8 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		return (1);
 	}
 	clear_buffer(ray->xpm->buffer);
+	if (ray->door)
+		check_doors(ray); //DOORS
 	ray->i = 0;
 	while (ray->i < WIDTH)
 	{

@@ -88,7 +88,7 @@ bool	line_only_char_map(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
+		if (line[i] != '0' && line[i] != '1' && line[i] != '2' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
 			&& line[i] != ' ')
 			return (false);
