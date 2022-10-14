@@ -31,25 +31,29 @@ static void	show_message_menu(int mess, char *mess_m, char *value, t_ray *ray)
 		color = create_rgb(0, 0, 0);
 	if (!value)
 	{
-		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.825, (HEIGHT / 4 * 1.6) + (mess * 20), color, mess_m);
+		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.825, (HEIGHT / 4 * 1.7) + (mess * 20), color, mess_m);
 		return ;
 	}
 	message = ft_strjoin(mess_m, value);
-	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.825, (HEIGHT / 4 * 1.6) + (mess * 20), color, message);
+	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.825, (HEIGHT / 4 * 1.7) + (mess * 20), color, message);
 	free(message);
+	free(value);
 }
 
 void show_menu(t_ray *ray)
 {
-	char	s[50];
+	char	*s;
 	
 	square(ray);
 	// printf("pos_menu = %d\n", ray->key.pos_menu);
 	// if (ray->key.pos_menu == 0)
 	// {
-		sprintf(s, "%f", ray->move_speed);
+		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.95, (HEIGHT / 4 * 1.6), create_rgb(0, 0, 0), "MENU");
+		// sprintf(s, "%f", ray->move_speed);
+		s = ft_itoa(ray->key.move_s);
 		show_message_menu(0, "MOVE SPEED :       ", s, ray);
-		sprintf(s, "%f", ray->rot_speed);
+		// sprintf(s, "%f", ray->rot_speed);
+		s = ft_itoa(ray->key.rotation_s);
 		show_message_menu(1, "ROTATION SPEED :   ", s, ray);
 		show_message_menu(2, "BACK TO THE GAME", NULL, ray);
 		// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 255, 0), "MOVE SPEED !");

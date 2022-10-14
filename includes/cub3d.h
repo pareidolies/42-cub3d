@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 19:41:59 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:57:03 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ typedef struct s_key {
 	bool	mouse_r;
 	bool	menu;
 	int		pos_menu;
+	int		move_s;
+	int		rotation_s;
 }				t_key;
 
 typedef struct s_xpm {

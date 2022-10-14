@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 19:48:12 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:10:48 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void initialize_all_values(t_ray *ray)
 	ray->key.pos_menu = 0;
 	ray->move_speed = 0.1;
 	ray->rot_speed = 0.05;
+	ray->key.move_s = 6;
+	ray->key.rotation_s = 5;
 }
 
 int initialize_buffer(t_ray *ray)

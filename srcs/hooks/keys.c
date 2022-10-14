@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 19:57:51 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:12:12 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,25 @@ int	key_press(int keycode, t_ray *ray)
 	if (keycode == 65451 && ray->key.menu && ray->key.pos_menu == 0)
 	{
 		ray->move_speed += 0.05;
+		ray->key.move_s++;
 		if (ray->move_speed > 0.2)
+		{
+			ray->key.move_s = 8;
 			ray->move_speed = 0.2;
+		}
+		// printf("test = %f\n", ray->move_speed);
 		refresh_menu = true;
 	}
 	if (keycode == 65453 && ray->key.menu && ray->key.pos_menu == 0)
 	{
 		ray->move_speed -= 0.025;
+		ray->key.move_s--;
 		if (ray->move_speed <= 0.01)
+		{
+			ray->key.move_s = 1;
 			ray->move_speed = 0.025;
+		}
+		// printf("test = %f\n", ray->move_speed);
 		refresh_menu = true;
 	}
 
@@ -108,15 +118,25 @@ int	key_press(int keycode, t_ray *ray)
 	if (keycode == 65451 && ray->key.menu && ray->key.pos_menu == 1)
 	{
 		ray->rot_speed += 0.01;
+		ray->key.rotation_s++;
 		if (ray->rot_speed > 0.7)
+		{
+			ray->key.rotation_s = 70;
 			ray->rot_speed = 0.7;
+		}
+		// printf("test = %f\n", ray->rot_speed);
 		refresh_menu = true;
 	}
 	if (keycode == 65453 && ray->key.menu && ray->key.pos_menu == 1)
 	{
 		ray->rot_speed -= 0.01;
+		ray->key.rotation_s--;
 		if (ray->rot_speed <= 0.001)
+		{
+			ray->key.rotation_s = 1;
 			ray->rot_speed = 0.01;
+		}
+		// printf("test = %f\n", ray->rot_speed);
 		refresh_menu = true;
 	}
 	if (refresh_menu)
