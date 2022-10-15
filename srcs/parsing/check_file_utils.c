@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:01:40 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/05 14:29:17 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:48:25 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ bool	check_format(char **arr)
 	if ((!ft_strncmp(arr[0], "NO", ft_strlen(arr[0]))
 			|| !ft_strncmp(arr[0], "SO", ft_strlen(arr[0]))
 			|| !ft_strncmp(arr[0], "WE", ft_strlen(arr[0]))
-			|| !ft_strncmp(arr[0], "EA", ft_strlen(arr[0])))
+			|| !ft_strncmp(arr[0], "EA", ft_strlen(arr[0]))
+			|| !ft_strncmp(arr[0], "D", ft_strlen(arr[0])))
 		&& i == 2)
 		return (true);
 	else if ((!ft_strncmp(arr[0], "F", ft_strlen(arr[0]))
@@ -58,6 +59,8 @@ int	is_data(char *data)
 		return (5);
 	else if (!ft_strncmp(data, "C", ft_strlen(data)))
 		return (6);
+	else if (!ft_strncmp(data, "D", ft_strlen(data)))
+		return (7);
 	return (0);
 }
 

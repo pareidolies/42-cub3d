@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:20:31 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/10 18:43:54 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:53:58 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	error_missing_data(t_data *root)
 		ft_printf("Data : WE is missing\n");
 	if (!root->ea)
 		ft_printf("Data : EA is missing\n");
+	if (!root->d)
+		ft_printf("Data : D is missing\n");
 	if (root->f.empty)
 		ft_printf("Data : F is missing\n");
 	if (root->c.empty)

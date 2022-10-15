@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/14 14:57:03 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:06:48 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_data {
 	char			*so;
 	char			*we;
 	char			*ea;
+	char			*d;
 	t_rgb			f;
 	t_rgb			c;
 	char			**map;
@@ -174,6 +175,68 @@ typedef struct s_xpm {
 	t_point	tex;
 }		t_xpm;
 
+typedef struct s_data_img {
+	int		width;
+	int		height;
+	void	*rot_speed_1;
+	void	*rot_speed_1s;
+	void	*rot_speed_2;
+	void	*rot_speed_2s;
+	void	*rot_speed_3;
+	void	*rot_speed_3s;
+	void	*rot_speed_4;
+	void	*rot_speed_4s;
+
+	void	*move_speed_1;
+	void	*move_speed_1s;
+	void	*move_speed_2;
+	void	*move_speed_2s;
+	void	*move_speed_3;
+	void	*move_speed_3s;
+	void	*move_speed_4;
+	void	*move_speed_4s;
+
+	void	*ceilling_0;
+	void	*ceilling_0s;
+	void	*ceilling_1;
+	void	*ceilling_1s;
+	void	*ceilling_2;
+	void	*ceilling_2s;
+	void	*ceilling_3;
+	void	*ceilling_3s;
+	void	*ceilling_4;
+	void	*ceilling_4s;
+	void	*ceilling_5;
+	void	*ceilling_5s;
+	void	*ceilling_6;
+	void	*ceilling_6s;
+	void	*ceilling_7;
+	void	*ceilling_7s;
+
+	void	*floor_0;
+	void	*floor_0s;
+	void	*floor_1;
+	void	*floor_1s;
+	void	*floor_2;
+	void	*floor_2s;
+	void	*floor_3;
+	void	*floor_3s;
+	void	*floor_4;
+	void	*floor_4s;
+	void	*floor_5;
+	void	*floor_5s;
+	void	*floor_6;
+	void	*floor_6s;
+	void	*floor_7;
+	void	*floor_7s;
+
+	void	*back_game;
+	void	*back_game_s;
+
+	void	*exit_game_s;
+	void	*exit_game;
+}				t_img;
+
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
@@ -203,6 +266,9 @@ typedef struct s_ray {
 	
 
 	t_key	key;
+	int		ceilling_color;
+	int		floor_color;
+	t_img	img_menu;
 	double	move_speed;
 	double	rot_speed;
 	int			**textures;
@@ -319,5 +385,12 @@ void	add_door(t_door *first, double x, double y);
 void    parse_doors(t_ray *ray);
 void    check_doors(t_ray *ray);
 void	print_doors(t_door *node);
+bool	move_speed_key(bool refresh_menu, t_ray *ray, int keycode);
+bool	rotation_speed(bool refresh_menu, t_ray *ray, int keycode);
+bool	ceilling_color_key(bool refresh_menu, t_ray *ray, int keycode);
+bool	floor_color_key(bool refresh_menu, t_ray *ray, int keycode);
+void	direction(int keycode, t_ray *ray);
+void	free_all_imgs(t_ray *ray);
+
 
 #endif

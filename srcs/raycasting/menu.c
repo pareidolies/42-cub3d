@@ -1,71 +1,140 @@
 #include "../includes/cub3d.h"
 
-void square(t_ray *ray)
+void	move_speed(t_ray *ray, int x, int y)
 {
-	int wi = (WIDTH / 4) * 2.3;
-	int he = (HEIGHT / 4) * 2.3;
-	int i = WIDTH / 4 * 1.7;
-	int j = HEIGHT / 4 * 1.5;
-	while (j < he)
-	{
-		ray->mlx->addr[(j * WIDTH) + i] = create_rgb(73, 150, 236);
-		i++;
-		if (i == wi)
-		{
-			i = WIDTH / 4 * 1.7;
-			j++;
-		}
-	}
-	mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->mlx->img, 0, 0);
-	// printf("TEST\n");
+	// printf("move_s = %d\npos_menu = %d\n", ray->key.move_s, ray->key.pos_menu);
+	if (ray->key.move_s == 1 && ray->key.pos_menu == 0)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_1s, x, y);
+	else if (ray->key.move_s == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_1, x, y);
+	else if (ray->key.move_s == 2 && ray->key.pos_menu == 0)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_2s, x, y);
+	else if (ray->key.move_s == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_2, x, y);
+	else if (ray->key.move_s == 3  && ray->key.pos_menu == 0)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_3s, x, y);
+	else if (ray->key.move_s == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_3, x, y);
+	else if (ray->key.move_s == 4 && ray->key.pos_menu == 0)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_4s, x, y);
+	else if (ray->key.move_s == 4)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.move_speed_4, x, y);
 }
 
-static void	show_message_menu(int mess, char *mess_m, char *value, t_ray *ray)
+void	rot_speed(t_ray *ray, int x, int y)
 {
-	int		color;
-	char	*message;
+	if (ray->key.rotation_s == 1 && ray->key.pos_menu == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_1s, x, y);
+	else if (ray->key.rotation_s == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_1, x, y);
+	else if (ray->key.rotation_s == 2 && ray->key.pos_menu == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_2s, x, y);
+	else if (ray->key.rotation_s == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_2, x, y);
+	else if (ray->key.rotation_s == 3 && ray->key.pos_menu == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_3s, x, y);
+	else if (ray->key.rotation_s == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_3, x, y);
+	else if (ray->key.rotation_s == 4 && ray->key.pos_menu == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_4s, x, y);
+	else if (ray->key.rotation_s == 4)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.rot_speed_4, x, y);
+}
 
-	if (mess == ray->key.pos_menu)
-		color = create_rgb(0, 255, 0);
+void	back_game(t_ray *ray, int x, int y)
+{
+	if (ray->key.pos_menu == 4)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.back_game_s, x, y);
 	else
-		color = create_rgb(0, 0, 0);
-	if (!value)
-	{
-		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.825, (HEIGHT / 4 * 1.7) + (mess * 20), color, mess_m);
-		return ;
-	}
-	message = ft_strjoin(mess_m, value);
-	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.825, (HEIGHT / 4 * 1.7) + (mess * 20), color, message);
-	free(message);
-	free(value);
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.back_game, x, y);
+}
+
+void	ceilling_color(t_ray *ray, int x, int y)
+{
+	if (ray->ceilling_color == 0 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_0s, x, y);
+	else if (ray->ceilling_color == 0)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_0, x, y);
+	else if (ray->ceilling_color == 1 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_1s, x, y);
+	else if (ray->ceilling_color == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_1, x, y);
+	else if (ray->ceilling_color == 2 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_2s, x, y);
+	else if (ray->ceilling_color == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_2, x, y);
+	else if (ray->ceilling_color == 3 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_3s, x, y);
+	else if (ray->ceilling_color == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_3, x, y);
+	else if (ray->ceilling_color == 4 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_4s, x, y);
+	else if (ray->ceilling_color == 4)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_4, x, y);
+	else if (ray->ceilling_color == 5 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_5s, x, y);
+	else if (ray->ceilling_color == 5)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_5, x, y);
+	else if (ray->ceilling_color == 6 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_6s, x, y);
+	else if (ray->ceilling_color == 6)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_6, x, y);
+	else if (ray->ceilling_color == 7 && ray->key.pos_menu == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_7s, x, y);
+	else if (ray->ceilling_color == 7)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.ceilling_7, x, y);
+}
+
+void	floor_color(t_ray *ray, int x, int y)
+{
+	if (ray->floor_color == 0 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_0s, x, y);
+	else if (ray->floor_color == 0)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_0, x, y);
+	else if (ray->floor_color == 1 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_1s, x, y);
+	else if (ray->floor_color == 1)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_1, x, y);
+	else if (ray->floor_color == 2 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_2s, x, y);
+	else if (ray->floor_color == 2)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_2, x, y);
+	else if (ray->floor_color == 3 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_3s, x, y);
+	else if (ray->floor_color == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_3, x, y);
+	else if (ray->floor_color == 4 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_4s, x, y);
+	else if (ray->floor_color == 4)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_4, x, y);
+	else if (ray->floor_color == 5 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_5s, x, y);
+	else if (ray->floor_color == 5)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_5, x, y);
+	else if (ray->floor_color == 6 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_6s, x, y);
+	else if (ray->floor_color == 6)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_6, x, y);
+	else if (ray->floor_color == 7 && ray->key.pos_menu == 3)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_7s, x, y);
+	else if (ray->floor_color == 7)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.floor_7, x, y);
+}
+
+void	exit_game(t_ray *ray, int x, int y)
+{
+	if (ray->key.pos_menu == 5)
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.exit_game_s, x, y);
+	else
+		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win, ray->img_menu.exit_game, x, y);
 }
 
 void show_menu(t_ray *ray)
 {
-	char	*s;
-	
-	square(ray);
-	// printf("pos_menu = %d\n", ray->key.pos_menu);
-	// if (ray->key.pos_menu == 0)
-	// {
-		mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 4 * 1.95, (HEIGHT / 4 * 1.6), create_rgb(0, 0, 0), "MENU");
-		// sprintf(s, "%f", ray->move_speed);
-		s = ft_itoa(ray->key.move_s);
-		show_message_menu(0, "MOVE SPEED :       ", s, ray);
-		// sprintf(s, "%f", ray->rot_speed);
-		s = ft_itoa(ray->key.rotation_s);
-		show_message_menu(1, "ROTATION SPEED :   ", s, ray);
-		show_message_menu(2, "BACK TO THE GAME", NULL, ray);
-		// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 255, 0), "MOVE SPEED !");
-		// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2 + 90, HEIGHT / 2 + 20, create_rgb(0, 255, 0), s);
-	// }
-	// else
-		// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 20, create_rgb(0, 0, 0), "MOVE SPEED !");
-	// if (ray->key.pos_menu == 1)
-	// 	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 35, create_rgb(0, 255, 0), "HELLO !");
-	// else
-	// 	mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 35, create_rgb(0, 0, 0), "HELLO !");
-	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 50, create_rgb(0, 0, 0), "HELLO !");
-	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 65, create_rgb(0, 0, 0), "HELLO !");
-	// mlx_string_put(ray->mlx->ptr, ray->mlx->win, WIDTH / 2, HEIGHT / 2 + 80, create_rgb(0, 0, 0), "HELLO !");
+	move_speed(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.2));
+	rot_speed(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.5));
+	ceilling_color(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.8));
+	floor_color(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 2.1));
+	back_game(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 2.4));
+	exit_game(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 2.7));
 }

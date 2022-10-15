@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:58:51 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 16:25:21 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:17:14 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_struct(t_data *root)
 	root->so = NULL;
 	root->we = NULL;
 	root->ea = NULL;
+	root->d = NULL;
 	root->f.empty = true;
 	root->c.empty = true;
 	root->map = NULL;
@@ -36,6 +37,8 @@ void	free_struct_exit(t_data *root)
 		free(root->we);
 	if (root->ea)
 		free(root->ea);
+	if (root->d)
+		free(root->d);
 	if (root->map)
 		free_double_array(root->map);
 	exit(1);
@@ -51,6 +54,8 @@ void	free_struct(t_data *root)
 		free(root->we);
 	if (root->ea)
 		free(root->ea);
+	if (root->d)
+		free(root->d);
 	if (root->map)
 		free_double_array(root->map);
 }
@@ -58,7 +63,7 @@ void	free_struct(t_data *root)
 bool	all_data_set(t_data *root)
 {
 	if (root->no && root->so && root->we && root->ea
-		&& !root->f.empty && !root->c.empty)
+		&& root->d && !root->f.empty && !root->c.empty)
 		return (true);
 	return (false);
 }

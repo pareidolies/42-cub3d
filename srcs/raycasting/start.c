@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:03 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 16:03:26 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 20:12:40 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	start_raycasting(t_data *data)
 	initialize_all_values(&ray);
 	transpose_parsed_map_to_ray(&ray, data);
 	parse_doors(&ray); //DOORS
-	print_doors(ray.door); //DOORS
+	// print_doors(ray.door); //DOORS
 	transpose_parsed_data_to_ray(&ray, data);
 	get_textures(&ray); //NEW
 	initialize_buffer(&ray); //NEW
@@ -40,6 +40,7 @@ int	start_raycasting(t_data *data)
 	mlx_hook(ray.mlx->win, 6, 1L << 6, mouse_move, &ray);
 	// mlx_mouse_hide(mlx.ptr, mlx.win); // La fonction cree des leaks :(
 	mlx_loop(ray.mlx->ptr);
+	free_all_imgs(&ray);
 	mlx_destroy_window(ray.mlx->ptr, ray.mlx->win);
 	mlx_destroy_display(ray.mlx->ptr);
 	free(ray.mlx->ptr);

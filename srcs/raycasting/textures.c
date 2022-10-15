@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:26:55 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 16:06:48 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:41:19 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx)
 	int		x;
 	int		y;
 
-    printf("path : %s\n", path);
+    // printf("path : %s\n", path);
 	img = mlx_xpm_file_to_image(mlx->ptr, path, &ray->xpm->width, &ray->xpm->height);
 	if (!img)
     {

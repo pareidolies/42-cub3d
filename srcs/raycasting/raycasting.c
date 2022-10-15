@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/13 16:05:25 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:28:54 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,19 +130,55 @@ for(int y = drawStart; y<drawEnd; y++)
         buffer[y][x] = color;
 }*/
 
+
+	// 0 default
+	// 1 rouge
+	// 2 jaune
+	// 3 vert
+	// 4 bleu
+	// 5 gris
+	// 6 noir
+	// 7 blanc
+
+
+int	get_color(int color, t_ray *ray, char c)
+{
+	if (color == 0)
+	{
+		if (c == 'c')
+			return (create_rgb(ray->data->c.r, ray->data->c.g, ray->data->c.b));
+		return (create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b));
+	}
+	else if (color == 1)
+		return (create_rgb(255, 0, 0));
+	else if (color == 2)
+		return (create_rgb(255, 255, 0));
+	else if (color == 3)
+		return (create_rgb(0, 255, 0));
+	else if (color == 4)
+		return (create_rgb(0, 0, 255));
+	else if (color == 5)
+		return (create_rgb(128, 128, 128));
+	else if (color == 6)
+		return (create_rgb(0, 0, 0));
+	return (create_rgb(255, 255, 255));
+}
+
+
+
 void	print_results_on_screen(t_ray *ray)
 {
-	int		i;
-	int		j;
-	t_rgb	c;
-	t_rgb	f;
+	int	i;
+	int	j;
+	int	color_ceilling;
+	int	color_floor;
 
 	ray->mlx->addr = (int *)mlx_get_data_addr(ray->mlx->img, &ray->mlx->bpp,
 			&ray->mlx->line_length, &ray->mlx->endian);
 	i = 0;
 	j = 0;
-	c = ray->data->c;
-	f = ray->data->f;
+	color_ceilling = get_color(ray->ceilling_color, ray, 'c');
+	color_floor = get_color(ray->floor_color, ray, 'f');
 	while (j < HEIGHT)
 	{
 		i = 0;
@@ -151,9 +187,9 @@ void	print_results_on_screen(t_ray *ray)
 			if (ray->xpm->buffer[j][i] > 0)
 				ray->mlx->addr[j * WIDTH + i] = ray->xpm->buffer[j][i];
 			else if (j < HEIGHT / 2)
-				ray->mlx->addr[j * WIDTH + i] = create_rgb(c.r, c.g, c.b);
+				ray->mlx->addr[j * WIDTH + i] = color_ceilling;
 			else
-				ray->mlx->addr[j * WIDTH + i] = create_rgb(f.r, f.g, f.b);
+				ray->mlx->addr[j * WIDTH + i] = color_floor;
 			i++;
 		}
 		j++;

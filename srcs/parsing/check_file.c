@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:19:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 15:34:00 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:49:23 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	get_data(t_data *root, char *line, char **arr, char *map)
 		root->we = ft_strdup(arr[1]);
 	else if (is_data(arr[0]) == 4 && !root->ea)
 		root->ea = ft_strdup(arr[1]);
+	else if (is_data(arr[0]) == 7 && !root->d)
+		root->d = ft_strdup(arr[1]);
 	else if ((is_data(arr[0]) == 5 && root->f.empty)
 		|| (is_data(arr[0]) == 6 && root->c.empty))
 		cpy_rgb(root, line);

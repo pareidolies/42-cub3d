@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:17:23 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/14 18:17:26 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/15 16:40:47 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void    parse_doors(t_ray *ray)
                     door = create_door((double)(i) + 0.5, (double)j + 0.5);
                 else
                     add_door(door, (double)(i) + 0.5, (double)j + 0.5);
-                printf("coucou\n");
+                // printf("coucou\n");
             }
             i++;
         }
         j++;
     }
-    print_doors(door);
+    // print_doors(door);
     ray->door = door;
 }
 

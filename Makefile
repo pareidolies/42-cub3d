@@ -26,8 +26,10 @@ SRCS		=	main.c \
 				raycasting/doors.c \
 				hooks/exit.c \
 				hooks/keys.c \
+				hooks/keys_bis.c \
 				hooks/move.c \
 				hooks/rotate.c \
+				hooks/free_imgs.c \
 
 SRCS_DIR	= srcs
 

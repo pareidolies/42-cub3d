@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/13 18:39:03 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/15 18:33:43 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	get_pos_player(t_ray *ray, int *pos_x, int *pos_y)
 	if (ray->revert_map[*pos_x][*pos_y] == '1')
 	{
 		*pos_x = ray->pos_map.x;
-		*pos_y = ray->pos_map.y;
+		ray->pos_map.y = *pos_y;
 	}
 	else
 	{
@@ -68,6 +68,7 @@ static void	pos_player(t_ray *ray, int sq)
 	j = 1;
 	pos_x = (int)(ray->pos.x + (ray->dir.x * ray->move_speed * 2));
 	pos_y = (int)ray->pos.y;
+	// printf("x = %d y = %d\n", pos_x, pos_y);
 	get_pos_player(ray, &pos_x, &pos_y);
 	// printf("minimap = %c\n", ray->revert_map[pos_x][pos_y]);
 	while (j < sq - 1)
@@ -99,6 +100,9 @@ void	minimap(t_ray *ray)
 		if (ray->data->map[i][j] == '1')
 			square_minimap(ray, (j * sq) + 20, (i * sq) + 20,
 				create_rgb(128, 128, 128));
+		else if (ray->data->map[i][j] == '2')
+			square_minimap(ray, (j * sq) + 20, (i * sq) + 20,
+				create_rgb(128, 255, 0));
 		else
 			square_minimap(ray, (j * sq) + 20, (i * sq) + 20, create_rgb(0, 0, 255));
 		j++;
