@@ -1,0 +1,18 @@
+NO     ./textures/blackstone256.xpm
+SO    ./textures/blackstone256.xpm
+WE ./textures/metalwindows256.xpm
+EA ./textures/vitraux256.xpm
+D dgfg
+
+
+F 22,22,22
+
+C 14,0,32
+
+11111111
+10000001
+10022001222
+10000001
+1000N001
+10000001
+11111111

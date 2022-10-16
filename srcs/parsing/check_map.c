@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 15:36:43 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:11:12 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static bool	check_around_bis(int i, int j, t_data *root)
 static void	check_around(int i, int j, t_data *root, t_map *data_map)
 {
 	if ((i - 1 == -1 || i + 2 > len_double_array(root->map))
-		|| (j - 1 == -1 || j + 1 > data_map->len_line_max)
+		|| (j - 1 == -1 || j + 1 >= data_map->len_line_max)
 		|| !check_around_bis(i, j, root))
 	{
 		check_first_error(root);
@@ -116,6 +116,6 @@ void	check_array(t_data *root, t_map *data_map)
 	}
 	if (root->err)
 		free_struct_exit(root);
-	if (!root->err)
-		get_final_arr(root);
+	get_final_arr(root);
+	err_parsing_doors(root, data_map);
 }

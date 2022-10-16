@@ -3,6 +3,7 @@ SRCS		=	main.c \
 				utils/get_next_line.c \
 				utils/get_next_line_utils.c \
 				parsing/struct_utils.c \
+				parsing/check_doors.c \
 				parsing/check_file_utils.c \
 				parsing/check_file_utils_bis.c \
 				parsing/check_rgb.c \
@@ -17,11 +18,13 @@ SRCS		=	main.c \
 				raycasting/raycasting.c \
 				raycasting/computation.c \
 				raycasting/minimap.c \
+				raycasting/minimap_utils.c \
 				raycasting/transpose.c \
 				raycasting/initialize.c \
 				raycasting/debug.c \
 				raycasting/start.c \
 				raycasting/menu.c \
+				raycasting/menu_utils.c \
 				raycasting/textures.c \
 				raycasting/doors.c \
 				hooks/exit.c \

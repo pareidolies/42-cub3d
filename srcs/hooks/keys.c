@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/15 19:24:30 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:49:11 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	pos_menu(int keycode, t_ray *ray)
 {
-	if (keycode == 65364)
+	if (keycode == 65364 && ray->key.menu)
 	{
 		ray->key.pos_menu++;
 		if (ray->key.pos_menu == 6)
 			ray->key.pos_menu = 0;
 		launch_raycasting(ray, ray->mlx);
 	}
-	else if (keycode == 65362)
+	else if (keycode == 65362 && ray->key.menu)
 	{
 		ray->key.pos_menu--;
 		if (ray->key.pos_menu == -1)
@@ -40,7 +40,7 @@ static void	pos_menu(int keycode, t_ray *ray)
 
 static void	key_press_bis(int keycode, t_ray *ray)
 {
-	if (keycode == 109)
+	if (keycode == 109 && HEIGHT >= 800)
 	{
 		if (ray->key.menu)
 		{
@@ -51,8 +51,7 @@ static void	key_press_bis(int keycode, t_ray *ray)
 			ray->key.menu = true;
 		launch_raycasting(ray, ray->mlx);
 	}
-	else if ((keycode == 65364 || keycode == 65362 || keycode == 101)
-		&& ray->key.menu)
+	else if ((keycode == 65364 || keycode == 65362 || keycode == 101))
 		pos_menu(keycode, ray);
 	if (keycode == 65293 && ray->key.menu && ray->key.pos_menu == 4)
 	{

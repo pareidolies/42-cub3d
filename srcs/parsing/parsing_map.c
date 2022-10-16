@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:59:53 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 15:43:25 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:06:13 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void	check_map(t_map *data_map, t_data *root, char *map)
 	{
 		check_first_error(root);
 		if (data_map->end_line - data_map->start_line <= 2)
-			ft_printf("The minimum heigh of the map is\n");
+			ft_printf("The minimum heigh of the map is 3\n");
 		if (data_map->len_line_max <= 2)
-			ft_printf("The minimum lenght of the map is\n");
+			ft_printf("The minimum lenght of the map is 3\n");
 	}
 }

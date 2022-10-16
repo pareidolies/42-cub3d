@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/15 20:06:48 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:41:21 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ typedef struct s_rgb {
 	int		b;
 }				t_rgb;
 
-typedef struct	s_door {
-	double	x;
-	double	y;
+typedef struct s_door {
+	double			x;
+	double			y;
 	struct s_door	*next;
 	struct s_door	*prev;
 }		t_door;
@@ -263,14 +263,12 @@ typedef struct s_ray {
 	char		**revert_map;
 	bool		minimap;
 	t_minimap	pos_map;
-	
-
-	t_key	key;
-	int		ceilling_color;
-	int		floor_color;
-	t_img	img_menu;
-	double	move_speed;
-	double	rot_speed;
+	t_key		key;
+	int			ceilling_color;
+	int			floor_color;
+	t_img		img_menu;
+	double		move_speed;
+	double		rot_speed;
 	int			**textures;
 	t_xpm		*xpm;
 	t_door		*door;
@@ -370,20 +368,18 @@ int		mouse_move(int x, int y, t_ray *ray);
 int		key_release(int keycode, t_ray *ray);
 
 //menu.c
-void square(t_ray *ray);
-void show_menu(t_ray *ray);
+void	square(t_ray *ray);
+void	show_menu(t_ray *ray);
 
 //textures.c
-int	*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
-int get_textures(t_ray *ray);
-
+int		*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
+int		get_textures(t_ray *ray);
 
 //door.c
-
 t_door	*create_door(double x, double y);
 void	add_door(t_door *first, double x, double y);
-void    parse_doors(t_ray *ray);
-void    check_doors(t_ray *ray);
+void	parse_doors(t_ray *ray);
+void	check_doors(t_ray *ray);
 void	print_doors(t_door *node);
 bool	move_speed_key(bool refresh_menu, t_ray *ray, int keycode);
 bool	rotation_speed(bool refresh_menu, t_ray *ray, int keycode);
@@ -391,6 +387,9 @@ bool	ceilling_color_key(bool refresh_menu, t_ray *ray, int keycode);
 bool	floor_color_key(bool refresh_menu, t_ray *ray, int keycode);
 void	direction(int keycode, t_ray *ray);
 void	free_all_imgs(t_ray *ray);
-
+void	err_parsing_doors(t_data *root, t_map *data_map);
+void	ceilling_color(t_ray *ray, int x, int y);
+void	floor_color(t_ray *ray, int x, int y);
+int		len_square(t_data *data);
 
 #endif
