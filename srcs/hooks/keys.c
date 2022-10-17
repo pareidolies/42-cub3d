@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:21 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/16 17:49:11 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:22:44 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	pos_menu(int keycode, t_ray *ray)
 
 static void	key_press_bis(int keycode, t_ray *ray)
 {
-	if (keycode == 109 && HEIGHT >= 800)
+	if (keycode == 109 && HEIGHT >= 800 && WIDTH >= 500)
 	{
 		if (ray->key.menu)
 		{
