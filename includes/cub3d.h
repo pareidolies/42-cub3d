@@ -249,6 +249,16 @@ typedef struct s_sprite {
 	double			*distance;
 	int				nbr;
 	t_coordinates	*tab;
+	t_vector		transform;
+	double			invdet;
+	int				screenx;
+	int				height;
+	int				width;
+	t_point			drawstart;
+	t_point			drawend;
+	t_point			tex;
+	int				d;
+	int				color;
 }				t_sprite;
 
 typedef struct s_ray {
@@ -287,7 +297,7 @@ typedef struct s_ray {
 	t_xpm		*xpm;
 	t_door		*door;
 	t_sprite	*sprite;
-	double	zbuffer[WIDTH]; //for sprites
+	double		zbuffer[WIDTH]; //for sprites
 }				t_ray;
 
 /******************************************************************************

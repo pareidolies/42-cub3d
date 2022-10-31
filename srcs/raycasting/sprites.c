@@ -110,11 +110,80 @@ void    sort_sprites(t_ray *ray, t_sprite *sprite)
     }
 }
 
-/*void    draw_sprites(t_ray *ray, t_sprite *sprite)
+void    draw_sprites(t_ray *ray, t_sprite *sprite)
 {
+    int i;
+    int stripe;
+    int pixel;
+    double  x;
+    double  y;
+    //after sorting the sprites, do the projection and draw them
 
+    i = 0;
+    while (i < sprite->nbr)
+    {
+        //translate sprite position to relative to camera
+        x = sprite->tab[sprite->order[i]].x - ray->pos.x;
+        y = sprite->tab[sprite->order[i]].y - ray->pos.y;
 
-}*/
+        //transform sprite with the inverse camera matrix
+        // [ planeX   dirX ] -1                                       [ dirY      -dirX ]
+        // [               ]       =  1/(planeX*dirY-dirX*planeY) *   [                 ]
+        // [ planeY   dirY ]                                          [ -planeY  planeX ]
+
+        sprite->invdet = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y); //required for correct matrix multiplication
+        sprite->transform.x = sprite->invdet * (ray->dir.y * x - ray->dir.x * y);
+        sprite->transform.y = sprite->invdet * (-ray->plane.y * x + ray->plane.x * y); //this is actually the depth inside the screen, that what Z is in 3D
+
+        sprite->screenx= (int)((WIDTH / 2) * (1 + sprite->transform.x / sprite->transform.y));
+
+        //calculate height of the sprite on screen
+        sprite->height = abs((int)(HEIGHT / (sprite->transform.y))); //using 'transformY' instead of the real distance prevents fisheye
+        //calculate lowest and highest pixel to fill in current stripe
+        sprite->drawstart.y = -sprite->height / 2 + HEIGHT / 2;
+        if(sprite->drawstart.y < 0) 
+            sprite->drawstart.y = 0;
+        sprite->drawend.y = sprite->height / 2 + HEIGHT / 2;
+        if(sprite->drawend.y >= HEIGHT)
+            sprite->drawend.y = HEIGHT - 1;
+
+        //calculate width of the sprite
+        sprite->width = abs((int)(HEIGHT / (sprite->transform.y)));
+        sprite->drawstart.x = -sprite->width / 2 + sprite->screenx;
+        if(sprite->drawstart.x < 0)
+            sprite->drawstart.x = 0;
+        sprite->drawend.x = sprite->width / 2 + sprite->screenx;
+        if(sprite->drawend.x >= WIDTH)
+            sprite->drawend.x = WIDTH - 1;
+
+        //loop through every vertical stripe of the sprite on screen
+        stripe = sprite->drawstart.x;
+        while (stripe < sprite->drawend.x)
+        {
+            sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2 + sprite->screenx)) * ray->xpm->width / sprite->width) / 256;
+            //the conditions in the if are:
+            //1) it's in front of camera plane so you don't see things behind you
+            //2) it's on the screen (left)
+            //3) it's on the screen (right)
+            //4) ZBuffer, with perpendicular distance
+            if(sprite->transform.y > 0 && stripe > 0 && stripe < WIDTH && sprite->transform.y < ray->zbuffer[stripe])
+            {
+                pixel = sprite->drawstart.y;
+                while (pixel < sprite->drawend.y) //for every pixel of the current stripe
+                {
+                    sprite->d = pixel * 256 - HEIGHT * 128 + sprite->height * 128; //256 and 128 factors to avoid floats
+                    sprite->tex.y = ((sprite->d * ray->xpm->height) / sprite->height) / 256;
+                    sprite->color = ray->textures[sprite->tab[sprite->order[i]].texture][ray->xpm->width * sprite->tex.y + sprite->tex.x]; //get current color from the texture
+                    if((sprite->color & 0x00FFFFFF) != 0)
+                        ray->xpm->buffer[pixel][stripe] = sprite->color; //paint pixel if it isn't black, black is the invisible color
+                    pixel++;
+                }
+            }
+            stripe++;
+        }
+        i++;
+    }
+}
 
 void    add_sprites(t_ray *ray)
 {
@@ -129,4 +198,5 @@ void    add_sprites(t_ray *ray)
     printf("x : %f\n", sprite.tab[1].x);
     printf("y : %f\n", sprite.tab[1].y);
     sort_sprites(ray, &sprite);
+    draw_sprites(ray, &sprite);
 }
