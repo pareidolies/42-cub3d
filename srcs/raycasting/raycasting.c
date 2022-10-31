@@ -223,7 +223,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		fill_buffer(ray); //NEW
 		ray->i++;
 	}
-	//SPRITES
+	add_sprites(ray);
 	print_results_on_screen(ray); //NEW
 	if (ray->minimap)
 		minimap(ray);

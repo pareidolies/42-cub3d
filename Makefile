@@ -23,6 +23,7 @@ SRCS		=	main.c \
 				raycasting/initialize.c \
 				raycasting/debug.c \
 				raycasting/start.c \
+				raycasting/sprites.c \
 				features/menu.c \
 				features/menu_utils.c \
 				raycasting/textures.c \

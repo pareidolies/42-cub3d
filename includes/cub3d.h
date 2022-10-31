@@ -408,4 +408,7 @@ void	ceilling_color(t_ray *ray, int x, int y);
 void	floor_color(t_ray *ray, int x, int y);
 int		len_square(t_data *data);
 
+//sprites.c
+void	add_sprites(t_ray *ray);
+
 #endif

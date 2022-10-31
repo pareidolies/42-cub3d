@@ -78,7 +78,7 @@ static void	parsing_map(t_map *data_map, t_data *root, char *map)
 			check_first_error(root);
 			if (!line_only_char_map(line))
 				ft_printf("At line %d, map must contain only one of\
- these characters : 0, 1, N, S, E, W or space\n", data_map->end_line);
+ these characters : 0, 1, N, S, E, W or space\n", data_map->end_line); //or 2 3 4
 			else
 				ft_printf("At line %d, map is separated by an empty line\
  or finish with many empty lines\n", data_map->end_line);

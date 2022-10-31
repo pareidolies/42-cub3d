@@ -12,10 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-
-
-
-
 int	start_raycasting(t_data *data)
 {
 	t_ray	ray;
