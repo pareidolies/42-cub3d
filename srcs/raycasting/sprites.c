@@ -174,8 +174,10 @@ void    draw_sprites(t_ray *ray, t_sprite *sprite)
                     sprite->d = pixel * 256 - HEIGHT * 128 + sprite->height * 128; //256 and 128 factors to avoid floats
                     sprite->tex.y = ((sprite->d * ray->texture[sprite->tab[sprite->order[i]].texture].height) / sprite->height) / 256;
                     sprite->color = ray->texture[sprite->tab[sprite->order[i]].texture].tab[ray->texture[sprite->tab[sprite->order[i]].texture].width * sprite->tex.y + sprite->tex.x]; //get current color from the texture
-                    if((sprite->color & 0x00FFFFFF) != 0)
-                        ray->xpm->buffer[pixel][stripe] = sprite->color; //paint pixel if it isn't black, black is the invisible color
+                    if((sprite->color & 0x00FFFFFF) != 0 && (sprite->tab[sprite->order[i]].texture == 5))
+                        ray->xpm->buffer[pixel + ray->levitation][stripe] = sprite->color; //paint pixel if it isn't black, black is the invisible color
+                    else if((sprite->color & 0x00FFFFFF) != 0 && (sprite->tab[sprite->order[i]].texture == 6))
+                        ray->xpm->buffer[pixel - ray->levitation][stripe] = sprite->color;
                     pixel++;
                 }
             }

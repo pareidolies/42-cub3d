@@ -69,11 +69,23 @@ static bool	key_a(t_ray *ray, bool reload)
 	return (reload);
 }
 
+static bool	key_space(t_ray *ray)
+{
+	if ((ray->frame_time % 5 == 0) && (ray->up == 0))
+		ray->levitation = ray->levitation + 3;
+	else if ((ray->frame_time % 5 == 0) && (ray->up == 1))
+		ray->levitation = ray->levitation - 3;
+	if (ray->frame_time % 200 == 0)
+		ray->up = (ray->up == 0);
+	return (true);
+}
+
 int	move(t_ray *ray)
 {
 	bool	reload;
 
 	reload = false;
+	ray->frame_time++;
 	if (ray->key.menu)
 		return (1);
 	if (ray->key.w)
@@ -84,6 +96,8 @@ int	move(t_ray *ray)
 		reload = key_d(ray, reload);
 	if (ray->key.a)
 		reload = key_a(ray, reload);
+	if (ray->key.space)
+		reload = key_space(ray);
 	reload = rotate(ray, reload);
 	if (reload)
 		launch_raycasting(ray, ray->mlx);

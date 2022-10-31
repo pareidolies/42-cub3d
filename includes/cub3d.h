@@ -160,6 +160,7 @@ typedef struct s_key {
 	bool	mouse_l;
 	bool	mouse_r;
 	bool	menu;
+	bool	space;
 	int		pos_menu;
 	int		move_s;
 	int		rotation_s;
@@ -304,6 +305,9 @@ typedef struct s_ray {
 	t_door		*door;
 	t_sprite	*sprite;
 	double		zbuffer[WIDTH]; //for sprites
+	int			levitation;
+	long		frame_time;
+	int			up;
 }				t_ray;
 
 /******************************************************************************

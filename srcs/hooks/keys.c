@@ -100,6 +100,8 @@ int	key_release(int keycode, t_ray *ray)
 		ray->key.rl = false;
 	if (keycode == ROTATE_RIGHT)
 		ray->key.rr = false;
+	if (keycode == SPACE)
+		ray->key.space = false;
 	return (0);
 }
 

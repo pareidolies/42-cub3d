@@ -6,13 +6,13 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:13:28 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/31 17:13:30 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/31 19:23:31 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int initialize_mlx(t_mlx *mlx)
+int	initialize_mlx(t_mlx *mlx)
 {
 	mlx->ptr = mlx_init();
 	if (!mlx->ptr)
@@ -29,7 +29,7 @@ int initialize_mlx(t_mlx *mlx)
 	return (0);
 }
 
-void initialize_all_values(t_ray *ray)
+void	initialize_all_values(t_ray *ray)
 {
 	ray->dir.x = 0;
 	ray->dir.y = 0;
@@ -42,14 +42,15 @@ void initialize_all_values(t_ray *ray)
 	ray->minimap = true;
 	ray->pos_map.x = 0;
 	ray->pos_map.y = 0;
+	ray->frame_time = 0;
+	ray->levitation = 0;
 	initialize_all_values_bis(ray);
 	init_img_menu(ray);
 }
 
-int initialize_buffer(t_ray *ray)
+int	initialize_buffer(t_ray *ray)
 {
-	// printf("initialize\n");
-	int i;
+	int	i;
 
 	ray->xpm->buffer = malloc(sizeof(int *) * (HEIGHT + 1));
 	if (!ray->xpm->buffer)
@@ -69,16 +70,15 @@ int initialize_buffer(t_ray *ray)
 	return (0);
 }
 
-void clear_buffer(int **buffer)
+void	clear_buffer(int **buffer)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	while (j < HEIGHT)
 	{
 		i = 0;
-		// printf("%d\n", i);
 		while (i < WIDTH)
 		{
 			buffer[j][i] = 0;
@@ -88,7 +88,7 @@ void clear_buffer(int **buffer)
 	}
 }
 
-void print_buffer(int **buffer)
+void	print_buffer(int **buffer)
 {
 	int	i;
 	int	j;

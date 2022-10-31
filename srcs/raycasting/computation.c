@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:12:29 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/31 17:12:35 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/10/31 19:21:37 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,6 @@ void	compute_sidedist(t_ray *ray)
 		ray->step.y = 1;
 		ray->sidedist.y = (ray->map.y + 1.0 - ray->pos.y) * ray->deltadist.y;
 	}
-	/*if (ray->i == 150)
-	{
-		printf("POS 1 x : %f\n", ray->pos.x - ray->map.x);
-		printf("POS 2 x : %f\n", (ray->map.x + 1.0 - ray->pos.x));
-		printf("POS 3 y : %f\n", (ray->pos.y - ray->map.y));
-		printf("POS 4 y : %f\n", (ray->map.y + 1.0 - ray->pos.y));
-	}*/
 }
 
 void	compute_perpwalldist(t_ray *ray)
@@ -71,7 +64,8 @@ void	compute_perpwalldist(t_ray *ray)
 			ray->map.y += ray->step.y;
 			ray->side = VERTICAL;
 		}
-		if (ray->revert_map[ray->map.x][ray->map.y] == '1' || ray->revert_map[ray->map.x][ray->map.y] == '2')
+		if (ray->revert_map[ray->map.x][ray->map.y] == '1'
+			|| ray->revert_map[ray->map.x][ray->map.y] == '2')
 		{
 			ray->hit = WALL;
 			if (ray->revert_map[ray->map.x][ray->map.y] == '2')
@@ -79,10 +73,8 @@ void	compute_perpwalldist(t_ray *ray)
 		}
 	}
 	if (ray->side == HORIZONTAL)
-		//ray->perpwalldist = ((double)ray->map.x - ray->pos.x + (1 - (double)ray->step.x) / 2) / ray->raydir.x;
 		ray->perpwalldist = ray->sidedist.x - ray->deltadist.x;
 	else
-		//ray->perpwalldist = ((double)ray->map.y - ray->pos.y + (1 - (double)ray->step.y) / 2) / ray->raydir.y;
 		ray->perpwalldist = ray->sidedist.y - ray->deltadist.y;
 }
 

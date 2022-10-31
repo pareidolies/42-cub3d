@@ -118,4 +118,6 @@ void	direction(int keycode, t_ray *ray)
 		ray->key.rl = true;
 	if (keycode == ROTATE_RIGHT)
 		ray->key.rr = true;
+	if (keycode == SPACE)
+		ray->key.space = true;
 }
