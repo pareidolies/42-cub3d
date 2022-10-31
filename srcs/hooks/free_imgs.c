@@ -50,12 +50,12 @@ static void	free_imgs_c(t_ray *ray)
 		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.move_speed_4);
 	if (ray->img_menu.move_speed_4s)
 		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.move_speed_4s);
-	if (ray->img_menu.ceilling_0)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_0);
-	if (ray->img_menu.ceilling_0s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_0s);
-	if (ray->img_menu.ceilling_1)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_1);
+	if (ray->img_menu.ceiling_0)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_0);
+	if (ray->img_menu.ceiling_0s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_0s);
+	if (ray->img_menu.ceiling_1)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_1);
 	if (ray->img_menu.floor_6)
 		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.floor_6);
 	if (ray->img_menu.floor_6s)
@@ -72,36 +72,36 @@ static void	free_imgs_d(t_ray *ray)
 {
 	if (ray->img_menu.back_game_s)
 		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.back_game_s);
-	if (ray->img_menu.ceilling_1s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_1s);
-	if (ray->img_menu.ceilling_2)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_2);
-	if (ray->img_menu.ceilling_2s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_2s);
-	if (ray->img_menu.ceilling_3)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_3);
-	if (ray->img_menu.ceilling_3s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_3s);
-	if (ray->img_menu.ceilling_4)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_4);
-	if (ray->img_menu.ceilling_4s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_4s);
-	if (ray->img_menu.ceilling_5)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_5);
-	if (ray->img_menu.ceilling_5s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_5s);
-	if (ray->img_menu.ceilling_6)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_6);
-	if (ray->img_menu.ceilling_6s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_6s);
+	if (ray->img_menu.ceiling_1s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_1s);
+	if (ray->img_menu.ceiling_2)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_2);
+	if (ray->img_menu.ceiling_2s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_2s);
+	if (ray->img_menu.ceiling_3)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_3);
+	if (ray->img_menu.ceiling_3s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_3s);
+	if (ray->img_menu.ceiling_4)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_4);
+	if (ray->img_menu.ceiling_4s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_4s);
+	if (ray->img_menu.ceiling_5)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_5);
+	if (ray->img_menu.ceiling_5s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_5s);
+	if (ray->img_menu.ceiling_6)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_6);
+	if (ray->img_menu.ceiling_6s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_6s);
 }
 
 static void	free_imgs_e(t_ray *ray)
 {
-	if (ray->img_menu.ceilling_7)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_7);
-	if (ray->img_menu.ceilling_7s)
-		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceilling_7s);
+	if (ray->img_menu.ceiling_7)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_7);
+	if (ray->img_menu.ceiling_7s)
+		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.ceiling_7s);
 	if (ray->img_menu.floor_0)
 		mlx_destroy_image(ray->mlx->ptr, ray->img_menu.floor_0);
 	if (ray->img_menu.floor_0s)

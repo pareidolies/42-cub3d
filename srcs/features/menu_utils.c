@@ -12,61 +12,61 @@
 
 #include "../includes/cub3d.h"
 
-static void	ceilling_color_bis(t_ray *ray, int x, int y)
+static void	ceiling_color_bis(t_ray *ray, int x, int y)
 {
-	if (ray->ceilling_color == 4 && ray->key.pos_menu == 2)
+	if (ray->ceiling_color == 4 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_4s, x, y);
-	else if (ray->ceilling_color == 4)
+			ray->img_menu.ceiling_4s, x, y);
+	else if (ray->ceiling_color == 4)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_4, x, y);
-	else if (ray->ceilling_color == 5 && ray->key.pos_menu == 2)
+			ray->img_menu.ceiling_4, x, y);
+	else if (ray->ceiling_color == 5 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_5s, x, y);
-	else if (ray->ceilling_color == 5)
+			ray->img_menu.ceiling_5s, x, y);
+	else if (ray->ceiling_color == 5)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_5, x, y);
-	else if (ray->ceilling_color == 6 && ray->key.pos_menu == 2)
+			ray->img_menu.ceiling_5, x, y);
+	else if (ray->ceiling_color == 6 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_6s, x, y);
-	else if (ray->ceilling_color == 6)
+			ray->img_menu.ceiling_6s, x, y);
+	else if (ray->ceiling_color == 6)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_6, x, y);
-	else if (ray->ceilling_color == 7 && ray->key.pos_menu == 2)
+			ray->img_menu.ceiling_6, x, y);
+	else if (ray->ceiling_color == 7 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_7s, x, y);
-	else if (ray->ceilling_color == 7)
+			ray->img_menu.ceiling_7s, x, y);
+	else if (ray->ceiling_color == 7)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_7, x, y);
+			ray->img_menu.ceiling_7, x, y);
 }
 
-void	ceilling_color(t_ray *ray, int x, int y)
+void	ceiling_color(t_ray *ray, int x, int y)
 {
-	if (ray->ceilling_color == 0 && ray->key.pos_menu == 2)
+	if (ray->ceiling_color == 0 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_0s, x, y);
-	else if (ray->ceilling_color == 0)
+			ray->img_menu.ceiling_0s, x, y);
+	else if (ray->ceiling_color == 0)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_0, x, y);
-	else if (ray->ceilling_color == 1 && ray->key.pos_menu == 2)
+			ray->img_menu.ceiling_0, x, y);
+	else if (ray->ceiling_color == 1 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_1s, x, y);
-	else if (ray->ceilling_color == 1)
+			ray->img_menu.ceiling_1s, x, y);
+	else if (ray->ceiling_color == 1)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_1, x, y);
-	else if (ray->ceilling_color == 2 && ray->key.pos_menu == 2)
+			ray->img_menu.ceiling_1, x, y);
+	else if (ray->ceiling_color == 2 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_2s, x, y);
-	else if (ray->ceilling_color == 2)
+			ray->img_menu.ceiling_2s, x, y);
+	else if (ray->ceiling_color == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_2, x, y);
-	else if (ray->ceilling_color == 3 && ray->key.pos_menu == 2)
+			ray->img_menu.ceiling_2, x, y);
+	else if (ray->ceiling_color == 3 && ray->key.pos_menu == 2)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_3s, x, y);
-	else if (ray->ceilling_color == 3)
+			ray->img_menu.ceiling_3s, x, y);
+	else if (ray->ceiling_color == 3)
 		mlx_put_image_to_window(ray->mlx->ptr, ray->mlx->win,
-			ray->img_menu.ceilling_3, x, y);
-	ceilling_color_bis(ray, x, y);
+			ray->img_menu.ceiling_3, x, y);
+	ceiling_color_bis(ray, x, y);
 }
 
 static void	floor_color_bis(t_ray *ray, int x, int y)

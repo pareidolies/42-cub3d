@@ -66,20 +66,20 @@ bool	rotation_speed(bool refresh_menu, t_ray *ray, int keycode)
 	return (refresh_menu);
 }
 
-bool	ceilling_color_key(bool refresh_menu, t_ray *ray, int keycode)
+bool	ceiling_color_key(bool refresh_menu, t_ray *ray, int keycode)
 {
 	if (keycode == 65451 && ray->key.menu)
 	{
-		ray->ceilling_color++;
-		if (ray->ceilling_color == 8)
-			ray->ceilling_color = 0;
+		ray->ceiling_color++;
+		if (ray->ceiling_color == 8)
+			ray->ceiling_color = 0;
 		refresh_menu = true;
 	}
 	if (keycode == 65453 && ray->key.menu)
 	{
-		ray->ceilling_color--;
-		if (ray->ceilling_color == -1)
-			ray->ceilling_color = 7;
+		ray->ceiling_color--;
+		if (ray->ceiling_color == -1)
+			ray->ceiling_color = 7;
 		refresh_menu = true;
 	}
 	return (refresh_menu);

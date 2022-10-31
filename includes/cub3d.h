@@ -196,22 +196,22 @@ typedef struct s_data_img {
 	void	*move_speed_4;
 	void	*move_speed_4s;
 
-	void	*ceilling_0;
-	void	*ceilling_0s;
-	void	*ceilling_1;
-	void	*ceilling_1s;
-	void	*ceilling_2;
-	void	*ceilling_2s;
-	void	*ceilling_3;
-	void	*ceilling_3s;
-	void	*ceilling_4;
-	void	*ceilling_4s;
-	void	*ceilling_5;
-	void	*ceilling_5s;
-	void	*ceilling_6;
-	void	*ceilling_6s;
-	void	*ceilling_7;
-	void	*ceilling_7s;
+	void	*ceiling_0;
+	void	*ceiling_0s;
+	void	*ceiling_1;
+	void	*ceiling_1s;
+	void	*ceiling_2;
+	void	*ceiling_2s;
+	void	*ceiling_3;
+	void	*ceiling_3s;
+	void	*ceiling_4;
+	void	*ceiling_4s;
+	void	*ceiling_5;
+	void	*ceiling_5s;
+	void	*ceiling_6;
+	void	*ceiling_6s;
+	void	*ceiling_7;
+	void	*ceiling_7s;
 
 	void	*floor_0;
 	void	*floor_0s;
@@ -288,7 +288,7 @@ typedef struct s_ray {
 	bool		minimap;
 	t_minimap	pos_map;
 	t_key		key;
-	int			ceilling_color;
+	int			ceiling_color;
 	int			floor_color;
 	t_img		img_menu;
 	double		move_speed;
@@ -396,6 +396,8 @@ int		key_release(int keycode, t_ray *ray);
 //menu.c
 void	square(t_ray *ray);
 void	show_menu(t_ray *ray);
+void initialize_all_values_bis(t_ray *ray);
+void	init_img_menu(t_ray *ray);
 
 //textures.c
 int		*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
@@ -409,12 +411,12 @@ void	check_doors(t_ray *ray);
 void	print_doors(t_door *node);
 bool	move_speed_key(bool refresh_menu, t_ray *ray, int keycode);
 bool	rotation_speed(bool refresh_menu, t_ray *ray, int keycode);
-bool	ceilling_color_key(bool refresh_menu, t_ray *ray, int keycode);
+bool	ceiling_color_key(bool refresh_menu, t_ray *ray, int keycode);
 bool	floor_color_key(bool refresh_menu, t_ray *ray, int keycode);
 void	direction(int keycode, t_ray *ray);
 void	free_all_imgs(t_ray *ray);
 void	err_parsing_doors(t_data *root, t_map *data_map);
-void	ceilling_color(t_ray *ray, int x, int y);
+void	ceiling_color(t_ray *ray, int x, int y);
 void	floor_color(t_ray *ray, int x, int y);
 int		len_square(t_data *data);
 

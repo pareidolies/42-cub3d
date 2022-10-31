@@ -164,20 +164,18 @@ int	get_color(int color, t_ray *ray, char c)
 	return (create_rgb(255, 255, 255));
 }
 
-
-
 void	print_results_on_screen(t_ray *ray)
 {
 	int	i;
 	int	j;
-	int	color_ceilling;
+	int	color_ceiling;
 	int	color_floor;
 
 	ray->mlx->addr = (int *)mlx_get_data_addr(ray->mlx->img, &ray->mlx->bpp,
 			&ray->mlx->line_length, &ray->mlx->endian);
 	i = 0;
 	j = 0;
-	color_ceilling = get_color(ray->ceilling_color, ray, 'c');
+	color_ceiling = get_color(ray->ceiling_color, ray, 'c');
 	color_floor = get_color(ray->floor_color, ray, 'f');
 	while (j < HEIGHT)
 	{
@@ -187,7 +185,7 @@ void	print_results_on_screen(t_ray *ray)
 			if (ray->xpm->buffer[j][i] > 0)
 				ray->mlx->addr[j * WIDTH + i] = ray->xpm->buffer[j][i];
 			else if (j < HEIGHT / 2)
-				ray->mlx->addr[j * WIDTH + i] = color_ceilling;
+				ray->mlx->addr[j * WIDTH + i] = color_ceiling;
 			else
 				ray->mlx->addr[j * WIDTH + i] = color_floor;
 			i++;

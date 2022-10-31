@@ -92,7 +92,7 @@ void	show_menu(t_ray *ray)
 {
 	move_speed(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.2));
 	rot_speed(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.5));
-	ceilling_color(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.8));
+	ceiling_color(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 1.8));
 	floor_color(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 2.1));
 	back_game(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 2.4));
 	exit_game(ray, WIDTH / 4 * 1.65, (HEIGHT / 4 * 2.7));

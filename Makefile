@@ -26,6 +26,7 @@ SRCS		=	main.c \
 				raycasting/sprites.c \
 				features/menu.c \
 				features/menu_utils.c \
+				features/init_menu.c \
 				raycasting/textures.c \
 				raycasting/doors.c \
 				hooks/exit.c \

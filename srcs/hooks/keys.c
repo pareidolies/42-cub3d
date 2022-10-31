@@ -76,7 +76,7 @@ int	key_press(int keycode, t_ray *ray)
 	if ((keycode == 65451 || keycode == 65453) && ray->key.pos_menu == 1)
 		refresh_menu = rotation_speed(refresh_menu, ray, keycode);
 	if ((keycode == 65451 || keycode == 65453) && ray->key.pos_menu == 2)
-		refresh_menu = ceilling_color_key(refresh_menu, ray, keycode);
+		refresh_menu = ceiling_color_key(refresh_menu, ray, keycode);
 	if ((keycode == 65451 || keycode == 65453) && ray->key.pos_menu == 3)
 		refresh_menu = floor_color_key(refresh_menu, ray, keycode);
 	if (keycode == 65293 && ray->key.menu && ray->key.pos_menu == 5)
