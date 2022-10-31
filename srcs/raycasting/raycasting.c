@@ -206,6 +206,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		return (1);
 	}
 	clear_buffer(ray->xpm->buffer);
+	close_opened_doors(ray, ray->data);
 	if (ray->door)
 		check_doors(ray); //DOORS
 	ray->i = 0;

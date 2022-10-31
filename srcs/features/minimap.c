@@ -45,8 +45,8 @@ static void	get_pos_player(t_ray *ray, int *pos_x, int *pos_y)
 		ray->pos_map.x = *pos_x;
 		ray->pos_map.y = *pos_y;
 	}
-	if (ray->data->map[*pos_y][*pos_x] == '2')
-		ray->data->map[*pos_y][*pos_x] = '0';
+	/*if (ray->data->map[*pos_y][*pos_x] == '2')
+		ray->data->map[*pos_y][*pos_x] = '0';*/
 }
 
 static void	pos_player(t_ray *ray, int sq)
