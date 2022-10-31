@@ -56,13 +56,14 @@ int get_textures(t_ray *ray)
 	{
 		//ERR
 	}
-    ray->textures = malloc(sizeof(int *) * 10);
+    ray->textures = malloc(sizeof(int *) * 10); //A MODIFIER
     ray->textures[0] = xpm_to_img(ray, ray->data->no, ray->mlx);
 	ray->textures[1] = xpm_to_img(ray, ray->data->so, ray->mlx);
 	ray->textures[2] = xpm_to_img(ray, ray->data->we, ray->mlx);
 	ray->textures[3] = xpm_to_img(ray, ray->data->ea, ray->mlx);
-	ray->textures[9] = xpm_to_img(ray, "./textures/door.xpm", ray->mlx); //DOORS
-    ray->textures[5] = NULL;
-	
+	ray->textures[4] = xpm_to_img(ray, "./textures/door.xpm", ray->mlx); //DOORS
+	ray->textures[5] = xpm_to_img(ray, "./textures/barrel.xpm", ray->mlx); //SPRITES
+	ray->textures[6] = xpm_to_img(ray, "./textures/barrel.xpm", ray->mlx); //SPRITES
+    ray->textures[7] = NULL;
 	return (0);
 }

@@ -69,7 +69,7 @@ void	compute_wallx(t_ray *ray)
 		ray->wallx = ray->pos.x + ray->perpwalldist * ray->raydir.x;
 	}
 	if (ray->is_door == 1)
-		ray->xpm->id = 9;
+		ray->xpm->id = 4;
 	ray->wallx -= floor(ray->wallx);
 }
 
@@ -216,12 +216,14 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		compute_deltadist(ray);
 		compute_sidedist(ray);
 		compute_perpwalldist(ray);
+		ray->zbuffer[ray->i] = ray->perpwalldist; //for sprites
 		compute_line_attributes(ray);
 		compute_wallx(ray); //NEW
 		//print_results_on_screen(ray, mlx);
 		fill_buffer(ray); //NEW
 		ray->i++;
 	}
+	//SPRITES
 	print_results_on_screen(ray); //NEW
 	if (ray->minimap)
 		minimap(ray);

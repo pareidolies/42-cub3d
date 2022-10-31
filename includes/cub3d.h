@@ -237,6 +237,20 @@ typedef struct s_data_img {
 	void	*exit_game;
 }				t_img;
 
+typedef struct s_coordinates
+{
+	double	x;
+	double	y;
+	int		texture;	
+}				t_coordinates;
+
+typedef struct s_sprite {
+	int				*order;
+	double			*distance;
+	int				nbr;
+	t_coordinates	*tab;
+}				t_sprite;
+
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
@@ -272,6 +286,8 @@ typedef struct s_ray {
 	int			**textures;
 	t_xpm		*xpm;
 	t_door		*door;
+	t_sprite	*sprite;
+	double	zbuffer[WIDTH]; //for sprites
 }				t_ray;
 
 /******************************************************************************

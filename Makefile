@@ -17,14 +17,14 @@ SRCS		=	main.c \
 				utils/mlx_utils.c \
 				raycasting/raycasting.c \
 				raycasting/computation.c \
-				raycasting/minimap.c \
-				raycasting/minimap_utils.c \
+				features/minimap.c \
+				features/minimap_utils.c \
 				raycasting/transpose.c \
 				raycasting/initialize.c \
 				raycasting/debug.c \
 				raycasting/start.c \
-				raycasting/menu.c \
-				raycasting/menu_utils.c \
+				features/menu.c \
+				features/menu_utils.c \
 				raycasting/textures.c \
 				raycasting/doors.c \
 				hooks/exit.c \
@@ -85,6 +85,7 @@ ${OBJS_DIR}/%.o : ${SRCS_DIR}/%.c
 		@[ ! -d ${OBJS_DIR}/raycasting/ ] && mkdir -p  ${OBJS_DIR}/raycasting/ || true
 		@[ ! -d ${OBJS_DIR}/parsing/ ] && mkdir -p  ${OBJS_DIR}/parsing/ || true
 		@[ ! -d ${OBJS_DIR}/utils/ ] && mkdir -p  ${OBJS_DIR}/utils/ || true
+		@[ ! -d ${OBJS_DIR}/features/ ] && mkdir -p  ${OBJS_DIR}/features/ || true
 		@$(CC) ${CFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all:		$(NAME)

@@ -10,4 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+void    get_sprites()
+{
 
+
+}
+
+void    sort_sprites(int *order, double *distance, int nbr)
+{
+
+
+
+}
+
+void    draw_sprites()
+{
+
+    
+}
