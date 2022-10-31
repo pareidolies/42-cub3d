@@ -160,7 +160,7 @@ void    draw_sprites(t_ray *ray, t_sprite *sprite)
         stripe = sprite->drawstart.x;
         while (stripe < sprite->drawend.x)
         {
-            sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2 + sprite->screenx)) * ray->xpm->width / sprite->width) / 256;
+            sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2 + sprite->screenx)) * ray->texture[sprite->tab[sprite->order[i]].texture].width / sprite->width) / 256;
             //the conditions in the if are:
             //1) it's in front of camera plane so you don't see things behind you
             //2) it's on the screen (left)
@@ -172,8 +172,8 @@ void    draw_sprites(t_ray *ray, t_sprite *sprite)
                 while (pixel < sprite->drawend.y) //for every pixel of the current stripe
                 {
                     sprite->d = pixel * 256 - HEIGHT * 128 + sprite->height * 128; //256 and 128 factors to avoid floats
-                    sprite->tex.y = ((sprite->d * ray->xpm->height) / sprite->height) / 256;
-                    sprite->color = ray->textures[sprite->tab[sprite->order[i]].texture][ray->xpm->width * sprite->tex.y + sprite->tex.x]; //get current color from the texture
+                    sprite->tex.y = ((sprite->d * ray->texture[sprite->tab[sprite->order[i]].texture].height) / sprite->height) / 256;
+                    sprite->color = ray->texture[sprite->tab[sprite->order[i]].texture].tab[ray->texture[sprite->tab[sprite->order[i]].texture].width * sprite->tex.y + sprite->tex.x]; //get current color from the texture
                     if((sprite->color & 0x00FFFFFF) != 0)
                         ray->xpm->buffer[pixel][stripe] = sprite->color; //paint pixel if it isn't black, black is the invisible color
                     pixel++;

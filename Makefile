@@ -19,7 +19,7 @@ SRCS		=	main.c \
 				raycasting/computation.c \
 				features/minimap.c \
 				features/minimap_utils.c \
-				raycasting/transpose.c \
+				raycasting/data.c \
 				raycasting/initialize.c \
 				raycasting/debug.c \
 				raycasting/start.c \

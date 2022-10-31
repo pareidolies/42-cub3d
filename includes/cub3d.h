@@ -167,8 +167,8 @@ typedef struct s_key {
 
 typedef struct s_xpm {
 	int		**buffer;
-	int		width;
-	int		height;
+	int		width; //enlever
+	int		height; //enlever
 	int		id;
 	double	step;
 	double	pos;
@@ -261,6 +261,12 @@ typedef struct s_sprite {
 	int				color;
 }				t_sprite;
 
+typedef struct s_texture {
+	int	*tab;
+	int	width;
+	int	height;
+}			t_texture;
+
 typedef struct s_ray {
 	t_mlx		*mlx;
 	t_data		*data;
@@ -293,7 +299,7 @@ typedef struct s_ray {
 	t_img		img_menu;
 	double		move_speed;
 	double		rot_speed;
-	int			**textures;
+	t_texture	*texture;
 	t_xpm		*xpm;
 	t_door		*door;
 	t_sprite	*sprite;
@@ -355,7 +361,7 @@ int		initialize_mlx(t_mlx *mlx);
 int		initialize_buffer(t_ray *ray);
 void	clear_buffer(int **buffer);
 
-//tranpose.c
+//data.c
 void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
 void	get_dir(t_ray *ray, t_data *data);
 void	get_plane(t_ray *ray, t_data *data);
@@ -400,7 +406,7 @@ void initialize_all_values_bis(t_ray *ray);
 void	init_img_menu(t_ray *ray);
 
 //textures.c
-int		*xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
+t_texture	xpm_to_img(char *path, t_mlx *mlx);
 int		get_textures(t_ray *ray);
 
 //door.c

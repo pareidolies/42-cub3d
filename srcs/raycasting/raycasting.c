@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 14:36:08 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/15 18:28:54 by jdubilla         ###   ########.fr       */
+/*   Created: 2022/10/31 17:13:54 by smostefa          #+#    #+#             */
+/*   Updated: 2022/10/31 17:13:56 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ void	fill_buffer(t_ray *ray)
 	int	j;
 	int	color;
 
-	ray->xpm->tex.x = (int)(ray->wallx * (double)ray->xpm->width);
+	ray->xpm->tex.x = (int)(ray->wallx * (double)ray->texture[ray->xpm->id].width);
 	if ((ray->side == HORIZONTAL && ray->raydir.x > 0)
 		|| (ray->side == VERTICAL && ray->raydir.y < 0))
-		ray->xpm->tex.x = ray->xpm->width - ray->xpm->tex.x - 1;
-	ray->xpm->step = 1.0 * ray->xpm->height / ray->lineheight; //
+		ray->xpm->tex.x = ray->texture[ray->xpm->id].width - ray->xpm->tex.x - 1;
+	ray->xpm->step = 1.0 * ray->texture[ray->xpm->id].height / ray->lineheight; //
 	ray->xpm->pos = (ray->drawstart - (double)HEIGHT / 2 + (double)ray->lineheight / 2) * ray->xpm->step;
 	j = ray->drawstart;
 	while (j < ray->drawend)
 	{
-		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->xpm->height - 1);
+		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->texture[ray->xpm->id].height - 1);
 		ray->xpm->pos += ray->xpm->step;
-		color = ray->textures[ray->xpm->id][ray->xpm->height * ray->xpm->tex.y + ray->xpm->tex.x];
+		color = ray->texture[ray->xpm->id].tab[ray->texture[ray->xpm->id].height * ray->xpm->tex.y + ray->xpm->tex.x];
 		if (ray->side == VERTICAL) // VERT
 			color = (color >> 1) & 8355711;
 		if (color > 0)
@@ -140,6 +140,7 @@ for(int y = drawStart; y<drawEnd; y++)
 	// 6 noir
 	// 7 blanc
 
+//changer place ??
 
 int	get_color(int color, t_ray *ray, char c)
 {
@@ -221,7 +222,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		fill_buffer(ray); //NEW
 		ray->i++;
 	}
-	add_sprites(ray);
+	add_sprites(ray); //SPRITE
 	print_results_on_screen(ray); //NEW
 	if (ray->minimap)
 		minimap(ray);
