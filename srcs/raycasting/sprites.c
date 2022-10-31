@@ -192,11 +192,11 @@ void    add_sprites(t_ray *ray)
     get_sprites_nbr(ray, &sprite);
     get_sprites_coordinates(ray, &sprite);
     //CHECK
-    printf("sprite number : %d\n", sprite.nbr);
-    printf("x : %f\n", sprite.tab[0].x);
-    printf("y : %f\n", sprite.tab[0].y);
-    printf("x : %f\n", sprite.tab[1].x);
-    printf("y : %f\n", sprite.tab[1].y);
+    // printf("sprite number : %d\n", sprite.nbr);
+    // printf("x : %f\n", sprite.tab[0].x);
+    // printf("y : %f\n", sprite.tab[0].y);
+    // printf("x : %f\n", sprite.tab[1].x);
+    // printf("y : %f\n", sprite.tab[1].y);
     sort_sprites(ray, &sprite);
     draw_sprites(ray, &sprite);
 }

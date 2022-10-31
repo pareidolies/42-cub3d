@@ -88,10 +88,33 @@ void    parse_doors(t_ray *ray)
     ray->door = door;
 }
 
+void    close_opened_doors(t_ray *ray, t_data *data)
+{
+    int i;
+    int j;
+
+    i = 0;
+	j = 0;
+    //printf("coucou\n");
+	while (i < data->len)
+	{
+		j = 0;
+		while (j < data->height)
+		{
+            if (ray->revert_map[i][j] != data->map[j][i])
+                printf("\n\n\n\n\n\n\n\nDIFFERENT\n\n\n\n\n\n\n\n\n");
+			ray->revert_map[i][j] = data->map[j][i];
+			j++;
+		}
+		i++;
+	}
+}
+
 void    check_doors(t_ray *ray)
 {
     t_door	*current;
 
+    close_opened_doors(ray, ray->data);
     current = ray->door;
     while (current != NULL)
     {
