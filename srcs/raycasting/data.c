@@ -19,9 +19,21 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 
 	i = 0;
 	ray->revert_map = malloc(sizeof(char *) * (data->len + 1));
+	if (!ray->revert_map)
+	{
+		printf(MALLOC_MSSG);
+		exit_safe(ray);
+	}
 	while (i < data->len)
 	{
 		ray->revert_map[i] = malloc(sizeof(char) * data->height);
+		if (!ray->revert_map[i])
+		{
+			printf(MALLOC_MSSG);
+			ray->revert_map[i] = NULL;
+			free_double_array(ray->revert_map);
+			exit_safe(ray);
+		}
 		i++;
 	}
 	ray->revert_map[i] = NULL;

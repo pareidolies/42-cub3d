@@ -113,4 +113,8 @@ void    add_sprites(t_ray *ray)
     get_sprites_coordinates(ray, &sprite);
     sort_sprites(ray, &sprite);
     draw_sprites(ray, &sprite);
+    free(sprite.tab);
+	free(sprite.order);
+	free(sprite.distance);
+    //ray->sprite = &sprite;
 }

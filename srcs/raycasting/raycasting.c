@@ -167,8 +167,8 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 	{
-		//handling error && free
-		return (1);
+		printf(MLX_MSSG);
+		exit_safe(ray);
 	}
 	clear_buffer(ray->xpm->buffer);
 	close_opened_doors(ray, ray->data);

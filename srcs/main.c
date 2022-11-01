@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		// printf("%s\n", root.map[i]);
 	// printf("TEST\n");
 	start_raycasting(&root);
-	free_struct(&root);
+	//free_struct(&root);
 	return (0);
 }
 

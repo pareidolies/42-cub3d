@@ -95,7 +95,8 @@ int	initialize_buffer(t_ray *ray)
 	ray->xpm->buffer = malloc(sizeof(int *) * (HEIGHT + 1));
 	if (!ray->xpm->buffer)
 	{
-		printf("ERROR\n");
+		printf(MALLOC_MSSG);
+		exit_safe(ray);
 	}
 	ray->xpm->buffer[HEIGHT] = NULL;
 	i = 0;
@@ -104,7 +105,10 @@ int	initialize_buffer(t_ray *ray)
 		ray->xpm->buffer[i] = malloc(sizeof(int) * (WIDTH + 1));
 		if (!ray->xpm->buffer[i])
 		{
-			printf("ERROR\n");
+			printf(MALLOC_MSSG);
+			ray->xpm->buffer[i] = NULL;
+			free_double_array_int(ray->xpm->buffer);
+			exit_safe(ray);
 		}
 		ray->xpm->buffer[i][WIDTH] = 0;
 		i++;

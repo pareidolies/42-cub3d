@@ -71,6 +71,11 @@
 
 # define GOODBYE	"\nSee you soon !\n\n"
 
+# define MALLOC_MSSG	"Error\nA malloc error occurred.\n"
+# define MLX_MSSG	"Error\nAn mlx error occurred.\n"
+# define IMG_MSSG	"Error\nWe could not load the image.\n"
+
+
 /******************************************************************************
 *                              ENUMERATIONS                                   *
 ******************************************************************************/
@@ -309,7 +314,7 @@ typedef struct s_ray {
 	t_img		img_menu;
 	double		move_speed;
 	double		rot_speed;
-	t_texture	*texture;
+	t_texture	texture[10];
 	t_xpm		*xpm;
 	t_door		*door;
 	//SPRITE
@@ -429,12 +434,12 @@ void initialize_all_values_bis(t_ray *ray);
 void	init_img_menu(t_ray *ray);
 
 //textures.c
-t_texture	xpm_to_img(char *path, t_mlx *mlx);
+t_texture	xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
 int		get_textures(t_ray *ray);
 
 //door.c
 t_door	*create_door(double x, double y);
-void	add_door(t_door *first, double x, double y);
+void	add_door(t_ray *ray, t_door *first, double x, double y);
 void	parse_doors(t_ray *ray);
 void	check_doors(t_ray *ray);
 void	print_doors(t_door *node);
@@ -459,5 +464,10 @@ void    sort_sprites(t_ray *ray, t_sprite *sprite);
 //floor.c
 void    create_floor_and_ceiling(t_ray *ray);
 int	get_color(int color, t_ray *ray, char c);
+
+//exit.c
+void	free_double_array_int(int **arr);
+void	free_list(t_door *first);
+void	free_all(t_ray * ray);
 
 #endif

@@ -19,7 +19,7 @@ t_door	*create_door(double x, double y)
 	node = malloc(sizeof(t_door));
     {
         if (!node)
-            printf("error\n");
+            return (NULL);
     }
 	node->prev = NULL;
 	node->next = NULL;
@@ -28,13 +28,19 @@ t_door	*create_door(double x, double y)
 	return (node);
 }
 
-void	add_door(t_door *first, double x, double y)
+void	add_door(t_ray *ray, t_door *first, double x, double y)
 {
 	t_door	*current;
 	t_door	*new;
 
 	current = first;
 	new = create_door(x, y);
+    if (!new)
+    {
+        printf(MALLOC_MSSG); 
+        free_list(first);
+        exit_safe(ray);
+    }
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new;
@@ -57,9 +63,16 @@ void    parse_doors(t_ray *ray)
             if (ray->revert_map[i][j] == '2')
             {
                 if (!door)
+                {
                     door = create_door((double)(i) + 0.5, (double)j + 0.5);
+                    if (!door)
+                    {
+                        printf(MALLOC_MSSG);
+                        exit_safe(ray);
+                    }
+                }
                 else
-                    add_door(door, (double)(i) + 0.5, (double)j + 0.5);
+                    add_door(ray, door, (double)(i) + 0.5, (double)j + 0.5);
             }
             i++;
         }

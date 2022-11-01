@@ -21,17 +21,23 @@ void    get_sprites_nbr(t_ray *ray, t_sprite *sprite)
     sprite->tab = malloc(sizeof(t_coordinates) * (sprite->nbr + 1));
     if (!sprite->tab)
     {
-        //ERROR
+        printf(MALLOC_MSSG);
+        exit_safe(ray);
     }
     sprite->order = malloc(sizeof(int) * (sprite->nbr + 1));
     if (!sprite->order)
     {
-        //ERROR
+        free(sprite->tab);
+        printf(MALLOC_MSSG);
+        exit_safe(ray);
     }
     sprite->distance = malloc(sizeof(double) * (sprite->nbr + 1));
     if (!sprite->distance)
     {
-        //ERROR
+        free(sprite->tab);
+        free(sprite->order);
+        printf(MALLOC_MSSG);
+        exit_safe(ray);
     }
 }
 

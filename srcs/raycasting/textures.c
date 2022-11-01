@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_texture	xpm_to_img(char *path, t_mlx *mlx)
+t_texture	xpm_to_img(t_ray *ray, char *path, t_mlx *mlx)
 {
     void    *img;
     int    *addr;
@@ -24,14 +24,16 @@ t_texture	xpm_to_img(char *path, t_mlx *mlx)
 	img = mlx_xpm_file_to_image(mlx->ptr, path, &res.width, &res.height);
 	if (!img)
     {
-        printf("eRROR\n");
-        //ERROR
+        printf(IMG_MSSG);
+		exit_safe(ray);
     }
 	addr = (int *)mlx_get_data_addr(img, &dust, &dust, &dust);
 	res.tab = malloc(sizeof(int) * res.width * res.height);
 	if (!res.tab)
 	{
-		//ERROR
+		printf(MALLOC_MSSG);
+		mlx_destroy_image(mlx->ptr, img);
+		exit_safe(ray);
 	}
 	y = 0;
 	while (y < res.height)
@@ -48,22 +50,23 @@ t_texture	xpm_to_img(char *path, t_mlx *mlx)
 	return (res);
 }
 
+
 int get_textures(t_ray *ray)
 {
     ray->xpm = malloc(sizeof(t_xpm));
 	if (!ray->xpm)
 	{
-		//ERR
+		printf(MALLOC_MSSG);
+		exit_safe(ray);
 	}
-    ray->texture = malloc(sizeof(t_texture) * 10);
-    ray->texture[0] = xpm_to_img(ray->data->no, ray->mlx);
-	ray->texture[1] = xpm_to_img(ray->data->so, ray->mlx);
-	ray->texture[2] = xpm_to_img(ray->data->we, ray->mlx);
-	ray->texture[3] = xpm_to_img(ray->data->ea, ray->mlx);
-	ray->texture[4] = xpm_to_img("./textures/television.xpm", ray->mlx); //DOORS
-	ray->texture[5] = xpm_to_img("./textures/barrel.xpm", ray->mlx); //SPRITES
-	ray->texture[6] = xpm_to_img("./textures/barrel.xpm", ray->mlx); //SPRITES
-	ray->texture[7] = xpm_to_img("./textures/floor.xpm", ray->mlx); //FLOOR
+    ray->texture[0] = xpm_to_img(ray, ray->data->no, ray->mlx);
+	ray->texture[1] = xpm_to_img(ray, ray->data->so, ray->mlx);
+	ray->texture[2] = xpm_to_img(ray, ray->data->we, ray->mlx);
+	ray->texture[3] = xpm_to_img(ray, ray->data->ea, ray->mlx);
+	ray->texture[4] = xpm_to_img(ray, "./textures/television.xpm", ray->mlx); //DOORS
+	ray->texture[5] = xpm_to_img(ray, "./textures/barrel.xpm", ray->mlx); //SPRITES
+	ray->texture[6] = xpm_to_img(ray, "./textures/barrel.xpm", ray->mlx); //SPRITES
+	ray->texture[7] = xpm_to_img(ray, "./textures/floor.xpm", ray->mlx); //FLOOR
     //ray->texture[8] = NULL;
 	return (0);
 }
