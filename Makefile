@@ -21,7 +21,7 @@ SRCS		=	main.c \
 				features/minimap_utils.c \
 				raycasting/data.c \
 				raycasting/initialize.c \
-				raycasting/debug.c \
+				raycasting/printer.c \
 				raycasting/start.c \
 				raycasting/sprites.c \
 				features/menu.c \

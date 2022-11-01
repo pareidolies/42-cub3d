@@ -442,6 +442,9 @@ void    close_opened_doors(t_ray *ray, t_data *data);
 
 //sprites.c
 void	add_sprites(t_ray *ray);
+void    get_sprites_nbr(t_ray *ray, t_sprite *sprite);
+void    get_sprites_coordinates(t_ray *ray, t_sprite *sprite);
+void    sort_sprites(t_ray *ray, t_sprite *sprite);
 
 //floor.c
 void    create_floor_and_ceiling(t_ray *ray);

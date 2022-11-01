@@ -47,7 +47,7 @@ void	get_dir(t_ray *ray, t_data *data)
 		ray->dir.y = 1;
 	else if (data->player.dir == 'E')
 		ray->dir.x = 1;
-	else //(data->player.dir == 'W') pour eviter probleme uninitialized values
+	else
 		ray->dir.x = -1;
 }
 
@@ -59,17 +59,14 @@ void	get_plane(t_ray *ray, t_data *data)
 		ray->plane.x = -0.66;
 	else if (data->player.dir == 'E')
 		ray->plane.y = 0.66;
-	else //(data->player.dir == 'W')
+	else
 		ray->plane.y = -0.66;
 }
 
 void	transpose_parsed_data_to_ray(t_ray *ray, t_data *data)
 {
-	//ray->width = WIDTH;
-	//ray->height = HEIGHT;
 	ray->pos.x = (double)data->player.x + 0.5;
 	ray->pos.y = (double)data->player.y + 0.5;
 	get_dir(ray, data);
 	get_plane(ray, data);
-	//map => data->map ne plus utiliser data
 }

@@ -91,22 +91,3 @@ int	initialize_buffer(t_ray *ray)
 	clear_buffer(ray->xpm->buffer);
 	return (0);
 }
-
-void	print_buffer(int **buffer)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < HEIGHT)
-	{
-		i = 0;
-		while (i < WIDTH)
-		{
-			printf("%c", buffer[j][i] = 0);
-			i++;
-		}
-		printf("\n");
-		j++;
-	}
-}

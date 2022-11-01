@@ -50,6 +50,44 @@ void	print_map_ray(t_ray *ray, t_data *data)
 		printf("\n");
 		j++;
 	}
-	// printf("x : %d\n", data->player.x);
-	// printf("y : %d\n", data->player.y);
+	printf("x : %d\n", data->player.x);
+	printf("y : %d\n", data->player.y);
+}
+
+
+void	print_doors(t_door *node)
+{
+	int	i;
+
+	i = 0;
+	printf("\n\n\n---- PRINT DOORS ----\n");
+	while (node)
+	{
+		printf("********\n");
+		printf("id : %d\n", i);
+		printf("x : %f\n", node->x);
+		printf("y : %f\n", node->y);
+		printf("********\n");
+		node = node->next;
+		i++;
+	}
+}
+
+void	print_buffer(int **buffer)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (j < HEIGHT)
+	{
+		i = 0;
+		while (i < WIDTH)
+		{
+			printf("%c", buffer[j][i] = 0);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
 }

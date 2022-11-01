@@ -24,7 +24,9 @@ void	initialize_ray_i(t_ray *ray)
 	ray->map.y = (int)ray->pos.y;
 }
 
-/*void	former_print_results_on_screen(t_ray *ray, t_mlx *mlx)
+/*//WITHOUT TEXTURES
+
+void	former_print_results_on_screen(t_ray *ray, t_mlx *mlx)
 {
 	int		j;
 	t_rgb	c;
@@ -98,9 +100,9 @@ void	fill_buffer(t_ray *ray)
 	}
 }
 
-//TUTORIAL LODEV
+/*//TUTORIAL LODEV
 
-/*//texturing calculations
+//texturing calculations
     int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
 
 //calculate value of wallX
@@ -129,41 +131,6 @@ for(int y = drawStart; y<drawEnd; y++)
         if(side == 1) color = (color >> 1) & 8355711;
         buffer[y][x] = color;
 }*/
-
-
-	// 0 default
-	// 1 rouge
-	// 2 jaune
-	// 3 vert
-	// 4 bleu
-	// 5 gris
-	// 6 noir
-	// 7 blanc
-
-//changer place ??
-
-int	get_color(int color, t_ray *ray, char c)
-{
-	if (color == 0)
-	{
-		if (c == 'c')
-			return (create_rgb(ray->data->c.r, ray->data->c.g, ray->data->c.b));
-		return (create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b));
-	}
-	else if (color == 1)
-		return (create_rgb(255, 0, 0));
-	else if (color == 2)
-		return (create_rgb(255, 255, 0));
-	else if (color == 3)
-		return (create_rgb(0, 255, 0));
-	else if (color == 4)
-		return (create_rgb(0, 0, 255));
-	else if (color == 5)
-		return (create_rgb(128, 128, 128));
-	else if (color == 6)
-		return (create_rgb(0, 0, 0));
-	return (create_rgb(255, 255, 255));
-}
 
 void	print_results_on_screen(t_ray *ray)
 {
@@ -197,8 +164,6 @@ void	print_results_on_screen(t_ray *ray)
 
 int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 {
-	// for (int i = 0; i < 10000000; i++)
-	// 	printf("%d\n", i);
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 	{

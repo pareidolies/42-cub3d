@@ -110,74 +110,89 @@ void    sort_sprites(t_ray *ray, t_sprite *sprite)
     }
 }
 
+/* TUTO Lodev
+
+    //after sorting the sprites, do the projection and draw them
+    //translate sprite position to relative to camera
+    //transform sprite with the inverse camera matrix
+    // [ planeX   dirX ] -1                                       [ dirY      -dirX ]
+    // [               ]       =  1/(planeX*dirY-dirX*planeY) *   [                 ]
+    // [ planeY   dirY ]                                          [ -planeY  planeX ]
+    //calculate height of the sprite on screen
+    //calculate lowest and highest pixel to fill in current stripe
+    //calculate width of the sprite
+    //loop through every vertical stripe of the sprite on screen
+    //the conditions in the if are:
+            //1) it's in front of camera plane so you don't see things behind you
+            //2) it's on the screen (left)
+            //3) it's on the screen (right)
+            //4) ZBuffer, with perpendicular distance
+*/
+
+void    compute_sprite_coordinates(t_ray *ray, t_sprite *sprite, int i)
+{
+    double  x;
+    double  y;
+
+    x = sprite->tab[sprite->order[i]].x - ray->pos.x;
+    y = sprite->tab[sprite->order[i]].y - ray->pos.y;
+    sprite->invdet = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y);
+    sprite->transform.x = sprite->invdet * (ray->dir.y * x - ray->dir.x * y);
+    sprite->transform.y = sprite->invdet * (-ray->plane.y * x + ray->plane.x * y);
+    sprite->screenx= (int)((WIDTH / 2) * (1 + sprite->transform.x / sprite->transform.y));
+}
+
+void    compute_sprite_height_and_width(t_sprite *sprite)
+{
+        sprite->height = abs((int)(HEIGHT / (sprite->transform.y)));
+        sprite->drawstart.y = -sprite->height / 2 + HEIGHT / 2;
+        if (sprite->drawstart.y < 0) 
+            sprite->drawstart.y = 0;
+        sprite->drawend.y = sprite->height / 2 + HEIGHT / 2;
+        if (sprite->drawend.y >= HEIGHT)
+            sprite->drawend.y = HEIGHT - 1;
+        sprite->width = abs((int)(HEIGHT / (sprite->transform.y)));
+        sprite->drawstart.x = -sprite->width / 2 + sprite->screenx;
+        if (sprite->drawstart.x < 0)
+            sprite->drawstart.x = 0;
+        sprite->drawend.x = sprite->width / 2 + sprite->screenx;
+        if (sprite->drawend.x >= WIDTH)
+            sprite->drawend.x = WIDTH - 1;
+}
+
+void    draw_sprite_pixel(t_ray *ray, t_sprite *sprite, int pixel, int stripe, int i)
+{
+    sprite->d = pixel * 256 - HEIGHT * 128 + sprite->height * 128;
+    sprite->tex.y = ((sprite->d * ray->texture[sprite->tab[sprite->order[i]].texture].height) / sprite->height) / 256;
+    sprite->color = ray->texture[sprite->tab[sprite->order[i]].texture].tab[ray->texture[sprite->tab[sprite->order[i]].texture].width * sprite->tex.y + sprite->tex.x]; //get current color from the texture
+    if(((sprite->color & 0x00FFFFFF) != 0) && (sprite->tab[sprite->order[i]].texture == 5))
+        ray->xpm->buffer[(pixel + ray->levitation) % HEIGHT][stripe] = sprite->color;
+    else if((sprite->color & 0x00FFFFFF) != 0 && (sprite->tab[sprite->order[i]].texture == 6))
+        ray->xpm->buffer[pixel - ray->levitation][stripe] = sprite->color;
+
+}
+
 void    draw_sprites(t_ray *ray, t_sprite *sprite)
 {
     int i;
     int stripe;
     int pixel;
-    double  x;
-    double  y;
-    //after sorting the sprites, do the projection and draw them
 
     i = 0;
     while (i < sprite->nbr)
     {
-        //translate sprite position to relative to camera
-        x = sprite->tab[sprite->order[i]].x - ray->pos.x;
-        y = sprite->tab[sprite->order[i]].y - ray->pos.y;
-
-        //transform sprite with the inverse camera matrix
-        // [ planeX   dirX ] -1                                       [ dirY      -dirX ]
-        // [               ]       =  1/(planeX*dirY-dirX*planeY) *   [                 ]
-        // [ planeY   dirY ]                                          [ -planeY  planeX ]
-
-        sprite->invdet = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y); //required for correct matrix multiplication
-        sprite->transform.x = sprite->invdet * (ray->dir.y * x - ray->dir.x * y);
-        sprite->transform.y = sprite->invdet * (-ray->plane.y * x + ray->plane.x * y); //this is actually the depth inside the screen, that what Z is in 3D
-
-        sprite->screenx= (int)((WIDTH / 2) * (1 + sprite->transform.x / sprite->transform.y));
-
-        //calculate height of the sprite on screen
-        sprite->height = abs((int)(HEIGHT / (sprite->transform.y))); //using 'transformY' instead of the real distance prevents fisheye
-        //calculate lowest and highest pixel to fill in current stripe
-        sprite->drawstart.y = -sprite->height / 2 + HEIGHT / 2;
-        if(sprite->drawstart.y < 0) 
-            sprite->drawstart.y = 0;
-        sprite->drawend.y = sprite->height / 2 + HEIGHT / 2;
-        if(sprite->drawend.y >= HEIGHT)
-            sprite->drawend.y = HEIGHT - 1;
-
-        //calculate width of the sprite
-        sprite->width = abs((int)(HEIGHT / (sprite->transform.y)));
-        sprite->drawstart.x = -sprite->width / 2 + sprite->screenx;
-        if(sprite->drawstart.x < 0)
-            sprite->drawstart.x = 0;
-        sprite->drawend.x = sprite->width / 2 + sprite->screenx;
-        if(sprite->drawend.x >= WIDTH)
-            sprite->drawend.x = WIDTH - 1;
-
-        //loop through every vertical stripe of the sprite on screen
+        compute_sprite_coordinates(ray, sprite, i);
+        compute_sprite_height_and_width(sprite);
         stripe = sprite->drawstart.x;
         while (stripe < sprite->drawend.x)
         {
-            sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2 + sprite->screenx)) * ray->texture[sprite->tab[sprite->order[i]].texture].width / sprite->width) / 256;
-            //the conditions in the if are:
-            //1) it's in front of camera plane so you don't see things behind you
-            //2) it's on the screen (left)
-            //3) it's on the screen (right)
-            //4) ZBuffer, with perpendicular distance
+            sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2 + sprite->screenx)) * ray->texture[sprite->tab[sprite->order[i]].texture].width / sprite->width) / 256; 
             if(sprite->transform.y > 0 && stripe > 0 && stripe < WIDTH && sprite->transform.y < ray->zbuffer[stripe])
             {
                 pixel = sprite->drawstart.y;
-                while (pixel < sprite->drawend.y) //for every pixel of the current stripe
+                while (pixel < sprite->drawend.y)
                 {
-                    sprite->d = pixel * 256 - HEIGHT * 128 + sprite->height * 128; //256 and 128 factors to avoid floats
-                    sprite->tex.y = ((sprite->d * ray->texture[sprite->tab[sprite->order[i]].texture].height) / sprite->height) / 256;
-                    sprite->color = ray->texture[sprite->tab[sprite->order[i]].texture].tab[ray->texture[sprite->tab[sprite->order[i]].texture].width * sprite->tex.y + sprite->tex.x]; //get current color from the texture
-                    if(((sprite->color & 0x00FFFFFF) != 0) && (sprite->tab[sprite->order[i]].texture == 5))
-                        ray->xpm->buffer[(pixel + ray->levitation) % HEIGHT][stripe] = sprite->color; //paint pixel if it isn't black, black is the invisible color
-                    else if((sprite->color & 0x00FFFFFF) != 0 && (sprite->tab[sprite->order[i]].texture == 6))
-                        ray->xpm->buffer[pixel - ray->levitation][stripe] = sprite->color;
+                    draw_sprite_pixel(ray, sprite, pixel, stripe, i);
                     pixel++;
                 }
             }
@@ -193,12 +208,6 @@ void    add_sprites(t_ray *ray)
 
     get_sprites_nbr(ray, &sprite);
     get_sprites_coordinates(ray, &sprite);
-    //CHECK
-    // printf("sprite number : %d\n", sprite.nbr);
-    // printf("x : %f\n", sprite.tab[0].x);
-    // printf("y : %f\n", sprite.tab[0].y);
-    // printf("x : %f\n", sprite.tab[1].x);
-    // printf("y : %f\n", sprite.tab[1].y);
     sort_sprites(ray, &sprite);
     draw_sprites(ray, &sprite);
 }

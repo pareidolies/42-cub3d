@@ -41,24 +41,6 @@ void	add_door(t_door *first, double x, double y)
 	new->prev = current;
 }
 
-void	print_doors(t_door *node)
-{
-	int	i;
-
-	i = 0;
-	printf("\n\n\n---- PRINT DOORS ----\n");
-	while (node)
-	{
-		printf("********\n");
-		printf("id : %d\n", i);
-		printf("x : %f\n", node->x);
-		printf("y : %f\n", node->y);
-		printf("********\n");
-		node = node->next;
-		i++;
-	}
-}
-
 void    parse_doors(t_ray *ray)
 {
     t_door  *door;
@@ -78,19 +60,12 @@ void    parse_doors(t_ray *ray)
                     door = create_door((double)(i) + 0.5, (double)j + 0.5);
                 else
                     add_door(door, (double)(i) + 0.5, (double)j + 0.5);
-                // printf("coucou\n");
             }
             i++;
         }
         j++;
     }
-    // print_doors(door);
     ray->door = door;
-}
-
-void ft_swap(char *a, char *b)
-{
-	*a = *b;
 }
 
 void    close_opened_doors(t_ray *ray, t_data *data)
@@ -100,18 +75,13 @@ void    close_opened_doors(t_ray *ray, t_data *data)
 
     i = 0;
 	j = 0;
-    //printf("coucou\n");
 	while (i < data->len)
 	{
 		j = 0;
 		while (j < data->height)
 		{
             if (ray->revert_map[i][j] != data->map[j][i])
-            {
-                printf("\n\n\n\n\n\n\n\nDIFFERENT\n\n\n\n\n\n\n\n\n");
 			    ray->revert_map[i][j] = data->map[j][i];
-                //print_map_ray(ray, data);
-            }
 			j++;
 		}
 		i++;
