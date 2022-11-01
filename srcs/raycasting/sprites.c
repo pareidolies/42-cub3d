@@ -116,5 +116,4 @@ void    add_sprites(t_ray *ray)
     free(sprite.tab);
 	free(sprite.order);
 	free(sprite.distance);
-    //ray->sprite = &sprite;
 }

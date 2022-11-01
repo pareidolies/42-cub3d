@@ -185,7 +185,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		ray->zbuffer[ray->i] = ray->perpwalldist; //for sprites
 		compute_line_attributes(ray);
 		compute_wallx(ray); //NEW
-		//print_results_on_screen(ray, mlx);
+		//former_print_results_on_screen(ray, mlx);
 		fill_buffer(ray); //NEW
 		ray->i++;
 	}
@@ -197,7 +197,6 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	if (ray->key.menu)
 		show_menu(ray);
-	// mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);
 }
