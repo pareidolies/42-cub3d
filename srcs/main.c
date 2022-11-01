@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/16 16:45:12 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 00:49:02 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ int	main(int argc, char **argv)
 	Portes, checker qu'elle est entoure de murs ?
 
 	Protection des malloc
+
+	Recuperer le PATH des portes depuis le fichier et non directement dans le code comme actuellement
+
+	Modifier struct .h partie normal (supprimer door)
 
 */

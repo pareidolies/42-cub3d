@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/29 20:45:45 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 01:21:35 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static void	get_pos_player(t_ray *ray, int *pos_x, int *pos_y)
 		ray->pos_map.x = *pos_x;
 		ray->pos_map.y = *pos_y;
 	}
-	/*if (ray->data->map[*pos_y][*pos_x] == '2')
-		ray->data->map[*pos_y][*pos_x] = '0';*/
 }
 
 static void	pos_player(t_ray *ray, int sq)

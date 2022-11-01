@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 16:59:53 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/11/01 00:38:43 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 00:38:59 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	parsing_map(t_map *data_map, t_data *root, char *map)
 			check_first_error(root);
 			if (!line_only_char_map(line))
 				ft_printf("At line %d, map must contain only one of\
- these characters : 0, 1, 2, 3, 4, N, S, E, W or space\n", data_map->end_line); //or 2 3 4
+ these characters : 0, 1, N, S, E, W or space\n", data_map->end_line);
 			else
 				ft_printf("At line %d, map is separated by an empty line\
  or finish with many empty lines\n", data_map->end_line);
