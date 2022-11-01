@@ -90,9 +90,9 @@ void	fill_buffer(t_ray *ray)
 		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->texture[ray->xpm->id].height - 1);
 		ray->xpm->pos += ray->xpm->step;
 		color = ray->texture[ray->xpm->id].tab[ray->texture[ray->xpm->id].height * ray->xpm->tex.y + ray->xpm->tex.x];
-		if (ray->side == VERTICAL) // VERT
-			color = (color >> 1) & 8355711;
-		if (color > 0)
+		//if (ray->side == VERTICAL) // VERT
+			//color = (color >> 1) & 8355711;
+		//if (color > 0)
 			ray->xpm->buffer[j][ray->i] = color;
 		j++;
 	}
@@ -209,6 +209,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	close_opened_doors(ray, ray->data);
 	if (ray->door)
 		check_doors(ray); //DOORS
+	//create_floor_and_ceiling(ray);
 	ray->i = 0;
 	while (ray->i < WIDTH)
 	{

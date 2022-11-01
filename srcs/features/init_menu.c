@@ -90,6 +90,7 @@ void initialize_all_values_bis(t_ray *ray)
 	ray->key.d = false;
 	ray->key.rr = false;
 	ray->key.rl = false;
+	ray->key.space = false;
 	ray->key.mouse_l = false;
 	ray->key.mouse_r = false;
 	ray->key.menu = false;

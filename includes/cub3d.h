@@ -303,11 +303,20 @@ typedef struct s_ray {
 	t_texture	*texture;
 	t_xpm		*xpm;
 	t_door		*door;
+	//SPRITE
 	t_sprite	*sprite;
 	double		zbuffer[WIDTH]; //for sprites
+	//ANIMATION
 	int			levitation;
 	long		frame_time;
 	int			up;
+	//FLOOR
+	t_vector	raydir0;
+	t_vector	raydir1;
+	double		rowdistance;
+	t_vector	floorstep;
+	t_vector	floor;
+	t_point		cell;
 }				t_ray;
 
 /******************************************************************************
@@ -433,5 +442,9 @@ void    close_opened_doors(t_ray *ray, t_data *data);
 
 //sprites.c
 void	add_sprites(t_ray *ray);
+
+//floor.c
+void    create_floor_and_ceiling(t_ray *ray);
+int	get_color(int color, t_ray *ray, char c);
 
 #endif

@@ -44,30 +44,9 @@ void	initialize_all_values(t_ray *ray)
 	ray->pos_map.y = 0;
 	ray->frame_time = 0;
 	ray->levitation = 0;
+	ray->up = 0;
 	initialize_all_values_bis(ray);
 	init_img_menu(ray);
-}
-
-int	initialize_buffer(t_ray *ray)
-{
-	int	i;
-
-	ray->xpm->buffer = malloc(sizeof(int *) * (HEIGHT + 1));
-	if (!ray->xpm->buffer)
-	{
-		printf("ERROR\n");
-	}
-	i = 0;
-	while (i < HEIGHT)
-	{
-		ray->xpm->buffer[i] = malloc(sizeof(int) * (WIDTH + 1));
-		if (!ray->xpm->buffer[i])
-		{
-			printf("ERROR\n");
-		}
-		i++;
-	}
-	return (0);
 }
 
 void	clear_buffer(int **buffer)
@@ -86,6 +65,31 @@ void	clear_buffer(int **buffer)
 		}
 		j++;
 	}
+}
+
+int	initialize_buffer(t_ray *ray)
+{
+	int	i;
+
+	ray->xpm->buffer = malloc(sizeof(int *) * (HEIGHT + 1));
+	if (!ray->xpm->buffer)
+	{
+		printf("ERROR\n");
+	}
+	ray->xpm->buffer[HEIGHT] = NULL;
+	i = 0;
+	while (i < HEIGHT)
+	{
+		ray->xpm->buffer[i] = malloc(sizeof(int) * (WIDTH + 1));
+		if (!ray->xpm->buffer[i])
+		{
+			printf("ERROR\n");
+		}
+		ray->xpm->buffer[i][WIDTH] = 0;
+		i++;
+	}
+	clear_buffer(ray->xpm->buffer);
+	return (0);
 }
 
 void	print_buffer(int **buffer)

@@ -1,7 +1,7 @@
-NO     ./textures/blackstone256.xpm
-SO    ./textures/blackstone256.xpm
-WE ./textures/metalwindows256.xpm
-EA ./textures/vitraux256.xpm
+NO     ./textures/rideaux.xpm
+SO    ./textures/rideaux.xpm
+WE ./textures/rideaux.xpm
+EA ./textures/rideaux.xpm
 D dgfg
 
 

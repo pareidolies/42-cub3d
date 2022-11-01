@@ -14,6 +14,8 @@
 
 static bool	rotate_left(t_ray *ray, bool reload, double old_p_x, double old_d_x)
 {
+	if (ray->key.space == true)
+		return (reload);
 	ray->dir.x = ray->dir.x * cos(-ray->rot_speed / 2)
 		- ray->dir.y * sin(-ray->rot_speed / 2);
 	ray->dir.y = old_d_x * sin(-ray->rot_speed / 2)
@@ -29,6 +31,8 @@ static bool	rotate_left(t_ray *ray, bool reload, double old_p_x, double old_d_x)
 
 static bool	rotate_right(t_ray *ray, bool rl, double old_p_x, double old_d_x)
 {
+	if (ray->key.space == true)
+		return (rl);
 	ray->dir.x = ray->dir.x * cos(ray->rot_speed / 2)
 		- ray->dir.y * sin(ray->rot_speed / 2);
 	ray->dir.y = old_d_x * sin(ray->rot_speed / 2)

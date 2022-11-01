@@ -12,21 +12,21 @@
 
 #include "../includes/cub3d.h"
 
-int	is_wall_or_sprite(char c)
+int	is_wall(char c)
 {
 	if (c == '1' || c == '3' || c == '4')
-	{
 		return (1);
-	}
 	return (0);
 }
 
 static bool	key_w(t_ray *ray, bool reload)
 {
-	if (!is_wall_or_sprite(ray->revert_map[(int)(ray->pos.x
+	if (ray->key.space == true)
+		return (reload);
+	if (!is_wall(ray->revert_map[(int)(ray->pos.x
 			+ (ray->dir.x * ray->move_speed * 2))][(int)ray->pos.y]))
 		ray->pos.x += ray->dir.x * ray->move_speed;
-	if (!is_wall_or_sprite(ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y
+	if (!is_wall(ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y
 		+ (ray->dir.y * ray->move_speed * 2))]))
 		ray->pos.y += ray->dir.y * ray->move_speed;
 	reload = true;
@@ -35,10 +35,12 @@ static bool	key_w(t_ray *ray, bool reload)
 
 static bool	key_s(t_ray *ray, bool reload)
 {
-	if (!is_wall_or_sprite(ray->revert_map[(int)(ray->pos.x
+	if (ray->key.space == true)
+		return (reload);
+	if (!is_wall(ray->revert_map[(int)(ray->pos.x
 			- (ray->dir.x * ray->move_speed * 2))][(int)(ray->pos.y)]))
 		ray->pos.x -= ray->dir.x * ray->move_speed;
-	if (!is_wall_or_sprite(ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y
+	if (!is_wall(ray->revert_map[(int)(ray->pos.x)][(int)(ray->pos.y
 		- (ray->dir.y * ray->move_speed * 2))]))
 		ray->pos.y -= ray->dir.y * ray->move_speed;
 	reload = true;
@@ -47,10 +49,12 @@ static bool	key_s(t_ray *ray, bool reload)
 
 static bool	key_d(t_ray *ray, bool reload)
 {
-	if (!is_wall_or_sprite(ray->revert_map[(int)(ray->pos.x - ray->dir.y
+	if (ray->key.space == true)
+		return (reload);
+	if (!is_wall(ray->revert_map[(int)(ray->pos.x - ray->dir.y
 			* (ray->move_speed * 2))][(int)ray->pos.y]))
 		ray->pos.x -= ray->dir.y * ray->move_speed;
-	if (!is_wall_or_sprite(ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x
+	if (!is_wall(ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y + ray->dir.x
 		* (ray->move_speed * 2))]))
 		ray->pos.y += ray->dir.x * ray->move_speed;
 	reload = true;
@@ -59,10 +63,12 @@ static bool	key_d(t_ray *ray, bool reload)
 
 static bool	key_a(t_ray *ray, bool reload)
 {
-	if (!is_wall_or_sprite(ray->revert_map[(int)(ray->pos.x + ray->dir.y
+	if (ray->key.space == true)
+		return (reload);
+	if (!is_wall(ray->revert_map[(int)(ray->pos.x + ray->dir.y
 			* (ray->move_speed * 2))][(int)ray->pos.y]))
 		ray->pos.x += ray->dir.y * ray->move_speed;
-	if (!is_wall_or_sprite(ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x
+	if (!is_wall(ray->revert_map[(int)ray->pos.x][(int)(ray->pos.y - ray->dir.x
 		* (ray->move_speed * 2))]))
 		ray->pos.y -= ray->dir.x * ray->move_speed;
 	reload = true;
