@@ -6,13 +6,13 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:48 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/16 17:11:12 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:04:33 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	len_double_array(char **arr)
+int	len_double_array(char **arr)
 {
 	int	i;
 
@@ -116,6 +116,6 @@ void	check_array(t_data *root, t_map *data_map)
 	}
 	if (root->err)
 		free_struct_exit(root);
-	get_final_arr(root);
 	err_parsing_doors(root, data_map);
+	get_final_arr(root);
 }

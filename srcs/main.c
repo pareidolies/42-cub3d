@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:49:28 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/11/01 00:49:02 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:09:51 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int	main(int argc, char **argv)
 	Recuperer le PATH des portes depuis le fichier et non directement dans le code comme actuellement
 
 	Modifier struct .h partie normal (supprimer door)
+
+	Modifie le parsing partie bonus pour que les sprites ne puissent pas etres en dehors de la map
 
 */

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:01:40 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/15 18:48:25 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:12:15 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ bool	line_only_char_map(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != '2' && line[i] != '3' && line[i] != '4' && line[i] != 'N'
+		if (line[i] != '0' && line[i] != '1' && line[i] != '2'
+			&& line[i] != '3' && line[i] != '4' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
 			&& line[i] != ' ')
 			return (false);

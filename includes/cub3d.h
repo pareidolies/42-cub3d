@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/17 16:23:11 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:04:53 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -426,6 +426,7 @@ int		move(t_ray *ray);
 bool	rotate(t_ray *ray, bool reload);
 int		mouse_move(int x, int y, t_ray *ray);
 int		key_release(int keycode, t_ray *ray);
+int		len_double_array(char **arr);
 
 //menu.c
 void	square(t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 13:48:37 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/11 15:37:41 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/01 22:36:30 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ bool	is_player(char c)
 
 bool	is_space_or_player(char c)
 {
-	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == '3' || c == '4')
 		return (true);
 	return (false);
 }
