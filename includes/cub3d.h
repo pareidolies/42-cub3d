@@ -307,7 +307,8 @@ typedef struct s_ray {
 	t_sprite	*sprite;
 	double		zbuffer[WIDTH]; //for sprites
 	//ANIMATION
-	int			levitation;
+	double			levitation;
+	double			levitationscreen;
 	long		frame_time;
 	int			up;
 	//FLOOR

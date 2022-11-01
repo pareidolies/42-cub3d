@@ -43,7 +43,7 @@ void	initialize_all_values(t_ray *ray)
 	ray->pos_map.x = 0;
 	ray->pos_map.y = 0;
 	ray->frame_time = 0;
-	ray->levitation = 0;
+	ray->levitation = 0.0;
 	ray->up = 0;
 	initialize_all_values_bis(ray);
 	init_img_menu(ray);

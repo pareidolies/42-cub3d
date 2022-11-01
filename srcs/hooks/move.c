@@ -14,7 +14,7 @@
 
 int	is_wall(char c)
 {
-	if (c == '1' || c == '3' || c == '4')
+	if (c == '1')
 		return (1);
 	return (0);
 }
@@ -78,9 +78,9 @@ static bool	key_a(t_ray *ray, bool reload)
 static bool	key_space(t_ray *ray)
 {
 	if ((ray->frame_time % 5 == 0) && (ray->up == 0))
-		ray->levitation = ray->levitation + 3;
+		ray->levitation = ray->levitation + 10;
 	else if ((ray->frame_time % 5 == 0) && (ray->up == 1))
-		ray->levitation = ray->levitation - 3;
+		ray->levitation = ray->levitation - 10;
 	if (ray->frame_time % 200 == 0)
 		ray->up = (ray->up == 0);
 	return (true);
