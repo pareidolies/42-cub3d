@@ -41,14 +41,16 @@ void    compute_sprite_camera_position(t_ray *ray, t_sprite *sprite, int i)
     sprite->invdet = 1.0 / (ray->plane.x * ray->dir.y - ray->dir.x * ray->plane.y);
     sprite->transform.x = sprite->invdet * (ray->dir.y * x - ray->dir.x * y);
     sprite->transform.y = sprite->invdet * (-ray->plane.y * x + ray->plane.x * y);
-    ray->levitationscreen = ray->levitation / sprite->transform.y;
+    if (sprite->tab[sprite->order[i]].texture == 5)
+        ray->levitationscreen = ray->levitation / sprite->transform.y;
+    else
+        ray->levitationscreen = -ray->levitation / sprite->transform.y;
     sprite->screenx= (int)((WIDTH / 2) * (1 + sprite->transform.x / sprite->transform.y));
 }
 
 void    compute_sprite_height_and_width(t_ray *ray, t_sprite *sprite)
 {
         sprite->height = abs((int)(HEIGHT / (sprite->transform.y)));
-        sprite->tab[sprite->order[i]].texture == 6
         sprite->drawstart.y = -sprite->height / 2 + HEIGHT / 2 + ray->levitationscreen;
         if (sprite->drawstart.y < 0) 
             sprite->drawstart.y = 0;
@@ -71,8 +73,6 @@ void    draw_sprite_pixel(t_ray *ray, t_sprite *sprite, int pixel, int stripe, i
     sprite->color = ray->texture[sprite->tab[sprite->order[i]].texture].tab[ray->texture[sprite->tab[sprite->order[i]].texture].width * sprite->tex.y + sprite->tex.x];
     if(((sprite->color & 0x00FFFFFF) != 0))
         ray->xpm->buffer[pixel][stripe] = sprite->color;
-    //else if((sprite->color & 0x00FFFFFF) != 0 && (sprite->tab[sprite->order[i]].texture == 6))
-    //    ray->xpm->buffer[pixel][stripe] = sprite->color;
 }
 
 void    draw_sprites(t_ray *ray, t_sprite *sprite)
@@ -110,7 +110,6 @@ void    add_sprites(t_ray *ray)
     t_sprite sprite;
 
     get_sprites_nbr(ray, &sprite);
-    printf("nbr : %d\n", sprite.nbr);
     get_sprites_coordinates(ray, &sprite);
     sort_sprites(ray, &sprite);
     draw_sprites(ray, &sprite);
