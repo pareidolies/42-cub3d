@@ -29,6 +29,27 @@ int	initialize_mlx(t_mlx *mlx)
 	return (0);
 }
 
+void initialize_all_values_bis(t_ray *ray)
+{
+	ray->key.w = false;
+	ray->key.a = false;
+	ray->key.s = false;
+	ray->key.d = false;
+	ray->key.rr = false;
+	ray->key.rl = false;
+	ray->key.space = false;
+	ray->key.mouse_l = false;
+	ray->key.mouse_r = false;
+	ray->key.menu = false;
+	ray->key.pos_menu = 0;
+	ray->move_speed = 0.15;
+	ray->key.move_s = 2;
+	ray->rot_speed = 0.07;
+	ray->key.rotation_s = 3;
+	ray->ceiling_color = 0;
+	ray->floor_color = 0;
+}
+
 void	initialize_all_values(t_ray *ray)
 {
 	ray->dir.x = 0;

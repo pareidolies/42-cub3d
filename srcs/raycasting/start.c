@@ -32,7 +32,7 @@ int	start_raycasting(t_data *data)
 	mlx_loop_hook(ray.mlx->ptr, move, &ray);
 	mlx_hook(mlx.win, 17, 1L << 8, mlx_loop_end, mlx.ptr);
 	mlx_hook(ray.mlx->win, 6, 1L << 6, mouse_move, &ray);
-	// mlx_mouse_hide(mlx.ptr, mlx.win); // La fonction cree des leaks :(
+	mlx_mouse_hide(mlx.ptr, mlx.win); // La fonction cree des leaks :(
 	mlx_loop(ray.mlx->ptr);
 	free_all_imgs(&ray);
 	mlx_destroy_window(ray.mlx->ptr, ray.mlx->win);

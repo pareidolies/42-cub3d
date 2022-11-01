@@ -52,6 +52,15 @@
 # define SPACE 32
 # define TAB 65289
 
+# define DEFAULT 0
+# define RED 1
+# define YELLOW 2
+# define GREEN 3
+# define BLUE 4
+# define GREY 5
+# define BLACK 6
+# define WHITE 7
+
 # define ANSI_COLOR_BLUE			"\x1b[94m"
 # define ANSI_COLOR_LIGHT_WHITE		"\x1b[97m"
 # define ANSI_COLOR_LIGHT_RED		"\x1b[91m"

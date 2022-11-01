@@ -125,3 +125,26 @@ void	floor_color(t_ray *ray, int x, int y)
 			ray->img_menu.floor_3, x, y);
 	floor_color_bis(ray, x, y);
 }
+
+int	get_color(int color, t_ray *ray, char c)
+{
+	if (color == DEFAULT)
+	{
+		if (c == 'c')
+			return (create_rgb(ray->data->c.r, ray->data->c.g, ray->data->c.b));
+		return (create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b));
+	}
+	else if (color == RED)
+		return (create_rgb(255, 0, 0));
+	else if (color == YELLOW)
+		return (create_rgb(255, 255, 0));
+	else if (color == GREEN)
+		return (create_rgb(0, 255, 0));
+	else if (color == BLUE)
+		return (create_rgb(0, 0, 255));
+	else if (color == GREY)
+		return (create_rgb(128, 128, 128));
+	else if (color == BLACK)
+		return (create_rgb(0, 0, 0));
+	return (create_rgb(255, 255, 255));
+}

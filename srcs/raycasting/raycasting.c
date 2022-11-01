@@ -174,7 +174,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	close_opened_doors(ray, ray->data);
 	if (ray->door)
 		check_doors(ray); //DOORS
-	//create_floor_and_ceiling(ray);
+	create_floor_and_ceiling(ray);
 	ray->i = 0;
 	while (ray->i < WIDTH)
 	{
