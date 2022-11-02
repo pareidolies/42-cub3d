@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:14:32 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/02 09:33:55 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:56:22 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_texture	xpm_to_img(t_ray *ray, char *path, t_mlx *mlx)
 	res.tab = malloc(sizeof(int) * res.width * res.height);
 	if (!res.tab)
 	{
-		printf(MALLOC_MSSG);
+		ft_printf(MALLOC_MSSG);
 		mlx_destroy_image(mlx->ptr, img);
 		exit_safe(ray);
 	}
@@ -57,7 +57,7 @@ int get_textures(t_ray *ray)
 	ray->xpm = malloc(sizeof(t_xpm));
 	if (!ray->xpm)
 	{
-		printf(MALLOC_MSSG);
+		ft_printf(MALLOC_MSSG);
 		exit_safe(ray);
 	}
 	ray->texture[0] = xpm_to_img(ray, ray->data->no, ray->mlx);

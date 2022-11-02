@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:13:13 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/31 17:13:16 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:54:04 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	add_door(t_ray *ray, t_door *first, double x, double y)
 	new = create_door(x, y);
     if (!new)
     {
-        printf(MALLOC_MSSG); 
+        ft_printf(MALLOC_MSSG); 
         free_list(first);
         exit_safe(ray);
     }
@@ -67,7 +67,7 @@ void    parse_doors(t_ray *ray)
                     door = create_door((double)(i) + 0.5, (double)j + 0.5);
                     if (!door)
                     {
-                        printf(MALLOC_MSSG);
+                        ft_printf(MALLOC_MSSG);
                         exit_safe(ray);
                     }
                 }

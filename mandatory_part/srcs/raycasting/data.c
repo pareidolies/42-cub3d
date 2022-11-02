@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transpose.c                                        :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:14:39 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/31 17:14:41 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:55:50 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 	ray->revert_map = malloc(sizeof(char *) * (data->len + 1));
 	if (!ray->revert_map)
 	{
-		printf(MALLOC_MSSG);
+		ft_printf(MALLOC_MSSG);
 		exit_safe(ray);
 	}
 	while (i < data->len)
@@ -29,7 +29,7 @@ void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data)
 		ray->revert_map[i] = malloc(sizeof(char) * data->height);
 		if (!ray->revert_map[i])
 		{
-			printf(MALLOC_MSSG);
+			ft_printf(MALLOC_MSSG);
 			ray->revert_map[i] = NULL;
 			free_double_array(ray->revert_map);
 			exit_safe(ray);

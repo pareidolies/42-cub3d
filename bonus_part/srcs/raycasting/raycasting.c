@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:13:54 by smostefa          #+#    #+#             */
-/*   Updated: 2022/10/31 17:13:56 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:54:32 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	mlx->img = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	if (!mlx->img)
 	{
-		printf(MLX_MSSG);
+		ft_printf(MLX_MSSG);
 		exit_safe(ray);
 	}
 	clear_buffer(ray->xpm->buffer);

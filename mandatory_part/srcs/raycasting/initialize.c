@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:13:28 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/02 09:35:47 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:55:54 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	initialize_buffer(t_ray *ray)
 	ray->xpm->buffer = malloc(sizeof(int *) * (HEIGHT + 1));
 	if (!ray->xpm->buffer)
 	{
-		printf(MALLOC_MSSG);
+		ft_printf(MALLOC_MSSG);
 		exit_safe(ray);
 	}
 	ray->xpm->buffer[HEIGHT] = NULL;
@@ -101,7 +101,7 @@ int	initialize_buffer(t_ray *ray)
 		ray->xpm->buffer[i] = malloc(sizeof(int) * (WIDTH + 1));
 		if (!ray->xpm->buffer[i])
 		{
-			printf(MALLOC_MSSG);
+			ft_printf(MALLOC_MSSG);
 			ray->xpm->buffer[i] = NULL;
 			free_double_array_int(ray->xpm->buffer);
 			exit_safe(ray);
