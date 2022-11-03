@@ -99,7 +99,7 @@ LIBRARY		= ./libft/libft.a ./mlx_linux/libmlx.a
 
 NAME		= cub3D
 
-NAME_BONUS	= cub3D
+NAME_BONUS	= cub3D_bonus
 
 RM		= rm -Rf
 
@@ -108,9 +108,6 @@ CC		= cc -I $(INC_DIR) -MMD
 CFLAGS	= -Wall -Wextra -Werror
 
 LIBFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-
-#%.o: %.c
-#	@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 ${OBJS_DIR}/%.o : ${SRCS_DIR}/%.c
 		@[ ! -d ${OBJS_DIR} ] && mkdir -p  ${OBJS_DIR} || true
@@ -129,8 +126,6 @@ ${OBJS_B_DIR}/%.o : ${BONUS_DIR}/%.c
 		@[ ! -d ${OBJS_B_DIR}/features/ ] && mkdir -p  ${OBJS_B_DIR}/features/ || true
 		@$(CC) ${CFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-# @[ ! -d ${OBJS_DIR}/features/ ] && mkdir -p  ${OBJS_DIR}/features/ || true
-
 all:		$(NAME)
 
 ./libft/libft.a :
@@ -148,6 +143,11 @@ $(NAME): $(LIBRARY) $(OBJS)
 		${CC} ${CFLAGS} ${OBJS} ${LIBRARY} -o ${NAME} ${LIBFLAGS}
 		@echo "\033[92m cub3D is ready\033[0m"
 
+$(NAME_BONUS): $(LIBRARY) $(OBJS_BONUS)
+		@echo " [..] | created object files."
+		${CC} ${CFLAGS} ${OBJS_BONUS} ${LIBRARY} -o ${NAME_BONUS} ${LIBFLAGS}
+		@echo "\033[92m cub3D is ready\033[0m"
+
 clean:
 		$(MAKE) clean $(PATH_LIBFT)
 		$(MAKE) clean $(PATH_MLX)
@@ -161,10 +161,7 @@ fclean:		clean
 
 re:		fclean ${NAME}
 
-bonus:		$(LIBRARY) $(OBJS_BONUS)
-		@echo " [..] | created object files."
-		${CC} ${CFLAGS} ${OBJS_BONUS} ${LIBRARY} -o ${NAME_BONUS} ${LIBFLAGS}
-		@echo "\033[92m cub3D is ready\033[0m"
+bonus:	$(NAME_BONUS)
 
 norm:		
 		norminette ./libft ./srcs ./srcs_bonus ./includes
