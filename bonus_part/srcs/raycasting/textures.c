@@ -80,11 +80,19 @@ t_texture	xpm_to_img(t_ray *ray, char *path, t_mlx *mlx)
 
 int	get_textures(t_ray *ray)
 {
+	int	i;
+
+	i = 0;
 	ray->xpm = malloc(sizeof(t_xpm));
 	if (!ray->xpm)
 	{
 		ft_printf(MALLOC_MSSG);
 		exit_safe(ray);
+	}
+	while (i < 8)
+	{
+		ray->texture[i].tab = NULL;
+		i++;
 	}
 	ray->texture[0] = xpm_to_img(ray, ray->data->no, ray->mlx);
 	ray->texture[1] = xpm_to_img(ray, ray->data->so, ray->mlx);

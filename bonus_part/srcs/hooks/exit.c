@@ -19,7 +19,8 @@ void	free_textures(t_ray *ray)
 	i = 0;
 	while (i < 8)
 	{
-		free(ray->texture[i].tab);
+		if (ray->texture[i].tab)
+			free(ray->texture[i].tab);
 		i++;
 	}
 }
@@ -28,9 +29,9 @@ void	free_all(t_ray *ray)
 {
 	if (!ray->data->err)
 	{
-		free_textures(ray);
 		free_double_array_int(ray->xpm->buffer);
 	}
+	free_textures(ray);
 	free_all_imgs(ray);
 	free_list(ray->door);
 	free(ray->xpm);
