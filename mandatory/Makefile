@@ -27,6 +27,7 @@ SRCS		=	main.c \
 				hooks/move.c \
 				hooks/rotate.c \
 
+SRCS_BONUS  =
 
 SRCS_DIR	= srcs
 
