@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/11/01 23:04:53 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 19:04:00 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,6 +344,7 @@ typedef struct s_ray {
  *****************************************************************************/
 
 //parsing.c
+int		is_wall(char c);
 int		is_data(char *data);
 int		open_file(char *map, t_data *root);
 int		check_useless_wall_width(t_data *root);
@@ -377,6 +378,7 @@ void	str_rgb_to_struct(t_data *root, char c, char **rgb);
 void	map_file_to_array(t_map *data_map, char *map, t_data *root);
 
 bool	is_player(char c);
+bool	key_space(t_ray *ray);
 bool	check_format(char **arr);
 bool	is_space_or_player(char c);
 bool	all_data_set(t_data *root);
