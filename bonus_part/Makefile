@@ -36,6 +36,7 @@ SRCS		=	main.c \
 				hooks/keys.c \
 				hooks/keys_bis.c \
 				hooks/move.c \
+				hooks/move_bis.c \
 				hooks/rotate.c \
 				hooks/free_imgs.c \
 
