@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:13:54 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/02 19:54:32 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:18:38 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,6 @@ void	former_print_results_on_screen(t_ray *ray, t_mlx *mlx)
 	}
 }*/
 
-void	compute_wallx(t_ray *ray)
-{
-	if (ray->side == HORIZONTAL)
-	{
-		ray->xpm->id = 0;
-		if (ray->raydir.x > 0)
-			ray->xpm->id = 1;
-		ray->wallx = ray->pos.y + ray->perpwalldist * ray->raydir.y;
-	}
-	else
-	{
-		ray->xpm->id = 2;
-		if (ray->raydir.y < 0)
-			ray->xpm->id = 3;
-		ray->wallx = ray->pos.x + ray->perpwalldist * ray->raydir.x;
-	}
-	if (ray->is_door == 1)
-		ray->xpm->id = 4;
-	ray->wallx -= floor(ray->wallx);
-}
-
 void	fill_buffer(t_ray *ray)
 {
 	int	j;
@@ -94,7 +73,8 @@ void	fill_buffer(t_ray *ray)
 	{
 		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->texture[ray->xpm->id].height - 1); // question
 		ray->xpm->pos += ray->xpm->step;
-		color = ray->texture[ray->xpm->id].tab[ray->texture[ray->xpm->id].height * \
+		color = ray->texture[ray->xpm->id].\
+			tab[ray->texture[ray->xpm->id].height * \
 			ray->xpm->tex.y + ray->xpm->tex.x];
 		ray->xpm->buffer[j][ray->i] = color;
 		j++;
@@ -140,15 +120,13 @@ void	print_results_on_screen(t_ray *ray)
 {
 	int	i;
 	int	j;
-	int	color_ceiling;
-	int	color_floor;
 
 	ray->mlx->addr = (int *)mlx_get_data_addr(ray->mlx->img, &ray->mlx->bpp,
 			&ray->mlx->line_length, &ray->mlx->endian);
 	i = 0;
 	j = 0;
-	color_ceiling = get_color(ray->ceiling_color, ray, 'c');
-	color_floor = get_color(ray->floor_color, ray, 'f');
+	ray->color_ceiling = get_color(ray->ceiling_color, ray, 'c');
+	ray->color_floor = get_color(ray->floor_color, ray, 'f');
 	while (j < HEIGHT)
 	{
 		i = 0;
@@ -157,13 +135,26 @@ void	print_results_on_screen(t_ray *ray)
 			if (ray->xpm->buffer[j][i] > 0)
 				ray->mlx->addr[j * WIDTH + i] = ray->xpm->buffer[j][i];
 			else if (j < HEIGHT / 2)
-				ray->mlx->addr[j * WIDTH + i] = color_ceiling;
+				ray->mlx->addr[j * WIDTH + i] = ray->color_ceiling;
 			else
-				ray->mlx->addr[j * WIDTH + i] = color_floor;
+				ray->mlx->addr[j * WIDTH + i] = ray->color_floor;
 			i++;
 		}
 		j++;
 	}
+}
+
+void	raycasting_loop(t_ray *ray)
+{
+	initialize_ray_i(ray);
+	compute_deltadist(ray);
+	compute_sidedist(ray);
+	compute_perpwalldist(ray);
+	ray->zbuffer[ray->i] = ray->perpwalldist;
+	compute_line_attributes(ray);
+	compute_wallx(ray);
+	fill_buffer(ray);
+	ray->i++;
 }
 
 int	launch_raycasting(t_ray *ray, t_mlx *mlx)
@@ -181,17 +172,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	create_floor_and_ceiling(ray);
 	ray->i = 0;
 	while (ray->i < WIDTH)
-	{
-		initialize_ray_i(ray);
-		compute_deltadist(ray);
-		compute_sidedist(ray);
-		compute_perpwalldist(ray);
-		ray->zbuffer[ray->i] = ray->perpwalldist;
-		compute_line_attributes(ray);
-		compute_wallx(ray);
-		fill_buffer(ray);
-		ray->i++;
-	}
+		raycasting_loop(ray);
 	add_sprites(ray);
 	print_results_on_screen(ray);
 	if (ray->minimap)

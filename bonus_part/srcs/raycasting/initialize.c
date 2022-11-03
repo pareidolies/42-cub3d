@@ -66,6 +66,7 @@ void	initialize_all_values(t_ray *ray)
 	ray->frame_time = 0;
 	ray->levitation = 0.0;
 	ray->up = 0;
+	ray->door = NULL;
 	initialize_all_values_bis(ray);
 	init_img_menu(ray);
 }

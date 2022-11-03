@@ -19,20 +19,15 @@ int	main(int argc, char **argv)
 	init_struct(&root);
 	if (check_error(argc, argv, &root) || root.err)
 		free_struct_exit(&root);
-	// printf("D = %s\n", root.d);
-	// for(int i = 0; root.map[i]; i++)
-		// printf("%s\n", root.map[i]);
-	// printf("TEST\n");
 	start_raycasting(&root);
-	//free_struct(&root);
 	return (0);
 }
 
-
 /*
 
-	Segfault si les textures n'existent pas
+	- Segfault si les textures n'existent pas
 
-	Recuperer le PATH des portes depuis le fichier et non directement dans le code comme actuellement
+	- Recuperer le PATH des portes depuis le fichier 
+	et non directement dans le code comme actuellement
 
 */

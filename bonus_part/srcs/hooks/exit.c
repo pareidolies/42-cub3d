@@ -22,10 +22,9 @@ void	free_textures(t_ray *ray)
 		free(ray->texture[i].tab);
 		i++;
 	}
-	
 }
 
-void	free_all(t_ray * ray)
+void	free_all(t_ray *ray)
 {
 	if (!ray->data->err)
 	{

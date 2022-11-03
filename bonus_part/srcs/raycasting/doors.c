@@ -42,7 +42,17 @@ void	parse_doors(t_ray *ray)
 		{
 			if (ray->revert_map[i][j] == '2')
 			{
-				parse_doors2(ray, door, i, j);
+				if (!door)
+				{
+					door = create_door((double)(i) + 0.5, (double)j + 0.5);
+					if (!door)
+					{
+						ft_printf(MALLOC_MSSG);
+						exit_safe(ray);
+					}
+				}
+				else
+					add_door(ray, door, (double)(i) + 0.5, (double)j + 0.5);
 			}
 			i++;
 		}

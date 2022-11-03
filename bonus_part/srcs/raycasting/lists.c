@@ -21,7 +21,6 @@ t_door	*create_door(double x, double y)
 		if (!node)
 			return (NULL);
 	}
-	node->prev = NULL;
 	node->next = NULL;
 	node->x = x;
 	node->y = y;
@@ -44,5 +43,4 @@ void	add_door(t_ray *ray, t_door *first, double x, double y)
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new;
-	new->prev = current;
 }

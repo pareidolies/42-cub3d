@@ -132,8 +132,7 @@ typedef struct s_door {
 	double			x;
 	double			y;
 	struct s_door	*next;
-	struct s_door	*prev;
-}		t_door;
+}			t_door;
 
 typedef struct s_data {
 	int				nbr_line_data;
@@ -334,6 +333,10 @@ typedef struct s_ray {
 	t_vector	floorstep;
 	t_vector	floor;
 	t_point		cell;
+	int			color_ceiling;
+	int			color_floor;
+	int			stripe;
+	int			pixel;
 }				t_ray;
 
 /******************************************************************************
@@ -439,6 +442,7 @@ void	init_img_menu(t_ray *ray);
 //textures.c
 t_texture	xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
 int		get_textures(t_ray *ray);
+void	compute_wallx(t_ray *ray);
 
 //door.c
 t_door	*create_door(double x, double y);

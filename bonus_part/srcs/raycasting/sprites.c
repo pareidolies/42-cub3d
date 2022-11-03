@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:32:18 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/03 15:33:46 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:35:42 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	compute_sprite_camera_position(t_ray *ray, t_sprite *sprite, int i) // ques
 	else
 		ray->levitationscreen = (-ray->levitation + 400.0) / \
 			sprite->transform.y;
-	sprite->screenx= (int)((WIDTH / 2) * \
+	sprite->screenx = (int)((WIDTH / 2) * \
 		(1 + sprite->transform.x / sprite->transform.y));
 }
 
@@ -60,7 +60,7 @@ void	compute_sprite_height_and_width(t_ray *ray, t_sprite *sprite)
 	sprite->height = abs((int)(HEIGHT / (sprite->transform.y)));
 	sprite->drawstart.y = -sprite->height / 2 + \
 		HEIGHT / 2 + ray->levitationscreen;
-	if (sprite->drawstart.y < 0) 
+	if (sprite->drawstart.y < 0)
 		sprite->drawstart.y = 0;
 	sprite->drawend.y = sprite->height / 2 + HEIGHT / 2 + ray->levitationscreen;
 	if (sprite->drawend.y >= HEIGHT)
@@ -74,49 +74,45 @@ void	compute_sprite_height_and_width(t_ray *ray, t_sprite *sprite)
 		sprite->drawend.x = WIDTH - 1;
 }
 
-void	draw_sprite_pixel(t_ray *ray, t_sprite *sprite, int pixel, int stripe, int i)
+void	draw_sprite_pixel(t_ray *ray, t_sprite *sprite, int i)
 {
-	sprite->d = (pixel - ray->levitationscreen) * \
-		256 - HEIGHT * 128 + sprite->height * 128;
+	sprite->d = (ray->pixel - ray->levitationscreen) * \
+		256 - HEIGHT * 128 + sprite->height * 128; //question
 	sprite->tex.y = ((sprite->d * \
 		ray->texture[sprite->tab[sprite->order[i]].texture].height) / \
-			sprite->height) / 256;
+			sprite->height) / 256; //question
 	sprite->color = ray->texture[sprite->tab[sprite->order[i]].\
-		texture].tab[ray->texture[sprite->tab[sprite->order[i]].texture].width *\
-		sprite->tex.y + sprite->tex.x];
+		texture].tab[ray->texture[sprite->tab[sprite->order[i]].\
+		texture].width * sprite->tex.y + sprite->tex.x];
 	if (((sprite->color & 0x00FFFFFF) != 0))
-		ray->xpm->buffer[pixel][stripe] = sprite->color;
+		ray->xpm->buffer[ray->pixel][ray->stripe] = sprite->color;
+	ray->pixel++;
 }
 
 void	draw_sprites(t_ray *ray, t_sprite *sprite)
 {
 	int	i;
-	int	stripe;
-	int	pixel;
 
 	i = 0;
 	while (i < sprite->nbr)
 	{
 		compute_sprite_camera_position(ray, sprite, i);
 		compute_sprite_height_and_width(ray, sprite);
-		stripe = sprite->drawstart.x;
-		while (stripe < sprite->drawend.x)
+		ray->stripe = sprite->drawstart.x;
+		while (ray->stripe < sprite->drawend.x)
 		{
-			sprite->tex.x = (int)(256 * (stripe - (-sprite->width / 2 + \
+			sprite->tex.x = (int)(256 * (ray->stripe - (-sprite->width / 2 + \
 				sprite->screenx)) * \
 				ray->texture[sprite->tab[sprite->order[i]].texture].width / \
-					sprite->width) / 256; 
-			if (sprite->transform.y > 0 && stripe > 0 && stripe < WIDTH
-				&& sprite->transform.y < ray->zbuffer[stripe])
+					sprite->width) / 256;
+			if (sprite->transform.y > 0 && ray->stripe > 0 && ray->stripe \
+				< WIDTH && sprite->transform.y < ray->zbuffer[ray->stripe])
 			{
-				pixel = sprite->drawstart.y;
-				while (pixel < sprite->drawend.y)
-				{
-					draw_sprite_pixel(ray, sprite, pixel, stripe, i);
-					pixel++;
-				}
+				ray->pixel = sprite->drawstart.y;
+				while (ray->pixel < sprite->drawend.y)
+					draw_sprite_pixel(ray, sprite, i);
 			}
-			stripe++;
+			ray->stripe++;
 		}
 		i++;
 	}

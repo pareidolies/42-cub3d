@@ -12,6 +12,27 @@
 
 #include "cub3d.h"
 
+void	compute_wallx(t_ray *ray)
+{
+	if (ray->side == HORIZONTAL)
+	{
+		ray->xpm->id = 0;
+		if (ray->raydir.x > 0)
+			ray->xpm->id = 1;
+		ray->wallx = ray->pos.y + ray->perpwalldist * ray->raydir.y;
+	}
+	else
+	{
+		ray->xpm->id = 2;
+		if (ray->raydir.y < 0)
+			ray->xpm->id = 3;
+		ray->wallx = ray->pos.x + ray->perpwalldist * ray->raydir.x;
+	}
+	if (ray->is_door == 1)
+		ray->xpm->id = 4;
+	ray->wallx -= floor(ray->wallx);
+}
+
 void	xpm_to_img2(t_texture *res, t_mlx *mlx, void *img, t_ray *ray)
 {
 	int	x;

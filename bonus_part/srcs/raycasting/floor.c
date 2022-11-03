@@ -40,14 +40,13 @@ void	create_floor_and_ceiling2(t_ray *ray, int x, int y)
 
 	ray->cell.x = (int)(ray->floor.x);
 	ray->cell.y = (int)(ray->floor.y);
-	t.x = (int)(ray->texture[7].width * \
-		(ray->floor.x - ray->cell.x)) & (ray->texture[7].width - 1); //question
-	t.y = (int)(ray->texture[7].height * \
-		(ray->floor.y - ray->cell.y)) & (ray->texture[7].height - 1); //question
+	t.x = (int)(ray->texture[7].width * (ray->floor.x - ray->cell.x))
+    & (ray->texture[7].width - 1); //question
+	t.y = (int)(ray->texture[7].height * (ray->floor.y - ray->cell.y)) % ray->texture[7].height
+    & (ray->texture[7].height - 1); //question
 	ray->floor.x += ray->floorstep.x;
 	ray->floor.y += ray->floorstep.y;
 	color = ray->texture[7].tab[ray->texture[7].width * t.y + t.x];
-	color = (color >> 1) & 8355711; // make a bit darker // question
 	ray->xpm->buffer[y][x] = color;
 	color = get_color(ray->ceiling_color, ray, 'c');
 	ray->xpm->buffer[HEIGHT - y - 1][x] = color;
