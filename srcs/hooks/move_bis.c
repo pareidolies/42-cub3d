@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   move_bis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 12:02:46 by smostefa          #+#    #+#             */
-/*   Updated: 2021/12/08 15:46:25 by smostefa         ###   ########.fr       */
+/*   Created: 2022/11/03 20:39:32 by jdubilla          #+#    #+#             */
+/*   Updated: 2022/11/03 20:40:01 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3d.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	is_wall(char c)
 {
-	int	i;
-
-	if (s)
-	{
-		i = 0;
-		while (s[i])
-		{
-			(*f)(i, &s[i]);
-			i++;
-		}
-	}
+	if (c == '1')
+		return (1);
+	return (0);
 }

@@ -6,18 +6,11 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:37:26 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/02 09:06:43 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:39:53 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	is_wall(char c)
-{
-	if (c == '1')
-		return (1);
-	return (0);
-}
 
 static bool	key_w(t_ray *ray, bool reload)
 {

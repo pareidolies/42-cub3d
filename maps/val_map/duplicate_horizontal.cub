@@ -1,7 +1,7 @@
-NO     ./textures/blackstone256.xpm
-SO    ./textures/blackstone256.xpm
-WE ./textures/metalwindows256.xpm
-EA ./textures/vitraux256.xpm
+NO     ./textures/wall3.xpm
+SO    ./textures/wall1.xpm
+WE ./textures/wall4.xpm
+EA ./textures/wall2.xpm
 
 
 F 22,22,22

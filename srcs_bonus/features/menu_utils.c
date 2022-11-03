@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:29:15 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/10/16 17:34:53 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:44:19 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,13 @@ int	get_color(int color, t_ray *ray, char c)
 		return (create_rgb(ray->data->f.r, ray->data->f.g, ray->data->f.b));
 	}
 	else if (color == RED)
-		return (create_rgb(255, 0, 0));
+		return (create_rgb(178, 34, 34));
 	else if (color == YELLOW)
-		return (create_rgb(255, 255, 0));
+		return (create_rgb(255, 215, 0));
 	else if (color == GREEN)
-		return (create_rgb(0, 255, 0));
+		return (create_rgb(34, 139, 34));
 	else if (color == BLUE)
-		return (create_rgb(0, 0, 255));
+		return (create_rgb(0, 0, 205));
 	else if (color == GREY)
 		return (create_rgb(128, 128, 128));
 	else if (color == BLACK)

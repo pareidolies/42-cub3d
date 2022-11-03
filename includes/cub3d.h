@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:48:55 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/11/03 19:04:00 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:48:50 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@
 # define MALLOC_MSSG	"Error\nA malloc error occurred.\n"
 # define MLX_MSSG	"Error\nAn mlx error occurred.\n"
 # define IMG_MSSG	"Error\nWe could not load the image.\n"
-
 
 /******************************************************************************
 *                              ENUMERATIONS                                   *
@@ -183,8 +182,8 @@ typedef struct s_key {
 
 typedef struct s_xpm {
 	int		**buffer;
-	int		width; //enlever
-	int		height; //enlever
+	int		width;
+	int		height;
 	int		id;
 	double	step;
 	double	pos;
@@ -291,20 +290,18 @@ typedef struct s_ray {
 	t_vector	plane;
 	t_vector	raydir;
 	double		camerax;
-	t_point		map; //int
+	t_point		map;
 	t_vector	sidedist;
 	t_vector	deltadist;
-	t_point		step; //int
+	t_point		step;
 	t_hit		hit;
 	t_side		side;
 	double		perpwalldist;
-	double		wallx; //where exactly the wall was hit
+	double		wallx;
 	int			lineheight;
 	int			drawstart;
 	int			drawend;
 	int			i;
-	// int			width;
-	// int			height;
 	int			is_door;
 	char		**revert_map;
 	bool		minimap;
@@ -318,15 +315,15 @@ typedef struct s_ray {
 	t_texture	texture[10];
 	t_xpm		*xpm;
 	t_door		*door;
-	//SPRITE
+
 	t_sprite	*sprite;
-	double		zbuffer[WIDTH]; //for sprites
-	//ANIMATION
-	double			levitation;
-	double			levitationscreen;
+	double		zbuffer[WIDTH];
+
+	double		levitation;
+	double		levitationscreen;
 	long		frame_time;
 	int			up;
-	//FLOOR
+
 	t_vector	raydir0;
 	t_vector	raydir1;
 	double		rowdistance;
@@ -344,139 +341,138 @@ typedef struct s_ray {
  *****************************************************************************/
 
 //parsing.c
-int		is_wall(char c);
-int		is_data(char *data);
-int		open_file(char *map, t_data *root);
-int		check_useless_wall_width(t_data *root);
-int		check_useless_wall_height(t_data *root);
-int		check_error(int argc, char **argv, t_data *root);
+int			is_wall(char c);
+int			is_data(char *data);
+int			open_file(char *map, t_data *root);
+int			check_useless_wall_width(t_data *root);
+int			check_useless_wall_height(t_data *root);
+int			check_error(int argc, char **argv, t_data *root);
 
-char	*get_next_line(int fd);
-char	*ft_get_line(char *left_str);
-char	*ft_strchr_gnl(char *s, int c);
-char	*ft_new_left_str(char *left_str);
-char	*ft_strjoin_gnl(char *left_str, char *buff);
-char	*go_to_beginning_of_map_bis(int fd, t_map *data_map);
+char		*get_next_line(int fd);
+char		*ft_get_line(char *left_str);
+char		*ft_strchr_gnl(char *s, int c);
+char		*ft_new_left_str(char *left_str);
+char		*ft_strjoin_gnl(char *left_str, char *buff);
+char		*go_to_beginning_of_map_bis(int fd, t_map *data_map);
 
-void	go_end_file(int fd);
-void	show_data(t_data *root);
-void	init_struct(t_data *root);
-void	free_struct(t_data *root);
-void	free_double_array(char **arr);
-void	show_data_map(t_map *data_map);
-void	free_struct_exit(t_data *root);
-void	check_first_error(t_data *root);
-void	init_struct_map(t_map *data_map);
-void	error_missing_data(t_data *root);
-void	cpy_rgb(t_data *root, char *line);
-void	free_uselsee_wall(t_data *root, int pos);
-void	check_array(t_data *root, t_map *data_map);
-void	increment_data_line(t_data *root, t_map *data);
-void	go_to_beginning_of_map(int fd, t_map *data_map);
-void	check_map(t_map *data_map, t_data *root, char *map);
-void	str_rgb_to_struct(t_data *root, char c, char **rgb);
-void	map_file_to_array(t_map *data_map, char *map, t_data *root);
+void		go_end_file(int fd);
+void		show_data(t_data *root);
+void		init_struct(t_data *root);
+void		free_struct(t_data *root);
+void		free_double_array(char **arr);
+void		show_data_map(t_map *data_map);
+void		free_struct_exit(t_data *root);
+void		check_first_error(t_data *root);
+void		init_struct_map(t_map *data_map);
+void		error_missing_data(t_data *root);
+void		cpy_rgb(t_data *root, char *line);
+void		free_uselsee_wall(t_data *root, int pos);
+void		check_array(t_data *root, t_map *data_map);
+void		increment_data_line(t_data *root, t_map *data);
+void		go_to_beginning_of_map(int fd, t_map *data_map);
+void		check_map(t_map *data_map, t_data *root, char *map);
+void		str_rgb_to_struct(t_data *root, char c, char **rgb);
+void		map_file_to_array(t_map *data_map, char *map, t_data *root);
 
-bool	is_player(char c);
-bool	key_space(t_ray *ray);
-bool	check_format(char **arr);
-bool	is_space_or_player(char c);
-bool	all_data_set(t_data *root);
-bool	line_only_space(char *line);
-bool	line_only_char_map(char *line);
-bool	whitespace_on_line(char **arr);
-bool	only_space(char *line, t_data *root, char *map);
+bool		is_player(char c);
+bool		key_space(t_ray *ray);
+bool		check_format(char **arr);
+bool		is_space_or_player(char c);
+bool		all_data_set(t_data *root);
+bool		line_only_space(char *line);
+bool		line_only_char_map(char *line);
+bool		whitespace_on_line(char **arr);
+bool		only_space(char *line, t_data *root, char *map);
 
 //start.c
-int		start_raycasting(t_data *data);
+int			start_raycasting(t_data *data);
 
 //initialize.c
-void	initialize_all_values(t_ray *ray);
-int		initialize_mlx(t_mlx *mlx);
-int		initialize_buffer(t_ray *ray);
-void	clear_buffer(int **buffer);
+void		initialize_all_values(t_ray *ray);
+int			initialize_mlx(t_mlx *mlx);
+int			initialize_buffer(t_ray *ray);
+void		clear_buffer(int **buffer);
 
 //data.c
-void	transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
-void	get_dir(t_ray *ray, t_data *data);
-void	get_plane(t_ray *ray, t_data *data);
-void	transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
+void		transpose_parsed_map_to_ray(t_ray *ray, t_data *data);
+void		get_dir(t_ray *ray, t_data *data);
+void		get_plane(t_ray *ray, t_data *data);
+void		transpose_parsed_data_to_ray(t_ray *ray, t_data *data);
 
 //raycasting.c
-void	initialize_ray_i(t_ray *ray);
-// void	print_results_on_screen(t_ray *ray, t_mlx *mlx);
-void	print_results_on_screen(t_ray *ray);
-int		launch_raycasting(t_ray *ray, t_mlx *mlx);
+void		initialize_ray_i(t_ray *ray);
+void		print_results_on_screen(t_ray *ray);
+int			launch_raycasting(t_ray *ray, t_mlx *mlx);
 
 //computation.c
-void	compute_deltadist(t_ray *ray);
-void	compute_sidedist(t_ray *ray);
-void	compute_perpwalldist(t_ray *ray);
-void	compute_line_attributes(t_ray *ray);
+void		compute_deltadist(t_ray *ray);
+void		compute_sidedist(t_ray *ray);
+void		compute_perpwalldist(t_ray *ray);
+void		compute_line_attributes(t_ray *ray);
 
 //minimap.c
-void	carre(t_mlx *mlx, int x, int y, int color);
-void	minimap(t_ray *ray);
+void		carre(t_mlx *mlx, int x, int y, int color);
+void		minimap(t_ray *ray);
 
 //debug.c
-void	print_map_data(t_data *data);
-void	print_map_ray(t_ray *ray, t_data *data);
+void		print_map_data(t_data *data);
+void		print_map_ray(t_ray *ray, t_data *data);
 
 //mlx_utils.c
-int		create_trgb(int t, int r, int g, int b);
-int		create_rgb(int r, int g, int b);
+int			create_trgb(int t, int r, int g, int b);
+int			create_rgb(int r, int g, int b);
 
 //hooks.c
-int		key_press(int keycode, t_ray *ray);
-void	exit_safe(t_ray *ray);
-int		move(t_ray *ray);
-bool	rotate(t_ray *ray, bool reload);
-int		mouse_move(int x, int y, t_ray *ray);
-int		key_release(int keycode, t_ray *ray);
-int		len_double_array(char **arr);
+int			key_press(int keycode, t_ray *ray);
+void		exit_safe(t_ray *ray);
+int			move(t_ray *ray);
+bool		rotate(t_ray *ray, bool reload);
+int			mouse_move(int x, int y, t_ray *ray);
+int			key_release(int keycode, t_ray *ray);
+int			len_double_array(char **arr);
 
 //menu.c
-void	square(t_ray *ray);
-void	show_menu(t_ray *ray);
-void initialize_all_values_bis(t_ray *ray);
-void	init_img_menu(t_ray *ray);
+void		square(t_ray *ray);
+void		show_menu(t_ray *ray);
+void		initialize_all_values_bis(t_ray *ray);
+void		init_img_menu(t_ray *ray);
 
 //textures.c
 t_texture	xpm_to_img(t_ray *ray, char *path, t_mlx *mlx);
-int		get_textures(t_ray *ray);
-void	compute_wallx(t_ray *ray);
+int			get_textures(t_ray *ray);
+void		compute_wallx(t_ray *ray);
 
 //door.c
-t_door	*create_door(double x, double y);
-void	add_door(t_ray *ray, t_door *first, double x, double y);
-void	parse_doors(t_ray *ray);
-void	check_doors(t_ray *ray);
-void	print_doors(t_door *node);
-bool	move_speed_key(bool refresh_menu, t_ray *ray, int keycode);
-bool	rotation_speed(bool refresh_menu, t_ray *ray, int keycode);
-bool	ceiling_color_key(bool refresh_menu, t_ray *ray, int keycode);
-bool	floor_color_key(bool refresh_menu, t_ray *ray, int keycode);
-void	direction(int keycode, t_ray *ray);
-void	free_all_imgs(t_ray *ray);
-void	err_parsing_doors(t_data *root, t_map *data_map);
-void	ceiling_color(t_ray *ray, int x, int y);
-void	floor_color(t_ray *ray, int x, int y);
-int		len_square(t_data *data);
-void    close_opened_doors(t_ray *ray, t_data *data);
+t_door		*create_door(double x, double y);
+void		add_door(t_ray *ray, t_door *first, double x, double y);
+void		parse_doors(t_ray *ray);
+void		check_doors(t_ray *ray);
+void		print_doors(t_door *node);
+bool		move_speed_key(bool refresh_menu, t_ray *ray, int keycode);
+bool		rotation_speed(bool refresh_menu, t_ray *ray, int keycode);
+bool		ceiling_color_key(bool refresh_menu, t_ray *ray, int keycode);
+bool		floor_color_key(bool refresh_menu, t_ray *ray, int keycode);
+void		direction(int keycode, t_ray *ray);
+void		free_all_imgs(t_ray *ray);
+void		err_parsing_doors(t_data *root, t_map *data_map);
+void		ceiling_color(t_ray *ray, int x, int y);
+void		floor_color(t_ray *ray, int x, int y);
+int			len_square(t_data *data);
+void		close_opened_doors(t_ray *ray, t_data *data);
 
 //sprites.c
-void	add_sprites(t_ray *ray);
-void    get_sprites_nbr(t_ray *ray, t_sprite *sprite);
-void    get_sprites_coordinates(t_ray *ray, t_sprite *sprite);
-void    sort_sprites(t_ray *ray, t_sprite *sprite);
+void		add_sprites(t_ray *ray);
+void		get_sprites_nbr(t_ray *ray, t_sprite *sprite);
+void		get_sprites_coordinates(t_ray *ray, t_sprite *sprite);
+void		sort_sprites(t_ray *ray, t_sprite *sprite);
 
 //floor.c
-void    create_floor_and_ceiling(t_ray *ray);
-int	get_color(int color, t_ray *ray, char c);
+void		create_floor_and_ceiling(t_ray *ray);
+int			get_color(int color, t_ray *ray, char c);
 
 //exit.c
-void	free_double_array_int(int **arr);
-void	free_list(t_door *first);
-void	free_all(t_ray * ray);
+void		free_double_array_int(int **arr);
+void		free_list(t_door *first);
+void		free_all(t_ray *ray);
 
 #endif

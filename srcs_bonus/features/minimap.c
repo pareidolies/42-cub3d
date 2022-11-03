@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:34:39 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/11/01 01:21:35 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:50:58 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	pos_player(t_ray *ray, int sq)
 	while (j < sq - 1)
 	{
 		ray->mlx->addr[((j + (pos_y * sq) + 20) * WIDTH)
-			+ (i + 20 + (pos_x * sq))] = create_rgb(255, 255, 0);
+			+ (i + 20 + (pos_x * sq))] = create_rgb(210, 105, 30);
 		i++;
 		if (i == sq - 1)
 		{
@@ -76,13 +76,13 @@ static void	create_minimap(t_ray *ray, int sq, int i, int j)
 {
 	if (ray->data->map[i][j] == '1')
 		square_minimap(ray, (j * sq) + 20, (i * sq) + 20,
-			create_rgb(128, 128, 128));
+			create_rgb(255, 228, 196));
 	else if (ray->data->map[i][j] == '2')
 		square_minimap(ray, (j * sq) + 20, (i * sq) + 20,
-			create_rgb(128, 255, 0));
+			create_rgb(220, 20, 60));
 	else
 		square_minimap(ray, (j * sq) + 20, (i * sq) + 20,
-			create_rgb(0, 0, 255));
+			create_rgb(244, 164, 96));
 }
 
 void	minimap(t_ray *ray)

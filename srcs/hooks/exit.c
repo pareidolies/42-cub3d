@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 16:27:03 by jdubilla          #+#    #+#             */
-/*   Updated: 2022/11/02 09:34:50 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:38:51 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_textures(t_ray *ray)
 	}
 }
 
-void	free_all(t_ray * ray)
+void	free_all(t_ray *ray)
 {
 	if (!ray->data->err)
 		free_double_array_int(ray->xpm->buffer);
