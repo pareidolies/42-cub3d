@@ -64,9 +64,9 @@ int get_textures(t_ray *ray)
 	ray->texture[1] = xpm_to_img(ray, ray->data->so, ray->mlx);
 	ray->texture[2] = xpm_to_img(ray, ray->data->we, ray->mlx);
 	ray->texture[3] = xpm_to_img(ray, ray->data->ea, ray->mlx);
-	ray->texture[4] = xpm_to_img(ray, "./textures/television.xpm", ray->mlx); //DOORS
-	ray->texture[5] = xpm_to_img(ray, "./textures/barrel.xpm", ray->mlx); //SPRITES
-	ray->texture[6] = xpm_to_img(ray, "./textures/barrel.xpm", ray->mlx); //SPRITES
+	ray->texture[4] = xpm_to_img(ray, "./textures/door3.xpm", ray->mlx); //DOORS
+	ray->texture[5] = xpm_to_img(ray, "./textures/venus.xpm", ray->mlx); //SPRITES
+	ray->texture[6] = xpm_to_img(ray, "./textures/statue1.xpm", ray->mlx); //SPRITES
 	ray->texture[7] = xpm_to_img(ray, "./textures/floor.xpm", ray->mlx); //FLOOR
     // ray->texture[8] = NULL;
 	return (0);

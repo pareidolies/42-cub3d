@@ -42,6 +42,8 @@
 // # define MOVE_SPEED 0.1
 // # define ROT_SPEED 0.033 * 1.8
 
+# define ADJUST 50.0
+
 # define MOVE_FORWARD 119
 # define MOVE_BACKWARD 115
 # define MOVE_RIGHTWARD 100

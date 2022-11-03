@@ -42,9 +42,9 @@ void    compute_sprite_camera_position(t_ray *ray, t_sprite *sprite, int i)
     sprite->transform.x = sprite->invdet * (ray->dir.y * x - ray->dir.x * y);
     sprite->transform.y = sprite->invdet * (-ray->plane.y * x + ray->plane.x * y);
     if (sprite->tab[sprite->order[i]].texture == 5)
-        ray->levitationscreen = ray->levitation / sprite->transform.y;
+        ray->levitationscreen = (ray->levitation + 350.0) / sprite->transform.y;
     else
-        ray->levitationscreen = -ray->levitation / sprite->transform.y;
+        ray->levitationscreen = (-ray->levitation + 400.0) / sprite->transform.y;
     sprite->screenx= (int)((WIDTH / 2) * (1 + sprite->transform.x / sprite->transform.y));
 }
 
