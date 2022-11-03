@@ -6,7 +6,7 @@
 /*   By: jdubilla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 17:13:28 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/02 19:54:21 by jdubilla         ###   ########.fr       */
+/*   Updated: 2022/11/03 21:08:56 by jdubilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	initialize_all_values_bis(t_ray *ray)
 	ray->key.mouse_r = false;
 	ray->key.menu = false;
 	ray->key.pos_menu = 0;
-	ray->move_speed = 0.15;
+	ray->move_speed = 0.05;
 	ray->key.move_s = 2;
-	ray->rot_speed = 0.07;
+	ray->rot_speed = 0.04;
 	ray->key.rotation_s = 3;
 	ray->ceiling_color = 0;
 	ray->floor_color = 0;
