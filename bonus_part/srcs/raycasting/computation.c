@@ -48,6 +48,14 @@ void	compute_sidedist(t_ray *ray)
 	}
 }
 
+void	compute_perpwalldist2(t_ray *ray)
+{
+	if (ray->side == HORIZONTAL)
+		ray->perpwalldist = ray->sidedist.x - ray->deltadist.x;
+	else
+		ray->perpwalldist = ray->sidedist.y - ray->deltadist.y;
+}
+
 void	compute_perpwalldist(t_ray *ray)
 {
 	while (ray->hit == EMPTY)
@@ -72,10 +80,7 @@ void	compute_perpwalldist(t_ray *ray)
 				ray->is_door = 1;
 		}
 	}
-	if (ray->side == HORIZONTAL)
-		ray->perpwalldist = ray->sidedist.x - ray->deltadist.x;
-	else
-		ray->perpwalldist = ray->sidedist.y - ray->deltadist.y;
+	compute_perpwalldist2(ray);
 }
 
 void	compute_line_attributes(t_ray *ray)

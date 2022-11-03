@@ -29,7 +29,7 @@ int	initialize_mlx(t_mlx *mlx)
 	return (0);
 }
 
-void initialize_all_values_bis(t_ray *ray)
+void	initialize_all_values_bis(t_ray *ray)
 {
 	ray->key.w = false;
 	ray->key.a = false;

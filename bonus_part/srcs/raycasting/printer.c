@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void	print_map_data(t_data *data)
+/*void	print_map_data(t_data *data)
 {
 	int	i = 0;
 	int	j = 0;
@@ -90,4 +90,4 @@ void	print_buffer(int **buffer)
 		printf("\n");
 		j++;
 	}
-}
+}*/

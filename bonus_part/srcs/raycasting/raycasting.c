@@ -56,7 +56,7 @@ void	former_print_results_on_screen(t_ray *ray, t_mlx *mlx)
 
 void	compute_wallx(t_ray *ray)
 {
-	if (ray->side == HORIZONTAL) //HORI
+	if (ray->side == HORIZONTAL)
 	{
 		ray->xpm->id = 0;
 		if (ray->raydir.x > 0)
@@ -80,22 +80,23 @@ void	fill_buffer(t_ray *ray)
 	int	j;
 	int	color;
 
-	ray->xpm->tex.x = (int)(ray->wallx * (double)ray->texture[ray->xpm->id].width);
+	ray->xpm->tex.x = (int)(ray->wallx * \
+		(double)ray->texture[ray->xpm->id].width);
 	if ((ray->side == HORIZONTAL && ray->raydir.x > 0)
 		|| (ray->side == VERTICAL && ray->raydir.y < 0))
-		ray->xpm->tex.x = ray->texture[ray->xpm->id].width - ray->xpm->tex.x - 1;
-	ray->xpm->step = 1.0 * ray->texture[ray->xpm->id].height / ray->lineheight; //
-	ray->xpm->pos = (ray->drawstart - (double)HEIGHT / 2 + (double)ray->lineheight / 2) * ray->xpm->step;
+		ray->xpm->tex.x = ray->texture[ray->xpm->id].width - \
+			ray->xpm->tex.x - 1;
+	ray->xpm->step = 1.0 * ray->texture[ray->xpm->id].height / ray->lineheight;
+	ray->xpm->pos = (ray->drawstart - (double)HEIGHT / 2 + \
+		(double)ray->lineheight / 2) * ray->xpm->step;
 	j = ray->drawstart;
 	while (j < ray->drawend)
 	{
 		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->texture[ray->xpm->id].height - 1);
 		ray->xpm->pos += ray->xpm->step;
-		color = ray->texture[ray->xpm->id].tab[ray->texture[ray->xpm->id].height * ray->xpm->tex.y + ray->xpm->tex.x];
-		//if (ray->side == VERTICAL) // VERT
-			//color = (color >> 1) & 8355711;
-		//if (color > 0)
-			ray->xpm->buffer[j][ray->i] = color;
+		color = ray->texture[ray->xpm->id].tab[ray->texture[ray->xpm->id].height * \
+			ray->xpm->tex.y + ray->xpm->tex.x];
+		ray->xpm->buffer[j][ray->i] = color;
 		j++;
 	}
 }
@@ -103,7 +104,8 @@ void	fill_buffer(t_ray *ray)
 /*//TUTORIAL LODEV
 
 //texturing calculations
-    int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+    int texNum = worldMap[mapX][mapY] - 1; 
+	//1 subtracted from it so that texture 0 can be used!
 
 //calculate value of wallX
 	double wallX; //where exactly the wall was hit
@@ -123,11 +125,13 @@ double step = 1.0 * texHeight / lineHeight;
 double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
 for(int y = drawStart; y<drawEnd; y++)
 {
-// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+// Cast the texture coordinate to integer, 
+and mask with (texHeight - 1) in case of overflow
         int texY = (int)texPos & (texHeight - 1);
         texPos += step;
         Uint32 color = texture[texNum][texHeight * texY + texX];
-        //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+        //make color darker for y-sides: R, G and B byte 
+		each divided through two with a "shift" and an "and"
         if(side == 1) color = (color >> 1) & 8355711;
         buffer[y][x] = color;
 }*/
@@ -173,7 +177,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	clear_buffer(ray->xpm->buffer);
 	close_opened_doors(ray, ray->data);
 	if (ray->door)
-		check_doors(ray); //DOORS
+		check_doors(ray);
 	create_floor_and_ceiling(ray);
 	ray->i = 0;
 	while (ray->i < WIDTH)
@@ -182,15 +186,14 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 		compute_deltadist(ray);
 		compute_sidedist(ray);
 		compute_perpwalldist(ray);
-		ray->zbuffer[ray->i] = ray->perpwalldist; //for sprites
+		ray->zbuffer[ray->i] = ray->perpwalldist;
 		compute_line_attributes(ray);
-		compute_wallx(ray); //NEW
-		//former_print_results_on_screen(ray, mlx);
-		fill_buffer(ray); //NEW
+		compute_wallx(ray);
+		fill_buffer(ray);
 		ray->i++;
 	}
-	add_sprites(ray); //SPRITE
-	print_results_on_screen(ray); //NEW
+	add_sprites(ray);
+	print_results_on_screen(ray);
 	if (ray->minimap)
 		minimap(ray);
 	if (!ray->key.menu)
@@ -200,3 +203,7 @@ int	launch_raycasting(t_ray *ray, t_mlx *mlx)
 	mlx_destroy_image(mlx->ptr, mlx->img);
 	return (0);
 }
+
+/* (c. 185)
+	//former_print_results_on_screen(ray, mlx);
+*/
