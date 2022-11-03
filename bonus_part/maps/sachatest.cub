@@ -2,7 +2,7 @@ NO     ./textures/wall3.xpm
 SO    ./textures/wall1.xpm
 WE ./textures/wall4.xpm
 EA ./textures/wall2.xpm
-D ./textures/rideaux1.xpm
+D ./textures/rideaux.xpm
 
 
 F 22,22,22
