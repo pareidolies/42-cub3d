@@ -15,3 +15,7 @@ https://zestedesavoir.com/articles/153/comment-doom-et-wolfenstein-affichaient-l
 Pour les sprites :
 
 https://lodev.org/cgtutor/raycasting3.html
+
+Pour les operations bitwise et modulo :
+
+https://mziccard.me/2015/05/08/modulo-and-division-vs-bitwise-operations/
