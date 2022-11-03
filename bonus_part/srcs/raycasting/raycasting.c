@@ -71,7 +71,8 @@ void	fill_buffer(t_ray *ray)
 	j = ray->drawstart;
 	while (j < ray->drawend)
 	{
-		ray->xpm->tex.y = (int)ray->xpm->pos & (ray->texture[ray->xpm->id].height - 1); // question
+		ray->xpm->tex.y = (int)ray->xpm->pos
+			& (ray->texture[ray->xpm->id].height - 1);
 		ray->xpm->pos += ray->xpm->step;
 		color = ray->texture[ray->xpm->id].\
 			tab[ray->texture[ray->xpm->id].height * \

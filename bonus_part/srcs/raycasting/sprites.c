@@ -32,7 +32,7 @@
             //4) ZBuffer, with perpendicular distance
 */
 
-void	compute_sprite_camera_position(t_ray *ray, t_sprite *sprite, int i) // question
+void	compute_sprite_camera_position(t_ray *ray, t_sprite *sprite, int i)
 {
 	double	x;
 	double	y;
@@ -77,10 +77,10 @@ void	compute_sprite_height_and_width(t_ray *ray, t_sprite *sprite)
 void	draw_sprite_pixel(t_ray *ray, t_sprite *sprite, int i)
 {
 	sprite->d = (ray->pixel - ray->levitationscreen) * \
-		256 - HEIGHT * 128 + sprite->height * 128; //question
+		256 - HEIGHT * 128 + sprite->height * 128;
 	sprite->tex.y = ((sprite->d * \
 		ray->texture[sprite->tab[sprite->order[i]].texture].height) / \
-			sprite->height) / 256; //question
+			sprite->height) / 256;
 	sprite->color = ray->texture[sprite->tab[sprite->order[i]].\
 		texture].tab[ray->texture[sprite->tab[sprite->order[i]].\
 		texture].width * sprite->tex.y + sprite->tex.x];

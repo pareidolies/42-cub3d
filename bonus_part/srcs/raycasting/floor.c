@@ -6,7 +6,7 @@
 /*   By: smostefa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:01:02 by smostefa          #+#    #+#             */
-/*   Updated: 2022/11/03 16:07:05 by smostefa         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:49:48 by smostefa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ void	create_floor_and_ceiling2(t_ray *ray, int x, int y)
 	ray->cell.x = (int)(ray->floor.x);
 	ray->cell.y = (int)(ray->floor.y);
 	t.x = (int)(ray->texture[7].width * (ray->floor.x - ray->cell.x))
-    & (ray->texture[7].width - 1); //question
-	t.y = (int)(ray->texture[7].height * (ray->floor.y - ray->cell.y)) % ray->texture[7].height
-    & (ray->texture[7].height - 1); //question
+		& (ray->texture[7].width - 1);
+	t.y = (int)(ray->texture[7].height * \
+		(ray->floor.y - ray->cell.y)) % ray->texture[7].height
+		& (ray->texture[7].height - 1);
 	ray->floor.x += ray->floorstep.x;
 	ray->floor.y += ray->floorstep.y;
 	color = ray->texture[7].tab[ray->texture[7].width * t.y + t.x];
