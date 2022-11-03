@@ -17,6 +17,7 @@ SRCS		=	main.c \
 				utils/mlx_utils.c \
 				raycasting/raycasting.c \
 				raycasting/computation.c \
+				raycasting/lists.c \
 				features/minimap.c \
 				features/minimap_utils.c \
 				raycasting/data.c \
