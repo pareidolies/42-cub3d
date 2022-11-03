@@ -12,19 +12,19 @@
 
 #include "../includes/cub3d.h"
 
-void	parse_doors2(t_ray *ray, t_door *door, int i, int j)
+void	parse_doors2(t_ray *ray, t_door **door, int i, int j)
 {
-	if (!door)
+	if (!*door)
 	{
-		door = create_door((double)(i) + 0.5, (double)j + 0.5);
-		if (!door)
+		*door = create_door((double)(i) + 0.5, (double)j + 0.5);
+		if (!*door)
 		{
 			ft_printf(MALLOC_MSSG);
 			exit_safe(ray);
 		}
 	}
 	else
-		add_door(ray, door, (double)(i) + 0.5, (double)j + 0.5);
+		add_door(ray, *door, (double)(i) + 0.5, (double)j + 0.5);
 }
 
 void	parse_doors(t_ray *ray)
@@ -41,9 +41,7 @@ void	parse_doors(t_ray *ray)
 		while (i < ray->data->len)
 		{
 			if (ray->revert_map[i][j] == '2')
-			{
-				parse_doors2(ray, door, i, j);
-			}
+				parse_doors2(ray, &door, i, j);
 			i++;
 		}
 		j++;
