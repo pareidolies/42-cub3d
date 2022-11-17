@@ -34,13 +34,15 @@ Pour les novices des mathématiques, voici le détails de la simplification du c
 
 [A COMPLETER]
 
-Ensuite, pour éviter l'effet fisheye, nous allons calculer non pas la distance de la position du joueur au mur, mais ce que l'on va appeler perpwalldist, à savoir la plus courte distance entre le plan caméra et le mur. En effet, sans faire cela, les murs pourraient sembler "arrondi". Lodev démontre comment on arrive alors à sidedist - deltadist, en utilisant cette fois-ci le théorème de Thalès.
+Ensuite, pour éviter l'effet fisheye, nous allons calculer non pas la distance de la position du joueur au mur, mais ce que l'on va appeler perpwalldist, à savoir la plus courte distance entre le plan caméra et le mur. En effet, sans faire cela, les murs pourraient sembler "arrondi". Lodev démontre avec cette fois-ci le théorème de Thalès comment on arrive alors à une formule très jolie et simple grâce à la cohérence des calculs précédents : perpwalldist = (sidedist - deltadist).
 
 ![Capture d’écran 2022-11-17 à 17 19 58](https://user-images.githubusercontent.com/96736158/202500275-f76c4927-c0de-48a4-aa71-9275c3af14a3.png)
 
 Dès lors, il n'y a plus qu'à calculer la taille du mur proportionnellement à la taille de votre écran (vous pouvez faire des murs carrés comme lodev, mais pourquoi pas plus hauts ou plus petits !), puis la coordonnée du haut du mur et de son bas, sachant que le centre doit se situer au milieu.
 
 Ainsi, pour chaque pixel de l'écran, vous pouvez l'afficher d'une certaine couleur pour le mur, et d'autre autre pour le sol et le plafond.
+
+Petit conseil : toujours faire attention à bien avoir en tête les valeurs qui sont des _int_ et celles qui sont des _double_.
 
 ## Les hooks
 
@@ -56,9 +58,9 @@ A présent, il faut ajouter les textures. Au lieu d'afficher des couleurs, il va
 
 Pour trouver vos textures, il y en a des toutes faites, mais vous pouvez aussi vous amuser à redimensionner des images png de votre choix (en 256 * 256 par exemple), puis à la convertir en xpm.
 
-Pour redimensionner les images :
-Pour les convertir en xpm :
-Pour choisir des couleurs :
+Pour redimensionner les images : https://www.iloveimg.com/fr/redimensionner-image/png-redimensionner
+Pour les convertir en xpm : https://convertio.co/fr/png-xpm/
+Pour choisir des couleurs : https://htmlcolorcodes.com/fr/
 
 ## Les bonus
 
@@ -72,7 +74,9 @@ Pour choisir des couleurs :
 
 Et voici un petit aperçu du résultat final :
 
+![cub3d-2022-11-11_17 58 30_1](https://user-images.githubusercontent.com/96736158/202507280-bf591c8a-0e63-4b73-b1ea-34db635da098.gif)
 
+Les tableaux sont :
 
 ## Ressources : 
 
