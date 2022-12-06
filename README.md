@@ -118,6 +118,6 @@ Pour le sol :
 
 https://lodev.org/cgtutor/raycasting2.html
 
-Pour les operations bitwise et modulo :
+Pour les operations bitwise équivalent modulo :
 
 https://mziccard.me/2015/05/08/modulo-and-division-vs-bitwise-operations/
