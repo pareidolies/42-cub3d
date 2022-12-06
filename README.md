@@ -18,7 +18,7 @@ Tout d'abord, il faut savoir que le raycasting est une sorte de "faux 3d", puisq
 
 ![R7TAtQf](https://user-images.githubusercontent.com/96736158/202495984-479fc463-2a16-40cf-953d-f31c3d5b365e.png)
 
-Crédits : https://tiplanet.org/forum/viewtopic.php?t=15033
+[crédits schéma](https://tiplanet.org/forum/viewtopic.php?t=15033)
 
 Le tutoriel de lodev travaille avec des vecteurs, donc si vous n'avez pas fait beaucoup de maths au lycée, prenez le temps de bien comprendre cette notion et les calculs avec des matrices !
 
@@ -26,9 +26,13 @@ Pour calculer l'endroit précis où le rayon cogne un mur en faisant le moins de
 
 ![Capture d’écran 2022-11-17 à 17 12 16](https://user-images.githubusercontent.com/96736158/202498559-fa4d2c8a-4536-4b66-a933-31a923744ae6.png)
 
+[crédits schéma](https://lodev.org/cgtutor/raycasting.html)
+
 On va calculer cela pour les arêtes verticales d'une part, pour les arêtes horizontales d'autre part, en choisissant la distance la plus courte. C'est le calcul des fameux deltadist et sidedist en utilisant simplement... Pythagore ! Attention, il faut garder l'information du type d'arête qui a été utilisé (horizontal) ou (vertical) car elle permet de savoir quel type de mur a été atteint.
 
 ![Capture d’écran 2022-11-17 à 17 12 47](https://user-images.githubusercontent.com/96736158/202498683-4eb5d0cf-7c78-4025-a011-1fa0e73f54ec.png)
+
+[crédits schéma](https://lodev.org/cgtutor/raycasting.html)
 
 Pour les novices des mathématiques, voici les détails de la simplification du calcul de deldist effectué par lodev :
 
@@ -38,11 +42,13 @@ Ensuite, pour éviter l'effet fisheye, nous allons calculer non pas la distance 
 
 ![Capture d’écran 2022-11-17 à 17 19 58](https://user-images.githubusercontent.com/96736158/202500275-f76c4927-c0de-48a4-aa71-9275c3af14a3.png)
 
-Dès lors, il n'y a plus qu'à calculer la taille du mur proportionnellement à la taille de votre écran (vous pouvez faire des murs carrés comme lodev, mais pourquoi pas plus hauts ou plus petits selon le type d'univers que souhaitez créer !), puis la coordonnée de la position du haut du mur et de son bas, sachant que le centre doit se situer au milieu.
+[crédits schéma](https://lodev.org/cgtutor/raycasting.html)
+
+Dès lors, il n'y a plus qu'à calculer la taille du mur proportionnellement à la taille de votre écran (vous pouvez faire des murs carrés comme lodev, mais pourquoi pas plus hauts ou plus petits selon le type d'univers que vous souhaitez créer !), puis la coordonnée de la position du sommet du mur et de son pied, sachant que le centre du mur doit se situer au milieu de l'écran.
 
 Ainsi, vous pouvez afficher chaque pixel de l'écran d'une certaine couleur s'il se situe entre le haut et le bas du mur, et d'une autre couleur pour le sol et le plafond.
 
-Conseil : toujours faire attention à bien avoir en tête les valeurs qui sont des _int_ et celles qui sont des _double_. De mauvaises conversions peuvent générer des erreurs qu'on ne parvient pas à comprendre tout de suite en voyant le résultat.
+Conseil : Toujours faire attention à bien avoir en tête les valeurs qui sont des _int_ et celles qui sont des _double_. De mauvaises conversions peuvent générer des erreurs qu'on ne parvient pas à comprendre tout de suite en voyant le résultat.
 
 ## Les hooks
 
@@ -76,13 +82,19 @@ Pour choisir des couleurs : https://htmlcolorcodes.com/fr/
 
 * Nous avons également une minimap qui s'affiche en haut à gauche avec la position du joueur en temps réel, et un menu que l'on peut afficher avec le touche m, et dont on peut modifier les valeurs (vitesse de déplacement, vitesse de rotation, couleurs du plafond, etc) avec les touches + et -.
 
-Note : Lorsque lode
+Note : Lorsque lode utilise des opérations bitwise, cela revient à utiliser modulo pour éviter les overflows.
 
 Et voici un petit aperçu du résultat final :
 
 ![cub3d-2022-11-11_17 58 30_1](https://user-images.githubusercontent.com/96736158/202507280-bf591c8a-0e63-4b73-b1ea-34db635da098.gif)
 
-Les tableaux sont :
+Les tableaux exposés dans notre musée virtuel sont :
+- Le Main tenant un miroir déformant et les Visages de Escher
+- _Chop Suey_ de Hopper
+- _Le Baiser_ de Klimt
+- _L'Absinthe_ de Degas
+- _La Joconde_ de Leonard de Vinci
+- Un Action Painting de Jackson Pollock
 
 ## Ressources : 
 
