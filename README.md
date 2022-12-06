@@ -48,7 +48,7 @@ Dès lors, il n'y a plus qu'à calculer la taille du mur proportionnellement à 
 
 Ainsi, vous pouvez afficher chaque pixel de l'écran d'une certaine couleur s'il se situe entre le haut et le bas du mur, et d'une autre couleur pour le sol et le plafond.
 
-Conseil : Toujours faire attention à bien avoir en tête les valeurs qui sont des _int_ et celles qui sont des _double_. De mauvaises conversions peuvent générer des erreurs qu'on ne parvient pas à comprendre tout de suite en voyant le résultat.
+**Conseil :** Toujours faire attention à bien avoir en tête les valeurs qui sont des _int_ et celles qui sont des _double_. De mauvaises conversions peuvent générer des erreurs qu'on ne parvient pas à comprendre tout de suite en voyant le résultat.
 
 ## Les hooks
 
@@ -56,7 +56,7 @@ Quand vous souhaitez vous déplacer à l'aide des touches WASD, il suffit de vé
 
 Pour les rotations avec les flèches droite et gauche, il va falloir faire appel à la [matrice de rotation](https://en.wikipedia.org/wiki/Rotation_matrix) pour calculer les nouvelles coordonnées des vecteurs. La formule est donnée dans la page Wikipedia.
 
-Conseil : Il est préférable de supprimer l'autorepeat pour optimiser la vitesse des déplacements et des mouvements de rotation dans votre projet et éviter les bugs.
+**Conseil :** Il est préférable de supprimer l'autorepeat pour optimiser la vitesse des déplacements et des mouvements de rotation dans votre projet et éviter les bugs.
 
 Normalement, à ce stade, vous devriez arriver à quelque chose qui ressemble à ceci :
 
@@ -66,7 +66,7 @@ A présent, il faut ajouter les textures. Au lieu d'afficher des couleurs, il va
 
 Pour trouver vos textures, sachez qu'il en existe de toutes faites, mais vous pouvez aussi vous amuser à redimensionner des images png de votre choix (en 256 * 256 par exemple), puis à la convertir en xpm pour avoir toute la liberté que vous voulez.
 
-Quelques sites utiles et fiables :
+**Quelques sites utiles et fiables pour l'aspect design du projet:**
 
 Pour redimensionner les images : https://www.iloveimg.com/fr/redimensionner-image/png-redimensionner
 
@@ -84,7 +84,7 @@ Pour choisir des couleurs : https://htmlcolorcodes.com/fr/
 
 * Nous avons également une minimap qui s'affiche en haut à gauche avec la position du joueur en temps réel, et un menu que l'on peut afficher avec le touche m, et dont on peut modifier les valeurs (vitesse de déplacement, vitesse de rotation, couleurs du plafond, etc) avec les touches + et -.
 
-Note : Lorsque lode utilise des opérations bitwise, cela revient à utiliser modulo pour éviter les overflows.
+**Note :** Lorsque lodev utilise des opérations bitwise, cela revient à utiliser modulo pour éviter les overflows.
 
 Et voici un petit aperçu du résultat final :
 
@@ -96,7 +96,7 @@ Les tableaux exposés dans notre musée virtuel sont :
 - _Le Baiser_ de Klimt
 - _L'Absinthe_ de Degas
 - _La Joconde_ de Leonard de Vinci
-- Un Action Painting de Jackson Pollock
+- Un _Action Painting_ de Jackson Pollock
 
 ## Ressources : 
 
@@ -123,3 +123,15 @@ https://lodev.org/cgtutor/raycasting2.html
 Pour les operations bitwise équivalent modulo :
 
 https://mziccard.me/2015/05/08/modulo-and-division-vs-bitwise-operations/
+
+Et si vous avez besoin de vous rafraîchir la mémoire concernant la minilibx de 42 :
+
+https://harm-smits.github.io/42docs/libs/minilibx
+
+https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
+
+https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx
+
+https://aurelienbrabant.fr/blog/managing-events-with-the-minilibx
+
+**Un très grand merci à lodev pour son tutoriel, et n'hésitez pas à nous écrire si vous avez des questions/suggestions pour ce projet !**
