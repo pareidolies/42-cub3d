@@ -44,7 +44,7 @@ Ensuite, pour éviter l'effet fisheye, nous allons calculer non pas la distance 
 
 [crédits schéma](https://lodev.org/cgtutor/raycasting.html)
 
-Dès lors, il n'y a plus qu'à calculer la taille du mur proportionnellement à la taille de votre écran (vous pouvez faire des murs carrés comme lodev, mais pourquoi pas plus hauts ou plus petits selon le type d'univers que vous souhaitez créer !), puis la coordonnée de la position du sommet du mur et de son pied, sachant que le centre du mur doit se situer au milieu de l'écran.
+Dès lors, il n'y a plus qu'à calculer la taille du mur proportionnellement à la taille de votre écran (vous pouvez faire des murs carrés comme lodev, mais pourquoi pas plus hauts ou plus petits selon le type d'univers que vous souhaitez créer !), puis la coordonnée y de la position du sommet du mur et celle de son pied, sachant que le centre du mur doit se situer au milieu de l'écran.
 
 Ainsi, vous pouvez afficher chaque pixel de l'écran d'une certaine couleur s'il se situe entre le haut et le bas du mur, et d'une autre couleur pour le sol et le plafond.
 
@@ -55,6 +55,8 @@ Conseil : Toujours faire attention à bien avoir en tête les valeurs qui sont d
 Quand vous souhaitez vous déplacer à l'aide des touches WASD, il suffit de vérifier si le déplacement va provoquer une collision avec un mur, et si ce n'est pas le cas, de modifier la position du joueur, puis de relancer le raycasting.
 
 Pour les rotations avec les flèches droite et gauche, il va falloir faire appel à la [matrice de rotation](https://en.wikipedia.org/wiki/Rotation_matrix) pour calculer les nouvelles coordonnées des vecteurs. La formule est donnée dans la page Wikipedia.
+
+Conseil : Il est préférable de supprimer l'autorepeat pour optimiser la vitesse des déplacements et des mouvements de rotation dans votre projet et éviter les bugs.
 
 Normalement, à ce stade, vous devriez arriver à quelque chose qui ressemble à ceci :
 
